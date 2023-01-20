@@ -5,14 +5,15 @@ import { prisma } from "../prisma";
 export default async function handle(req: any, res: any) {
   //const prisma = new PrismaClient();
   //await prisma.$connect();
+  const { dateStart, dateEnd } = req.body;
 
   const result = await prisma.applicant.findMany({
     where: {
       permits: {
         some: {
           expiryDate: {
-            gte: new Date("2023-02-01"),
-            lte: new Date("2023-02-28"),
+            gte: new Date(dateStart),
+            lte: new Date(dateEnd),
           },
         },
       },
