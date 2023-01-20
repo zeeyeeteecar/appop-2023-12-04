@@ -48,13 +48,19 @@ export default function Index() {
           </Tr>
         </Thead>
         <Tbody>
-          <Tr>
+          
             {fetchData &&
-              fetchData.map((permission, index) => {
+              fetchData.map((applicant, index) => {
                 //console.log("Performer_id==", item.Performer_id);
-                return <><Td>te</Td></>;
+                return (
+                  <Tr key={index}>
+                    <Td>{applicant.id}</Td>
+                    <Td>{applicant.firstName}</Td>
+                    <Td>{applicant.lastName}</Td>
+                  </Tr>
+                );
               })}
-          </Tr>
+          
         </Tbody>
         <Tfoot>
           <Tr>
