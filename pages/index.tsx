@@ -1,7 +1,10 @@
 import React from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import {
+  Center,
   VStack,
+  Button,
   HStack,
   Text,
   IconButton,
@@ -20,18 +23,25 @@ import {
 } from "@chakra-ui/react";
 import { EditIcon } from "@chakra-ui/icons";
 
-export default function index() {
+export default function Index() {
+  const router = useRouter();
   return (
-    <VStack>
-      <Text>
-        <Link href="/components/monthlyRenewalList">M0onthly Renewal List</Link>
-      </Text>
-      <Text>
-        <Link href="/about">About Us</Link>
-      </Text>
-      <Text>
-        <Link href="/blog/hello-world">Blog Post</Link>
-      </Text>
-    </VStack>
+    <Center borderWidth={"0px"} height={"100vh"} >
+      <VStack w="100%" borderWidth={"0px"} spacing={10} height={"500px"}>
+        <Center height={"100vh"} width="100%" bgColor="green.50">
+          <Button
+            onClick={() => router.push("/components/monthlyRenewalList")}
+            size="lg"
+            w="400px"
+            h="70px"
+            colorScheme={"teal"}
+            fontSize="30px"
+          >
+            {" "}
+            Monthly PP Renewal List{" "}
+          </Button>
+        </Center>
+      </VStack>
+    </Center>
   );
 }
