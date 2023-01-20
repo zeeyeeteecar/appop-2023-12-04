@@ -127,6 +127,7 @@ export default function Index() {
               <Th w="30px">User ID</Th>
               <Th>F name</Th>
               <Th>L name</Th>
+              <Th>DoB</Th>
               <Th w="150px">address</Th>
               <Th w="80px">city</Th>
               <Th w="40px">prov</Th>
@@ -172,6 +173,7 @@ export default function Index() {
                     <Td>{applicant.id}</Td>
                     <Td>{applicant.firstName}</Td>
                     <Td>{applicant.lastName}</Td>
+                    <Td>{formatDate(applicant.dateOfBirth)}</Td>
                     <Td>{applicant.addressLine1}</Td>
                     <Td>{applicant.city}</Td>
                     <Td>{applicant.province}</Td>
