@@ -1,21 +1,11 @@
-import Head from "next/head";
-import Image from "next/image";
-import Link from "next/link";
+import React from 'react'
+import Link from 'next/link'
 
-import React, { useEffect } from "react";
-import { useRouter } from "next/router";
-
-export default function Home() {
-  // const router = useRouter();
-
-  // React.useEffect(() => {
-  //   router.push("/components/monthlyRenewalList");
-  // });
-
+export default function index() {
   return (
     <ul>
       <li>
-        <Link href="/components/monthlyRenewalList">monthlyRenewalLis</Link>
+        <Link href="/components/monthlyRenewalList">Home</Link>
       </li>
       <li>
         <Link href="/about">About Us</Link>
@@ -24,5 +14,5 @@ export default function Home() {
         <Link href="/blog/hello-world">Blog Post</Link>
       </li>
     </ul>
-  );
+  )
 }
