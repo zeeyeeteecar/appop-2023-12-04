@@ -7,16 +7,26 @@ export default async function handle(req: any, res: any) {
   //await prisma.$connect();
 
   const result = await prisma.applicant.findMany({
-    
-    
-     include: {
-        permits: true,
-     },
+    where:{
+      permits:{
+        some:{
+          expiryDate:{
+            gte:new Date("2023-02-01"),
+            lte:new Date("2023-02-28"),
+          }
+        }
+      }
+    },
     orderBy: [
       {
         id: "asc",
+        permits
       },
     ],
+    include: {
+      permits: true,
+    },
+    
   });
 
   // await prisma.$disconnect();

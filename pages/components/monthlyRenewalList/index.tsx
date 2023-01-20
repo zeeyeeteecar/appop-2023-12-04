@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   VStack,
   HStack,
@@ -19,7 +19,23 @@ import {
 } from "@chakra-ui/react";
 import { EditIcon } from "@chakra-ui/icons";
 
-export default function index() {
+export default function Index() {
+  const [fetchData, setFetchData] = useState([]);
+
+  useEffect(() => {
+    // fetch data
+    const dataFetch = async () => {
+      const data = await (
+        await fetch("/api/monthlyRenewalList/monthlyRenewalList_find")
+      ).json();
+
+      // set state when the data received
+      setFetchData(data);
+    };
+    dataFetch();
+  }, []);
+  console.log(fetchData);
+
   return (
     <>
       <Table variant="striped" colorScheme="teal">
@@ -33,19 +49,11 @@ export default function index() {
         </Thead>
         <Tbody>
           <Tr>
-            <Td>inches</Td>
-            <Td>millimetres (mm)</Td>
-            <Td isNumeric>25.4</Td>
-          </Tr>
-          <Tr>
-            <Td>feet</Td>
-            <Td>centimetres (cm)</Td>
-            <Td isNumeric>30.48</Td>
-          </Tr>
-          <Tr>
-            <Td>yards</Td>
-            <Td>metres (m)</Td>
-            <Td isNumeric>0.91444</Td>
+            {fetchData &&
+              fetchData.map((permission, index) => {
+                //console.log("Performer_id==", item.Performer_id);
+                return <><Td>te</Td></>;
+              })}
           </Tr>
         </Tbody>
         <Tfoot>
