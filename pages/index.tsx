@@ -26,9 +26,9 @@ import { EditIcon } from "@chakra-ui/icons";
 export default function Index() {
   const router = useRouter();
   return (
-    <Center borderWidth={"0px"} height={"100vh"} >
+    <Center borderWidth={"0px"} height={"100vh"}>
       <VStack w="100%" borderWidth={"0px"} spacing={10} height={"500px"}>
-        <Center height={"100vh"} width="100%" bgColor="green.50">
+        <VStack height={"100vh"} width="100%" bgColor="green.50" spacing={5} p="10">
           <Button
             onClick={() => router.push("/components/monthlyRenewalList")}
             size="lg"
@@ -37,10 +37,42 @@ export default function Index() {
             colorScheme={"teal"}
             fontSize="30px"
           >
-            {" "}
-            Monthly PP Renewal List{" "}
+            Monthly PP Renewal List
           </Button>
-        </Center>
+          <Button
+            onClick={() => router.push("#")}
+            size="lg"
+            w="400px"
+            h="70px"
+            colorScheme={"teal"}
+            fontSize="30px"
+            value={"Wallet Card"}
+          >
+            Wallet Card
+          </Button>
+          <Button
+            onClick={() => router.push("#")}
+            size="lg"
+            w="400px"
+            h="70px"
+            colorScheme={"teal"}
+            fontSize="30px"
+            value={""}
+          >
+            
+          </Button>
+          <Button
+            onClick={() => router.push("#")}
+            size="lg"
+            w="400px"
+            h="70px"
+            colorScheme={"teal"}
+            fontSize="30px"
+            value={""}
+          >
+           
+          </Button>
+        </VStack>
       </VStack>
     </Center>
   );
