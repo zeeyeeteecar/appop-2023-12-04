@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import {
   VStack,
   HStack,
@@ -20,8 +20,11 @@ import {
 } from "@chakra-ui/react";
 import { EditIcon } from "@chakra-ui/icons";
 import { SingleDatepicker, RangeDatepicker } from "chakra-dayzed-datepicker";
+import { DownloadTableExcel } from "react-export-table-to-excel";
 
 export default function Index() {
+  const tableRef = useRef(null);
+
   const currentYear = new Date().getFullYear();
   const nextMonth = new Date().getMonth() + 2;
   const nextMonthDay1: string = "01";
@@ -72,8 +75,8 @@ export default function Index() {
   };
 
   return (
-    <VStack width={"100%"} height="100vh" borderWidth={4}>
-      <HStack>
+    <VStack width={"100%"} height="100vh" borderWidth={4} spacing={3}>
+      <HStack borderWidth="100%">
         <SingleDatepicker
           name="date-start"
           date={dateStart}
@@ -84,20 +87,39 @@ export default function Index() {
           date={dateEnd}
           onDateChange={setDateEnd}
         />
-        <Button
-          colorScheme={"teal"}
-          w="350px"
-          variant={"outline"}
-          _hover={{
-            background: "teal.500",
-            color: "white",
-          }}
-          onClick={handle_Search}
+        <HStack>
+          <Button
+            width={"250px"}
+            colorScheme={"teal"}
+            variant={"outline"}
+            _hover={{
+              background: "teal.500",
+              color: "white",
+            }}
+            onClick={handle_Search}
+          >
+            Search Rnewal List
+          </Button>
+        </HStack>
+        <DownloadTableExcel
+          filename="users table"
+          sheet="users"
+          currentTableRef={tableRef.current}
         >
-          Search
-        </Button>
+          <Button
+            colorScheme={"teal"}
+            w="250px"
+            variant={"outline"}
+            _hover={{
+              background: "teal.500",
+              color: "white",
+            }}
+          >
+            Export excel
+          </Button>
+        </DownloadTableExcel>
       </HStack>
-      <TableContainer overflowY={"auto"}>
+      <TableContainer overflowY={"auto"} ref={tableRef}>
         <Table width={"100%"} colorScheme="gray" size="sm">
           <TableCaption>Monthly PP Renewal </TableCaption>
           <Thead h="40px" bgColor={"green.50"}>
@@ -135,6 +157,10 @@ export default function Index() {
                   "-" +
                   applicant.phone.substring(3 + 3, 3 + 3 + 4);
 
+                const bgclr =
+                  (dateStart <= new Date(latestPermitExpiryDate) &&
+                  new Date(latestPermitExpiryDate) <= dateEnd)?"yellow.100":"red.200";
+
                 return (
                   <Tr
                     key={index}
@@ -150,8 +176,8 @@ export default function Index() {
                     <Td>{applicant.city}</Td>
                     <Td>{applicant.province}</Td>
                     <Td>{applicant.postalCode}</Td>
-                    <Td>{latestPermitExpiryDate}</Td>
-                    <Td>{latestPermitID}</Td>
+                    <Td bgColor={bgclr}>{latestPermitExpiryDate}</Td>
+                    <Td  bgColor={bgclr}>{latestPermitID}</Td>
                     <Td>{areaCode}</Td>
                     <Td>{phone}</Td>
                     <Td>{applicant.email}</Td>
