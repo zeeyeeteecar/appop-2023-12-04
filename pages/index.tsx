@@ -40,7 +40,7 @@ export default function Index() {
             Monthly PP Renewal List
           </Button>
           <Button
-            onClick={() => router.push("#")}
+            onClick={() => router.push("/components/doctorInfo")}
             size="lg"
             w="400px"
             h="70px"
@@ -48,7 +48,7 @@ export default function Index() {
             fontSize="30px"
             value={"Wallet Card"}
           >
-            Wallet Card
+            Doctor Info
           </Button>
           <Button
             onClick={() => router.push("#")}
