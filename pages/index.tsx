@@ -46,20 +46,20 @@ export default function Index() {
             h="70px"
             colorScheme={"teal"}
             fontSize="30px"
-            value={"Wallet Card"}
+            value={"Doctor Info"}
           >
             Doctor Info
           </Button>
           <Button
-            onClick={() => router.push("#")}
+            onClick={() => router.push("/components/walletCard")}
             size="lg"
             w="400px"
             h="70px"
             colorScheme={"teal"}
             fontSize="30px"
-            value={""}
+            value={"Wallet Card"}
           >
-            
+            Wallet Card
           </Button>
           <Button
             onClick={() => router.push("#")}

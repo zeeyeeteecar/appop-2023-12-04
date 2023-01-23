@@ -12,6 +12,12 @@ import {
   Radio,
   RadioGroup,
 } from "@chakra-ui/react";
+import {
+  PhoneIcon,
+  AddIcon,
+  WarningIcon,
+  ExternalLinkIcon,
+} from "@chakra-ui/icons";
 
 import Doctor_Search from "./doctor_search";
 
@@ -22,7 +28,6 @@ export default function Index_DoctorInfo() {
   const [searchPhone, setSearchPhone] = useState("");
 
   const [fetchData, setFetchData] = useState([]);
-  const [fetchDataCount, setFetchDataCount] = useState<number>();
 
   const dataFetch = async () => {
     const body = {
@@ -43,8 +48,6 @@ export default function Index_DoctorInfo() {
   };
 
   useEffect(() => {
-    // fetch data
-
     dataFetch();
   }, []);
 
@@ -91,6 +94,7 @@ export default function Index_DoctorInfo() {
             w="200px"
             alignContent="center"
             align={"center"}
+            fontSize="lg"
           >
             Total Record(s):{doctors.length}
           </Text>
@@ -100,6 +104,9 @@ export default function Index_DoctorInfo() {
                 <>
                   <HStack
                     key={index}
+                    spacing={3}
+                    padding={"3px"}
+                    
                     _hover={{
                       background: "gray.100",
                       color: "black",
@@ -114,6 +121,18 @@ export default function Index_DoctorInfo() {
                     <Text w={"150px"}>{doctor.province}</Text>
                     <Text w={"150px"}>{doctor.postalCode}</Text>
                     <Text w={"150px"}>{doctor.status}</Text>
+                    <IconButton
+                      color="gray.100"
+                      borderWidth={0}
+                      variant="outline"
+                      aria-label="edit doctor info"
+                      fontSize="20px"
+                      icon={<ExternalLinkIcon />}
+                      _hover={{
+                        background: "gray.100",
+                        color: "black",
+                      }}
+                    />
                   </HStack>
                 </>
               );
