@@ -12,16 +12,10 @@ import {
   Radio,
   RadioGroup,
 } from "@chakra-ui/react";
-import { useForm, SubmitHandler } from "react-hook-form";
+
+import Doctor_Search from "./doctor_search";
 
 export default function Index_DoctorInfo() {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm();
-
   const [searchMspNo, setSearchMspNo] = useState("");
   const [searchFName, setSearchFName] = useState("");
   const [searchLName, setSearchLName] = useState("");
@@ -46,8 +40,6 @@ export default function Index_DoctorInfo() {
       })
     ).json();
     setFetchData(data);
-
-    //console.log(body);
   };
 
   useEffect(() => {
@@ -55,19 +47,6 @@ export default function Index_DoctorInfo() {
 
     dataFetch();
   }, []);
-
-  const handle_search = async (event) => {
-    dataFetch();
-  };
-
-  // console.log(fetchData);
-
-  const handle_onChange_LName = (event) => {
-    setSearchLName(event.target.value);
-  };
-  const handle_onChange_Phone = (event) => {
-    setSearchPhone(event.target.value);
-  };
 
   const doctors = fetchData.filter((item) => {
     return searchMspNo.toLowerCase() === "" &&
@@ -81,10 +60,6 @@ export default function Index_DoctorInfo() {
           item.phone.toLowerCase().includes(searchPhone);
   });
 
-  const drCount = () => {
-    return doctors.length;
-  };
-
   return (
     <Center
       borderWidth={"7px"}
@@ -94,39 +69,15 @@ export default function Index_DoctorInfo() {
       alignItems={"flex-start"}
     >
       <VStack borderWidth={"0px"} h="100%" w="100%" spacing={3}>
-        <form onSubmit={handleSubmit(handle_search)}>
-          <HStack borderWidth={"0px"} direction="row">
-            <Input
-              placeholder="MSP #"
-              {...register("mspNo")}
-              onChange={(e) => setSearchMspNo(e.target.value)}
-            />
-            <Input
-              placeholder="F Name"
-              {...register("fName")}
-              onChange={(e) => setSearchFName(e.target.value)}
-            />
-            <Input
-              placeholder="L Name"
-              {...register("lName")}
-              onChange={(e) => setSearchLName(e.target.value)}
-            />
-            <Input
-              placeholder="phone"
-              {...register("phone")}
-              onChange={(e) => setSearchPhone(e.target.value)}
-            />
-            {/* <Input placeholder="MSP #" {...register("mspNo")}   />
-            <Input placeholder="F Name" {...register("fName")}   />
-            <Input placeholder="L Name" {...register("lName")}   />
-            <Input placeholder="phone" {...register("phone")}  /> */}
-            <Box>
-              <Button type="submit" w={"200px"} hidden={true}>
-                Search Dr Info
-              </Button>
-            </Box>
-          </HStack>
-        </form>
+        <HStack borderWidth={"0px"} direction="row">
+          <Doctor_Search
+            setSearchMspNo={setSearchMspNo}
+            setSearchFName={setSearchFName}
+            setSearchLName={setSearchLName}
+            setSearchPhone={setSearchPhone}
+          />
+        </HStack>
+
         <VStack
           borderWidth={"0px"}
           direction="row"
@@ -141,7 +92,7 @@ export default function Index_DoctorInfo() {
             alignContent="center"
             align={"center"}
           >
-            Total Record(s):{drCount()}
+            Total Record(s):{doctors.length}
           </Text>
           {doctors &&
             doctors.map((doctor, index) => {
@@ -167,7 +118,6 @@ export default function Index_DoctorInfo() {
                 </>
               );
             })}
-          <h1>{}</h1>
         </VStack>
       </VStack>
     </Center>
