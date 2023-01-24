@@ -9,10 +9,9 @@
   },
   "scripts": {
     "dev": "next dev",
-    "lint": "next lint",
-    "start": "react start",
-    "build": "react build"
-
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.0.16",
