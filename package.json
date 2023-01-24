@@ -4,14 +4,15 @@
   "version": "0.1.0",
   "private": true,
   "engines": {
-    "node": "18.13.0"
+    "node": "18.13.0",
+    "npm": "9.3.0"
   },
   "scripts": {
     "dev": "next dev",
     "lint": "next lint",
     "start": "react start",
-    "build": "react build",
-    "build:staging": "env-cmd -f .env.staging react-scripts build"
+    "build": "react build"
+
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.0.16",
