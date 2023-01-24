@@ -76,8 +76,13 @@ export default function Index() {
             Username:
           </Text>
           <Input
+            borderWidth={0}
+            color="white"
+            fontSize="lg"
+            fontFamily={"sans-serif"}
+            fontWeight="bold"
             w={"200px"}
-            bgColor={"white"}
+            bgColor={"whiteAlpha.400"}
             defaultValue={""}
             onChange={(e) => setUserName(e.target.value)}
           />
@@ -94,11 +99,16 @@ export default function Index() {
             Password:
           </Text>
           <Input
-          w={"200px"}
             type="password"
-            bgColor={"white"}
+            borderWidth={0}
+            color="white"
+            fontSize="lg"
+            fontFamily={"sans-serif"}
+            fontWeight="bold"
+            w={"200px"}
+            bgColor={"whiteAlpha.400"}
             defaultValue={""}
-            onChange={(e) => setUserPassword(e.target.value)}
+            onChange={(e) => setUserName(e.target.value)}
           />
         </HStack>
 
@@ -111,13 +121,13 @@ export default function Index() {
             color={"white"}
           ></Text>
           <Button
-          w={"200px"}
+            w={"200px"}
             onClick={handle_login}
-           
-            bg={"blue.400"}
+            bg={"whiteAlpha.600"}
             color={"white"}
             _hover={{
-              bg: "blue.500",
+              bg: "whiteAlpha.800",
+              color: "black",
             }}
           >
             Login
