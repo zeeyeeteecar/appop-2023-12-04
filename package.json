@@ -5,8 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "lint": "next lint",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "react start",
+    "build": "react build",
     "build:staging": "env-cmd -f .env.staging react-scripts build"
   },
   "dependencies": {
