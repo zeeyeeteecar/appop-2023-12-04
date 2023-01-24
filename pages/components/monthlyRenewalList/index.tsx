@@ -103,7 +103,7 @@ export default function Index() {
             }}
             onClick={handle_Search}
           >
-            Search Rnewal List
+            Search Renewal List
           </Button>
         </HStack>
         <DownloadTableExcel
