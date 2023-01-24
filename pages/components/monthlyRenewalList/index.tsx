@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import {
+  Center,
   VStack,
   HStack,
   Text,
@@ -17,10 +18,20 @@ import {
   Td,
   TableCaption,
   TableContainer,
+  Spinner,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
 } from "@chakra-ui/react";
 import { EditIcon } from "@chakra-ui/icons";
 import { SingleDatepicker, RangeDatepicker } from "chakra-dayzed-datepicker";
 import { DownloadTableExcel } from "react-export-table-to-excel";
+import SpinnerOverlay from "./SpinnerOverlay"
 
 export default function Index() {
   const tableRef = useRef(null);
@@ -30,7 +41,7 @@ export default function Index() {
   const nextMonthDay1: string = "01";
   const nextMonthLastDay = new Date(currentYear, nextMonth, 0).getDate();
 
-  const [fetchData, setFetchData] = useState([]);
+  const [fetchData, setFetchData] = useState(null);
   const [dateStart, setDateStart] = useState(
     new Date(currentYear + "-" + nextMonth + "-" + nextMonthDay1)
   );
@@ -39,6 +50,7 @@ export default function Index() {
   );
 
   const dataFetch = async () => {
+    setFetchData(null);
     const body = { dateStart: dateStart, dateEnd: dateEnd };
 
     const data = await (
@@ -49,7 +61,6 @@ export default function Index() {
       })
     ).json();
 
-    // set state when the data received
     setFetchData(data);
   };
 
@@ -74,8 +85,12 @@ export default function Index() {
     dataFetch();
   };
 
+  
+
   return (
     <VStack width={"100%"} height="100vh" borderWidth={4} spacing={3}>
+      <SpinnerOverlay fetchData={fetchData} setFetchData={setFetchData} />
+
       <HStack borderWidth="100%">
         <SingleDatepicker
           name="date-start"
@@ -159,12 +174,15 @@ export default function Index() {
                   applicant.phone.substring(3 + 3, 3 + 3 + 4);
 
                 const bgclr =
-                  (dateStart <= new Date(latestPermitExpiryDate) &&
-                  new Date(latestPermitExpiryDate) <= dateEnd)?"yellow.100":"red.200";
+                  dateStart <= new Date(latestPermitExpiryDate) &&
+                  new Date(latestPermitExpiryDate) <= dateEnd
+                    ? "yellow.100"
+                    : "red.200";
 
                 return (
                   <Tr
                     key={index}
+                    height={"50px"}
                     _hover={{
                       background: "yellow.100",
                       color: "black",
@@ -179,7 +197,7 @@ export default function Index() {
                     <Td>{applicant.province}</Td>
                     <Td>{applicant.postalCode}</Td>
                     <Td bgColor={bgclr}>{latestPermitExpiryDate}</Td>
-                    <Td  bgColor={bgclr}>{latestPermitID}</Td>
+                    <Td bgColor={bgclr}>{latestPermitID}</Td>
                     <Td>{areaCode}</Td>
                     <Td>{phone}</Td>
                     <Td>{applicant.email}</Td>
@@ -187,7 +205,14 @@ export default function Index() {
                     {sortedPermits.map((permit, index) => {
                       return (
                         <>
-                          <Td w={"100px"}>{formatDate(permit.expiryDate)}</Td>
+                          <Td w={"100px"}>
+                            <VStack>
+                              <Text>{formatDate(permit.expiryDate)}</Text>
+                              <Text color={"gray.300"}>
+                                # {permit.rcdPermitId}
+                              </Text>
+                            </VStack>
+                          </Td>
                         </>
                       );
                     })}
