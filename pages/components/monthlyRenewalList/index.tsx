@@ -18,12 +18,11 @@ import {
   Td,
   TableCaption,
   TableContainer,
-
 } from "@chakra-ui/react";
 import { EditIcon } from "@chakra-ui/icons";
 import { SingleDatepicker, RangeDatepicker } from "chakra-dayzed-datepicker";
 import { DownloadTableExcel } from "react-export-table-to-excel";
-import SpinnerOverlay from "../common/SpinnerOverlay"
+import SpinnerOverlay from "../common/SpinnerOverlay";
 
 export default function Index() {
   const tableRef = useRef(null);
@@ -60,7 +59,6 @@ export default function Index() {
     dataFetch();
   }, []);
 
-
   const formatDate = (dateFormatNeeded: Date) => {
     const expiryYear = new Date(dateFormatNeeded).getFullYear();
     const expiryMonth = new Date(dateFormatNeeded).getUTCMonth() + 1;
@@ -74,8 +72,6 @@ export default function Index() {
 
     dataFetch();
   };
-
-  
 
   return (
     <VStack width={"100%"} height="100vh" borderWidth={4} spacing={3}>
@@ -107,7 +103,12 @@ export default function Index() {
           </Button>
         </HStack>
         <DownloadTableExcel
-          filename={"Monthly PP Renewal List " + formatDate(dateStart) + "--" + formatDate(dateEnd)}
+          filename={
+            "Monthly PP Renewal List " +
+            formatDate(dateStart) +
+            "--" +
+            formatDate(dateEnd)
+          }
           sheet="users"
           currentTableRef={tableRef.current}
         >
@@ -157,6 +158,7 @@ export default function Index() {
                   sortedPermits[0].expiryDate
                 );
                 const latestPermitID = sortedPermits[0].rcdPermitId;
+                const latestPermitType = sortedPermits[0].type;
                 const areaCode = applicant.phone.substring(0, 3);
                 const phone =
                   applicant.phone.substring(3, 3 + 3) +
@@ -188,6 +190,16 @@ export default function Index() {
                     <Td>{applicant.postalCode}</Td>
                     <Td bgColor={bgclr}>{latestPermitExpiryDate}</Td>
                     <Td bgColor={bgclr}>{latestPermitID}</Td>
+                    <Td
+                      bgColor={
+                        latestPermitType === "PERMANENT"
+                          ? "green.50"
+                          : "pink.200"
+                      }
+                    >
+                      {latestPermitType}
+                    </Td>
+
                     <Td>{areaCode}</Td>
                     <Td>{phone}</Td>
                     <Td>{applicant.email}</Td>

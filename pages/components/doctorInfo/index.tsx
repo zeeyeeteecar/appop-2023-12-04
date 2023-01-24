@@ -101,6 +101,7 @@ export default function Index_DoctorInfo() {
                     <Text w={"150px"}>{doctor.firstName}</Text>
                     <Text w={"150px"}>{doctor.lastName}</Text>
                     <Text w={"150px"}>{doctor.phone}</Text>
+                    <Text w={"50px"}>{doctor.addressLine2}</Text>
                     <Text w={"200px"}>{doctor.addressLine1}</Text>
                     <Text w={"150px"}>{doctor.city}</Text>
                     <Text w={"150px"}>{doctor.province}</Text>
