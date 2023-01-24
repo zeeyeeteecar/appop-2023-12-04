@@ -18,14 +18,24 @@ import { EditIcon } from "@chakra-ui/icons";
 export default function Index() {
   const router = useRouter();
 
-  const [userName, setUserName] = useState("");
-  const [userPassword, setUserPassword] = useState("");
+  const [userName, setUserName] = useState<string>("");
+  const [userPassword, setUserPassword] = useState<string>("");
 
   const handle_login = () => {
     const envUserName: string = process.env.REACT_APP_USER_NAME;
-    const envUserPassword: string = process.env.REACT_APP_USER_PASSWORD;
+    const envPassword: string = process.env.REACT_APP_USER_PASSWORD;
 
-    if (envUserName === userName && envUserPassword === userPassword) {
+    console.log("envUserName", envUserName);
+    console.log("envPassword", envPassword);
+    console.log(
+      "envUserName === userName ",
+      envUserName === userName,
+      envUserName,
+      userName
+    );
+    console.log("envPassword === userPassword ", envPassword === userPassword,envPassword , userPassword);
+
+    if (envUserName === userName && envPassword === userPassword) {
       console.log("okok");
       router.push("/MainMenu");
     } else {
@@ -108,7 +118,7 @@ export default function Index() {
             w={"200px"}
             bgColor={"whiteAlpha.400"}
             defaultValue={""}
-            onChange={(e) => setUserName(e.target.value)}
+            onChange={(e) => setUserPassword(e.target.value)}
           />
         </HStack>
 
