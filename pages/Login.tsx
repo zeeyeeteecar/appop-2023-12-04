@@ -16,7 +16,6 @@ import {
 import { EditIcon } from "@chakra-ui/icons";
 
 export default function Index() {
-
   const router = useRouter();
 
   const [userName, setUserName] = useState("");
@@ -28,9 +27,10 @@ export default function Index() {
 
     if (envUserName === userName && envUserPassword === userPassword) {
       console.log("okok");
-      router.push('/MainMenu')
-
-    }else{console.log("fail");}
+      router.push("/MainMenu");
+    } else {
+      console.log("fail");
+    }
   };
 
   console.log(userName);
@@ -67,15 +67,16 @@ export default function Index() {
         </HStack>
         <HStack>
           <Text
-            w={"200px"}
+            w={"100px"}
             fontSize="lg"
             fontFamily={"sans-serif"}
             fontWeight="bold"
             color={"white"}
           >
-            User Name:
+            Username:
           </Text>
           <Input
+            w={"200px"}
             bgColor={"white"}
             defaultValue={""}
             onChange={(e) => setUserName(e.target.value)}
@@ -84,7 +85,7 @@ export default function Index() {
 
         <HStack>
           <Text
-            w={"200px"}
+            w={"100px"}
             fontSize="lg"
             fontFamily={"sans-serif"}
             fontWeight="bold"
@@ -93,6 +94,7 @@ export default function Index() {
             Password:
           </Text>
           <Input
+          w={"200px"}
             type="password"
             bgColor={"white"}
             defaultValue={""}
@@ -102,15 +104,16 @@ export default function Index() {
 
         <HStack>
           <Text
-            w={"200px"}
+            w={"100px"}
             fontSize="lg"
             fontFamily={"sans-serif"}
             fontWeight="bold"
             color={"white"}
           ></Text>
           <Button
+          w={"200px"}
             onClick={handle_login}
-            w={"150px"}
+           
             bg={"blue.400"}
             color={"white"}
             _hover={{
