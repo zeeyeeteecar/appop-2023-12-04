@@ -1,25 +1,9 @@
 import React, { useEffect, useState, useRef } from "react";
-import {
-  Center,
-  VStack,
-  HStack,
-  Text,
-  Input,
-  Button,
-  Box,
-  IconButton,
-  Flex,
-  Radio,
-  RadioGroup,
-} from "@chakra-ui/react";
-import {
-  PhoneIcon,
-  AddIcon,
-  WarningIcon,
-  ExternalLinkIcon,
-} from "@chakra-ui/icons";
+import { Center, VStack, HStack, Text, IconButton } from "@chakra-ui/react";
+import { ExternalLinkIcon } from "@chakra-ui/icons";
 
 import Doctor_Search from "./doctor_search";
+import SpinnerOverlay from "../common/SpinnerOverlay";
 
 export default function Index_DoctorInfo() {
   const [searchMspNo, setSearchMspNo] = useState("");
@@ -27,9 +11,10 @@ export default function Index_DoctorInfo() {
   const [searchLName, setSearchLName] = useState("");
   const [searchPhone, setSearchPhone] = useState("");
 
-  const [fetchData, setFetchData] = useState([]);
+  const [fetchData, setFetchData] = useState([null]);
 
   const dataFetch = async () => {
+    setFetchData([null]);
     const body = {
       mspNo: searchMspNo,
       fName: searchFName,
@@ -71,6 +56,7 @@ export default function Index_DoctorInfo() {
       p="10px"
       alignItems={"flex-start"}
     >
+      <SpinnerOverlay fetchData={fetchData} setFetchData={setFetchData} />
       <VStack borderWidth={"0px"} h="100%" w="100%" spacing={3}>
         <HStack borderWidth={"0px"} direction="row">
           <Doctor_Search
@@ -106,7 +92,6 @@ export default function Index_DoctorInfo() {
                     key={index}
                     spacing={3}
                     padding={"3px"}
-                    
                     _hover={{
                       background: "gray.100",
                       color: "black",

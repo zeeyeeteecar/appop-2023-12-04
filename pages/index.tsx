@@ -18,8 +18,33 @@ import { EditIcon } from "@chakra-ui/icons";
 import { url } from "inspector";
 import img from "./images/bg_coffee.jpg";
 
-export default function Index() {
+const BtnMain = (url, title) => {
   const router = useRouter();
+  return (
+    <>
+      <Button
+        onClick={() => router.push(url)}
+        fontSize="20px"
+        rounded={"full"}
+        w="300px"
+        h="60px"
+        bgColor="blackAlpha.300"
+        color="white"
+        border={"1px"}
+        borderColor={"gray.600"}
+        _hover={{
+          background: "gray.600",
+          color: "white",
+        }}
+      >
+        {title}
+      </Button>
+    </>
+  );
+};
+
+
+export default function Index() {
   return (
     <Box
       id="imgbox"
@@ -42,86 +67,10 @@ export default function Index() {
         rounded={"xl"}
         align={"center"}
       >
-        <Button
-          onClick={() => router.push("/components/monthlyRenewalList")}
-          fontSize="20px"
-          rounded={"full"}
-          w="300px"
-          h="60px"
-          bgColor="blackAlpha.300"
-          color="white"
-          border={"1px"}
-          borderColor={"gray.600"}
-          _hover={{
-            background: "gray.600",
-            color: "white",
-          }}
-
-          // bgGradient={"linear(to-r, green.50,green.150)"}
-        >
-          Monthly PP Renewal List
-        </Button>
-
-        <Button
-          onClick={() => router.push("/components/doctorInfo")}
-          size="lg"
-          rounded={"full"}
-          w="300px"
-          h="60px"
-          bgColor="blackAlpha.300"
-          color="white"
-          border={"1px"}
-          borderColor={"gray.600"}
-          _hover={{
-            background: "gray.600",
-            color: "white",
-          }}
-          // bgGradient={"linear(to-r, green.50,green.150)"}
-          fontSize="20px"
-          value={"Doctor Info"}
-        >
-          Doctor Info
-        </Button>
-
-        <Button
-          onClick={() => router.push("/components/walletCard")}
-          size="lg"
-          rounded={"full"}
-          w="300px"
-          h="60px"
-          bgColor="blackAlpha.300"
-          color="white"
-          border={"1px"}
-          borderColor={"gray.600"}
-          _hover={{
-            background: "gray.600",
-            color: "white",
-          }}
-          // bgGradient={"linear(to-r, green.50,green.150)"}
-          fontSize="20px"
-          value={"Wallet Card"}
-        >
-          Wallet Card
-        </Button>
-
-        <Button
-          onClick={() => router.push("#")}
-          size="lg"
-          rounded={"full"}
-          w="300px"
-          h="60px"
-          bgColor="blackAlpha.300"
-          color="white"
-          border={"1px"}
-          borderColor={"gray.600"}
-          _hover={{
-            background: "gray.600",
-            color: "white",
-          }}
-          // bgGradient={"linear(to-r, green.50,green.150)"}
-          fontSize="20px"
-          value={""}
-        ></Button>
+        {BtnMain("/components/monthlyRenewalList", "Monthly PP Renewal List")}
+        {BtnMain("/components/doctorInfo", "Doctor Info")}
+        {BtnMain("#", "Wallet Card")}
+        {BtnMain("#", "")}
       </VStack>
     </Box>
   );

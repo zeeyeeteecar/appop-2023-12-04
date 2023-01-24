@@ -18,20 +18,12 @@ import {
   Td,
   TableCaption,
   TableContainer,
-  Spinner,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-  useDisclosure,
+
 } from "@chakra-ui/react";
 import { EditIcon } from "@chakra-ui/icons";
 import { SingleDatepicker, RangeDatepicker } from "chakra-dayzed-datepicker";
 import { DownloadTableExcel } from "react-export-table-to-excel";
-import SpinnerOverlay from "./SpinnerOverlay"
+import SpinnerOverlay from "../common/SpinnerOverlay"
 
 export default function Index() {
   const tableRef = useRef(null);
@@ -60,16 +52,14 @@ export default function Index() {
         body: JSON.stringify(body),
       })
     ).json();
-
     setFetchData(data);
   };
 
   useEffect(() => {
     // fetch data
-
     dataFetch();
   }, []);
-  console.log(fetchData);
+
 
   const formatDate = (dateFormatNeeded: Date) => {
     const expiryYear = new Date(dateFormatNeeded).getFullYear();
@@ -117,7 +107,7 @@ export default function Index() {
           </Button>
         </HStack>
         <DownloadTableExcel
-          filename="users table"
+          filename={"Monthly PP Renewal List " + formatDate(dateStart) + "--" + formatDate(dateEnd)}
           sheet="users"
           currentTableRef={tableRef.current}
         >
