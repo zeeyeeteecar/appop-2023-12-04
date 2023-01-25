@@ -11,10 +11,10 @@ export default function Index_DoctorInfo() {
   const [searchLName, setSearchLName] = useState("");
   const [searchPhone, setSearchPhone] = useState("");
 
-  const [fetchData, setFetchData] = useState([null]);
+  const [fetchData, setFetchData] = useState([]);
 
   const dataFetch = async () => {
-    setFetchData([null]);
+    setFetchData([]);
     const body = {
       mspNo: searchMspNo,
       fName: searchFName,
@@ -34,7 +34,7 @@ export default function Index_DoctorInfo() {
 
   useEffect(() => {
     dataFetch();
-  });
+  },[]);
 
   const doctors = fetchData.filter((item) => {
     return searchMspNo.toLowerCase() === "" &&
@@ -57,6 +57,7 @@ export default function Index_DoctorInfo() {
       alignItems={"flex-start"}
     >
       <SpinnerOverlay fetchData={fetchData} setFetchData={setFetchData} />
+
       <VStack borderWidth={"0px"} h="100%" w="100%" spacing={3}>
         <HStack borderWidth={"0px"} direction="row">
           <Doctor_Search
