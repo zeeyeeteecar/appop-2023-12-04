@@ -52,63 +52,69 @@ export default function WalletCard() {
 
   console.log(fetchData);
   return (
-    <VStack width={"100%"} height="100vh" borderWidth={4} spacing={3}>
+    <VStack width={"100%"} height="100vh" borderWidth={0} spacing={3}>
       {fetchData &&
         fetchData.map((applicationProcessing, index) => {
           const application = applicationProcessing.application;
 
           return (
             <>
-              <VStack key={index}>
-                <HStack>
+              <VStack key={index} w={"500px"} borderWidth={3}>
+                <Flex>
+                  <Text>Richmond Centre for Disability</Text>
+                </Flex>
+                <VStack>
+                  <HStack>
+                    <Text w={"200PX"}>
+                      permit#:{" "}
+                      {application.permit
+                        ? application.permit.rcdPermitId
+                        : " N/A"}
+                    </Text>
+                    <Text w={"200PX"}>
+                      Expiry:{" "}
+                      {application.permit
+                        ? application.permit.expiryDate
+                        : " N/A"}
+                    </Text>
+                  </HStack>
+                  <HStack>
+                    <Text w={"200PX"}>
+                      MoB: {application.firstName + " " + application.lastName}
+                    </Text>
+                  </HStack>
+                  <HStack>
+                    <Text w={"200PX"}>
+                      User #: {application.firstName + " " + application.lastName}
+                    </Text>
+                  </HStack>
+                </VStack>
+
+                {/* <HStack>
                   <Text>{applicationProcessing.id}</Text>
                   <Text w={"100PX"}>{applicationProcessing.status}</Text>
-                  <Text w={"100PX"}>
-                    {application ? application.firstName : ""}
-                  </Text>
-                  <Text w={"100PX"}>
-                    {application ? application.lastName : ""}
-                  </Text>
-                  <Text w={"100PX"}>
-                    {application ? application.phone : ""}
-                  </Text>
-                  <Text w={"300PX"}>
-                    {application ? application.email : ""}
-                  </Text>
-                  <Text w={"100PX"}>
-                    {application ? application.receiveEmailUpdates : ""}
-                  </Text>
+                  <Text w={"100PX"}>{application.firstName}</Text>
+                  <Text w={"100PX"}>{application.lastName}</Text>
                 </HStack>
                 <HStack>
-                  <Text w={"200PX"}>
-                    {application ? application.addressLine1 : ""}
-                  </Text>
-                  <Text w={"100PX"}>{application ? application.city : ""}</Text>
-                  <Text w={"100PX"}>
-                    {application ? application.province : ""}
-                  </Text>
-                  <Text w={"100PX"}>
-                    {application ? application.postalCode : ""}
-                  </Text>
+                  <Text w={"100PX"}>{application.phone}</Text>
+                  <Text w={"300PX"}>{application.email}</Text>
+                  <Text w={"100PX"}>{application.receiveEmailUpdates}</Text>
                 </HStack>
                 <HStack>
-                  <Text w={"100PX"}>
-                    {application ? application.permitType : ""}
-                  </Text>
-                  <Text w={"100PX"}>
-                    {application ? application.paymentMethod : ""}
-                  </Text>
-                  <Text w={"100PX"}>
-                    {application ? application.processingFee : ""}
-                  </Text>
-                  <Text w={"100PX"}>
-                    {application ? application.donationAmount : ""}
-                  </Text>
-                  <Text w={"100PX"}>{application ? application.type : ""}</Text>
-                  <Text w={"100PX"}>
-                    {application ? application.applicantId : ""}
-                  </Text>
+                  <Text w={"200PX"}>{application.addressLine1}</Text>
+                  <Text w={"100PX"}>{application.city}</Text>
+                  <Text w={"100PX"}>{application.province}</Text>
+                  <Text w={"100PX"}>{application.postalCode}</Text>
                 </HStack>
+                <HStack>
+                  <Text w={"100PX"}>{application.permitType}</Text>
+                  <Text w={"100PX"}>{application.paymentMethod}</Text>
+                  <Text w={"100PX"}>{application.processingFee}</Text>
+                  <Text w={"100PX"}>{application.donationAmount}</Text>
+                  <Text w={"100PX"}>{application.type}</Text>
+                  <Text w={"100PX"}>{application.applicantId}</Text>
+                </HStack> */}
               </VStack>
             </>
           );

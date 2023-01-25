@@ -33,7 +33,12 @@ export default function Index() {
       envUserName,
       userName
     );
-    console.log("envPassword === userPassword ", envPassword === userPassword,envPassword , userPassword);
+    console.log(
+      "envPassword === userPassword ",
+      envPassword === userPassword,
+      envPassword,
+      userPassword
+    );
 
     if (envUserName === userName && envPassword === userPassword) {
       console.log("okok");
@@ -45,6 +50,13 @@ export default function Index() {
 
   console.log(userName);
   console.log(userPassword);
+
+  const handleKeypress = e => {
+    //it triggers by pressing the enter key
+  if (e.keyCode === 13) {
+    handle_login();
+  }
+};
 
   return (
     <Center
@@ -58,15 +70,13 @@ export default function Index() {
     >
       <VStack
         w="400px"
-        h="200px"
         spacing={4}
-        //bg="rgba(255,255,255,0.5)"
-        backdropBlur={"6px"}
-        rounded={"xl"}
-        boxShadow={"2xl"}
+        //bg="rgba(255,255,255,0.5)
+
         p={5}
+        borderWidth="0px"
       >
-        <HStack minHeight={"100px"} w={"100px"} borderWidth="0px">
+        <HStack minHeight={"100px"} w={"100px"}>
           <Text
             w={"200px"}
             fontSize="lg"
@@ -95,6 +105,7 @@ export default function Index() {
             bgColor={"whiteAlpha.400"}
             defaultValue={""}
             onChange={(e) => setUserName(e.target.value)}
+            onKeyPress={handle_login}
           />
         </HStack>
 
@@ -119,6 +130,7 @@ export default function Index() {
             bgColor={"whiteAlpha.400"}
             defaultValue={""}
             onChange={(e) => setUserPassword(e.target.value)}
+            onKeyPress={handle_login}
           />
         </HStack>
 
@@ -131,6 +143,7 @@ export default function Index() {
             color={"white"}
           ></Text>
           <Button
+           
             w={"200px"}
             onClick={handle_login}
             bg={"whiteAlpha.600"}

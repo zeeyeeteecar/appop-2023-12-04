@@ -11,6 +11,10 @@ export default async function handle(req: any, res: any) {
     //==========applicationProcessing=========
     where: {
       status: "IN_PROGRESS",
+      NOT: {
+        application: null,
+      },
+      
       // application: {
       //   firstName: "Claire",
       // },
