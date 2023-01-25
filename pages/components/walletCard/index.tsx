@@ -7,17 +7,6 @@ import {
   Button,
   IconButton,
   Flex,
-  Radio,
-  RadioGroup,
-  Table,
-  Thead,
-  Tbody,
-  Tfoot,
-  Tr,
-  Th,
-  Td,
-  TableCaption,
-  TableContainer,
 } from "@chakra-ui/react";
 import { jsPDF } from "jspdf";
 
@@ -29,6 +18,14 @@ export default function WalletCard() {
     doc.text("Hello world!", 50, 200);
     // doc.save("a4.pdf"); // will save the file in the current working directory
     console.log("tet13");
+  };
+
+  const formatMoD = (dateFormatNeeded: Date) => {
+    const expiryYear = new Date(dateFormatNeeded).getFullYear();
+    const expiryMonth = new Date(dateFormatNeeded).getUTCMonth() + 1;
+    const expiryDate = new Date(dateFormatNeeded).getUTCDate();
+    //console.log("expiryYear", expiryYear);
+    return expiryYear + "-" + expiryMonth;
   };
 
   const dataFetch = async () => {
@@ -54,38 +51,69 @@ export default function WalletCard() {
   return (
     <VStack width={"100%"} height="100vh" borderWidth={0} spacing={3}>
       {fetchData &&
-        fetchData.map((applicationProcessing, index) => {
-          const application = applicationProcessing.application;
+        fetchData.map((application, index) => {
+          //const application = applicationProcessing.application;
 
           return (
             <>
-              <VStack key={index} w={"500px"} borderWidth={3}>
+              <VStack
+                key={index}
+                w={"500px"}
+                height="220px"
+                borderWidth={3}
+                p="20px"
+              >
                 <Flex>
-                  <Text>Richmond Centre for Disability</Text>
+                  <Text
+                    fontSize={"2xl"}
+                    fontWeight={"bold"}
+                    borderWidth={"1px"}
+                  >
+                    Richmond Centre for Disability
+                  </Text>
                 </Flex>
                 <VStack>
-                  <HStack>
-                    <Text w={"200PX"}>
-                      permit#:{" "}
+                  <HStack borderWidth={"1px"}>
+                    <Text borderWidth={"1px"}>permit#: </Text>
+                    <Text w={"100PX"} borderWidth={"1px"} fontWeight={"bold"}>
                       {application.permit
                         ? application.permit.rcdPermitId
                         : " N/A"}
                     </Text>
-                    <Text w={"200PX"}>
+                    <Text w={"100PX"} borderWidth={"1px"}>
                       Expiry:{" "}
+                    </Text>
+                    <Text w={"100PX"} borderWidth={"1px"} fontWeight={"bold"}>
                       {application.permit
                         ? application.permit.expiryDate
                         : " N/A"}
                     </Text>
                   </HStack>
                   <HStack>
-                    <Text w={"200PX"}>
-                      MoB: {application.firstName + " " + application.lastName}
+                    <Text w={"100PX"} borderWidth={"1px"}>
+                      Name:{" "}
+                    </Text>
+                    <Text w={"300PX"} fontWeight={"bold"}>
+                      {application.firstName + " " + application.lastName}
                     </Text>
                   </HStack>
                   <HStack>
-                    <Text w={"200PX"}>
-                      User #: {application.firstName + " " + application.lastName}
+                    <Text w={"100PX"}>MoB:</Text>
+                    <Text w={"100PX"} fontWeight={"bold"}>
+                      {" "}
+                      {application.applicant
+                        ? formatMoD(application.applicant.dateOfBirth)
+                        : ""}
+                    </Text>
+                    <Text w={"100PX"}>User #:</Text>
+                    <Text w={"100PX"} fontWeight={"bold"}>
+                      {" "}
+                      {application.applicant ? application.applicant.id : ""}
+                    </Text>
+                  </HStack>
+                  <HStack>
+                    <Text w={"400PX"}>
+                      604.232.2404 {"    "}parkingpermit@rcdrichmond.org
                     </Text>
                   </HStack>
                 </VStack>

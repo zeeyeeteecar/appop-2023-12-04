@@ -5,58 +5,76 @@ import {
   Center,
   HStack,
   VStack,
-  FormControl,
-  FormLabel,
   Input,
-  Stack,
   Button,
-  Box,
   Text,
+  useToast,
 } from "@chakra-ui/react";
 import { EditIcon } from "@chakra-ui/icons";
 
 export default function Index() {
   const router = useRouter();
+  const toast = useToast();
 
   const [userName, setUserName] = useState<string>("");
   const [userPassword, setUserPassword] = useState<string>("");
+
+  const triggerToast = () => {
+    
+    toast({
+      title: "Account created.",
+      description: "We've created your account for you.",
+      status: "success",
+      duration: 9000,
+      isClosable: true,
+    });
+  };
 
   const handle_login = () => {
     const envUserName: string = process.env.REACT_APP_USER_NAME;
     const envPassword: string = process.env.REACT_APP_USER_PASSWORD;
 
-    console.log("envUserName", envUserName);
-    console.log("envPassword", envPassword);
-    console.log(
-      "envUserName === userName ",
-      envUserName === userName,
-      envUserName,
-      userName
-    );
-    console.log(
-      "envPassword === userPassword ",
-      envPassword === userPassword,
-      envPassword,
-      userPassword
-    );
+    // console.log("envUserName", envUserName);
+    // console.log("envPassword", envPassword);
+    // console.log(
+    //   "envUserName === userName ",
+    //   envUserName === userName,
+    //   envUserName,
+    //   userName
+    // );
+    // console.log(
+    //   "envPassword === userPassword ",
+    //   envPassword === userPassword,
+    //   envPassword,
+    //   userPassword
+    // );
 
     if (envUserName === userName && envPassword === userPassword) {
       console.log("okok");
       router.push("/MainMenu");
     } else {
       console.log("fail");
+      toast({
+        title: "Wrong Code.",
+        description: "Wrong code, try again.",
+        status: "error",
+        duration: 2000,
+        isClosable: true,
+        position: 'top',
+      });
     }
   };
 
   console.log(userName);
   console.log(userPassword);
 
-  const handleKeypress = e => {
+  const handleKeypress = (e) => {
     //it triggers by pressing the enter key
-  if (e.keyCode === 13) {
-    handle_login();
-  }
-};
+    
+    if (e.key === "Enter") {
+      handle_login();
+    }
+  };
 
   return (
     <Center
@@ -105,7 +123,7 @@ export default function Index() {
             bgColor={"whiteAlpha.400"}
             defaultValue={""}
             onChange={(e) => setUserName(e.target.value)}
-            onKeyPress={handle_login}
+            onKeyPress={handleKeypress}
           />
         </HStack>
 
@@ -130,7 +148,7 @@ export default function Index() {
             bgColor={"whiteAlpha.400"}
             defaultValue={""}
             onChange={(e) => setUserPassword(e.target.value)}
-            onKeyPress={handle_login}
+            onKeyPress={handleKeypress}
           />
         </HStack>
 
@@ -143,7 +161,6 @@ export default function Index() {
             color={"white"}
           ></Text>
           <Button
-           
             w={"200px"}
             onClick={handle_login}
             bg={"whiteAlpha.600"}

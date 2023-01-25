@@ -34,7 +34,7 @@ export default function Index_DoctorInfo() {
 
   useEffect(() => {
     dataFetch();
-  },[]);
+  }, []);
 
   const doctors = fetchData.filter((item) => {
     return searchMspNo.toLowerCase() === "" &&
