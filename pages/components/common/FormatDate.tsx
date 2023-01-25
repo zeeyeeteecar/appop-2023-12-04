@@ -1,7 +1,6 @@
-import React from 'react'
+import React from "react";
 
-export const FormatDate = () => {
-    
+export default function FormatDate() {
   const formatDate = (dateFormatNeeded: Date) => {
     const expiryYear = new Date(dateFormatNeeded).getFullYear();
     const expiryMonth = new Date(dateFormatNeeded).getUTCMonth() + 1;
@@ -9,7 +8,5 @@ export const FormatDate = () => {
     //console.log("expiryYear", expiryYear);
     return expiryYear + "-" + expiryMonth + "-" + expiryDate;
   };
-  return (
-    <div>FormatDate</div>
-  )
+  return <div>FormatDate</div>;
 }
