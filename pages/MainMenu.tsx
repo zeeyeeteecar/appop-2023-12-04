@@ -61,7 +61,7 @@ export default function Index() {
       >
         {BtnMain("/components/monthlyRenewalList", "Monthly PP Renewal List")}
         {BtnMain("/components/doctorInfo", "Doctor Info")}
-        {BtnMain("#", "Wallet Card")}
+        {BtnMain("/components/walletCard", "Wallet Card")}
         {BtnMain("#", "")}
       </VStack>
     </Box>
