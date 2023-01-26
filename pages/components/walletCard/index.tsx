@@ -9,6 +9,7 @@ import {
   Flex,
 } from "@chakra-ui/react";
 import { jsPDF } from "jspdf";
+import PrintWalletCardButton from "./PrintWalletCardButton";
 
 export default function WalletCard() {
   const [fetchData, setFetchData] = React.useState(null);
@@ -49,101 +50,99 @@ export default function WalletCard() {
 
   console.log(fetchData);
   return (
-    <VStack width={"100%"} height="100vh" borderWidth={0} spacing={3}>
+    <VStack width={"100%"} h="100vh" borderWidth={3} p="10px" bgColor={"gray.100"}>
       {fetchData &&
         fetchData.map((application, index) => {
           //const application = applicationProcessing.application;
 
           return (
             <>
-              <VStack
-                key={index}
-                w={"500px"}
-                height="220px"
-                borderWidth={3}
-                p="20px"
+              <HStack
+                w={"800px"}
+                borderWidth={0}
+                p="10px"
+                m="30px"
+                shadow={"2xl"}
+                bgColor={"white"}
               >
-                <Flex>
-                  <Text
-                    fontSize={"2xl"}
-                    fontWeight={"bold"}
-                    borderWidth={"1px"}
-                  >
-                    Richmond Centre for Disability
-                  </Text>
-                </Flex>
-                <VStack>
-                  <HStack borderWidth={"1px"}>
-                    <Text borderWidth={"1px"}>permit#: </Text>
-                    <Text w={"100PX"} borderWidth={"1px"} fontWeight={"bold"}>
-                      {application.permit
-                        ? application.permit.rcdPermitId
-                        : " N/A"}
+                <VStack
+                  key={index}
+                  w={"500px"}
+                  height="220px"
+                  borderWidth={0}
+                  p="20px"
+                >
+                  <Flex>
+                    <Text
+                      fontSize={"2xl"}
+                      fontWeight={"bold"}
+                      borderWidth={"0px"}
+                    >
+                      Richmond Centre for Disability
                     </Text>
-                    <Text w={"100PX"} borderWidth={"1px"}>
-                      Expiry:{" "}
-                    </Text>
-                    <Text w={"100PX"} borderWidth={"1px"} fontWeight={"bold"}>
-                      {application.permit
-                        ? application.permit.expiryDate
-                        : " N/A"}
-                    </Text>
-                  </HStack>
-                  <HStack>
-                    <Text w={"100PX"} borderWidth={"1px"}>
-                      Name:{" "}
-                    </Text>
-                    <Text w={"300PX"} fontWeight={"bold"}>
-                      {application.firstName + " " + application.lastName}
-                    </Text>
-                  </HStack>
-                  <HStack>
-                    <Text w={"100PX"}>MoB:</Text>
-                    <Text w={"100PX"} fontWeight={"bold"}>
-                      {" "}
-                      {application.applicant
-                        ? formatMoD(application.applicant.dateOfBirth)
-                        : ""}
-                    </Text>
-                    <Text w={"100PX"}>User #:</Text>
-                    <Text w={"100PX"} fontWeight={"bold"}>
-                      {" "}
-                      {application.applicant ? application.applicant.id : ""}
-                    </Text>
-                  </HStack>
-                  <HStack>
-                    <Text w={"400PX"}>
-                      604.232.2404 {"    "}parkingpermit@rcdrichmond.org
-                    </Text>
-                  </HStack>
+                  </Flex>
+                  <VStack>
+                    <HStack borderWidth={"0px"}>
+                      <Text borderWidth={"0px"}>permit#: </Text>
+                      <Text w={"100PX"} borderWidth={"0px"} fontWeight={"bold"}>
+                        {application.permit
+                          ? application.permit.rcdPermitId
+                          : " N/A"}
+                      </Text>
+                      <Text w={"100PX"} borderWidth={"0px"}>
+                        Expiry:{" "}
+                      </Text>
+                      <Text w={"100PX"} borderWidth={"0px"} fontWeight={"bold"}>
+                        {application.permit
+                          ? application.permit.expiryDate
+                          : " N/A"}
+                      </Text>
+                    </HStack>
+                    <HStack>
+                      <Text w={"100PX"} borderWidth={"0px"}>
+                        Name:{" "}
+                      </Text>
+                      <Text w={"300PX"} fontWeight={"bold"}>
+                        {application.firstName + " " + application.lastName}
+                      </Text>
+                    </HStack>
+                    <HStack>
+                      <Text w={"100PX"}>MoB:</Text>
+                      <Text w={"100PX"} fontWeight={"bold"}>
+                        {" "}
+                        {application.applicant
+                          ? application.applicant.dateOfBirth.substring(0, 7)
+                          : ""}
+                      </Text>
+                      <Text w={"100PX"}>User #:</Text>
+                      <Text w={"100PX"} fontWeight={"bold"}>
+                        {" "}
+                        {application.applicant ? application.applicant.id : ""}
+                      </Text>
+                    </HStack>
+                    <HStack>
+                      <Text w={"400PX"}>
+                        604.232.2404 {"    "}parkingpermit@rcdrichmond.org
+                      </Text>
+                    </HStack>
+                  </VStack>
                 </VStack>
 
-                {/* <HStack>
-                  <Text>{applicationProcessing.id}</Text>
-                  <Text w={"100PX"}>{applicationProcessing.status}</Text>
-                  <Text w={"100PX"}>{application.firstName}</Text>
-                  <Text w={"100PX"}>{application.lastName}</Text>
-                </HStack>
-                <HStack>
-                  <Text w={"100PX"}>{application.phone}</Text>
-                  <Text w={"300PX"}>{application.email}</Text>
-                  <Text w={"100PX"}>{application.receiveEmailUpdates}</Text>
-                </HStack>
-                <HStack>
-                  <Text w={"200PX"}>{application.addressLine1}</Text>
-                  <Text w={"100PX"}>{application.city}</Text>
-                  <Text w={"100PX"}>{application.province}</Text>
-                  <Text w={"100PX"}>{application.postalCode}</Text>
-                </HStack>
-                <HStack>
-                  <Text w={"100PX"}>{application.permitType}</Text>
-                  <Text w={"100PX"}>{application.paymentMethod}</Text>
-                  <Text w={"100PX"}>{application.processingFee}</Text>
-                  <Text w={"100PX"}>{application.donationAmount}</Text>
-                  <Text w={"100PX"}>{application.type}</Text>
-                  <Text w={"100PX"}>{application.applicantId}</Text>
-                </HStack> */}
-              </VStack>
+                <Center
+                  margin-left={"10px"}
+                  borderWidth="1px"
+                  height="220px"
+                  w={"100%"}
+                  bgColor="gray.50"
+
+                >
+                  <VStack>
+                    <PrintWalletCardButton
+                      permitType={application.permitType}
+                    />
+                  </VStack>
+                </Center>
+              </HStack>
             </>
           );
         })}
