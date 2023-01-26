@@ -23,7 +23,7 @@ export default function PrintButton({ application }) {
     doc.save("a4.pdf"); // will save the file in the current working directory
   }
 
-  const permitType = application.permitType;
+  const permitType:string = application.permitType;
 
   let bgclr = "";
   let fontclr = "";
