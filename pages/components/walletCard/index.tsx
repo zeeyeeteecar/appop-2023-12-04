@@ -8,26 +8,11 @@ import {
   IconButton,
   Flex,
 } from "@chakra-ui/react";
-import { jsPDF } from "jspdf";
+
 import PrintWalletCardButton from "./PrintWalletCardButton";
 
 export default function WalletCard() {
   const [fetchData, setFetchData] = React.useState(null);
-
-  const generatePDF = () => {
-    const doc = new jsPDF();
-    doc.text("Hello world!", 50, 200);
-    // doc.save("a4.pdf"); // will save the file in the current working directory
-    console.log("tet13");
-  };
-
-  const formatMoD = (dateFormatNeeded: Date) => {
-    const expiryYear = new Date(dateFormatNeeded).getFullYear();
-    const expiryMonth = new Date(dateFormatNeeded).getUTCMonth() + 1;
-    const expiryDate = new Date(dateFormatNeeded).getUTCDate();
-    //console.log("expiryYear", expiryYear);
-    return expiryYear + "-" + expiryMonth;
-  };
 
   const dataFetch = async () => {
     setFetchData(null);
@@ -138,7 +123,7 @@ export default function WalletCard() {
                 >
                   <VStack>
                     <PrintWalletCardButton
-                      permitType={application.permitType}
+                      application={application}
                     />
                   </VStack>
                 </Center>

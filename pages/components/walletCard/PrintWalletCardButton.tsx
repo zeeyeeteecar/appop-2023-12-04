@@ -1,15 +1,30 @@
 import React, { useEffect, useState, useRef } from "react";
-import {
-  Text,
-  Button,
-  Tag,
-  TagLabel,
-  TagLeftIcon,
-  TagRightIcon,
-  TagCloseButton,
-} from "@chakra-ui/react";
+import { Text, Button, Tag } from "@chakra-ui/react";
+import { jsPDF } from "jspdf";
 
-export default function PrintButton({ permitType }) {
+export default function PrintButton({ application }) {
+  function generatePDF() {
+    //alert(application);
+    //const doc = new jsPDF();
+    const doc = new jsPDF("p", "mm", [500, 250]);
+
+    doc.text("Richmond Centre for Disaibility", 10, 30);
+
+    doc.text("permit#:", 20, 30);
+
+    const permitID = application.permit
+      ? application.permit.rcdPermitId
+      : " N/A";
+
+      const applicantName = application.firstName + " " + application.lastName
+    doc.text(permitID, 20, 50);
+    doc.text(applicantName, 40, 50);
+
+    doc.save("a4.pdf"); // will save the file in the current working directory
+  }
+
+  const permitType = application.permitType;
+
   let bgclr = "";
   let fontclr = "";
   let btnDisabled = null;
@@ -36,12 +51,12 @@ export default function PrintButton({ permitType }) {
         textAlign="center"
         color={fontclr}
       >
-        <Text w={"100%"} align={"center"} >{permitType}</Text>
+        <Text w={"100%"} align={"center"}>
+          {permitType}
+        </Text>
       </Tag>
 
-      <Button style={{}} isDisabled={btnDisabled}>
-        Print Wallet Card
-      </Button>
+      <Button onClick={generatePDF}>Print Wallet Card</Button>
     </>
   );
 }
