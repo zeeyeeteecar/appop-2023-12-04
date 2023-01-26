@@ -124,6 +124,7 @@ export default function WalletCard() {
                   <VStack>
                     <PrintWalletCardButton
                       application={application}
+                      permitType={application.permitType}
                     />
                   </VStack>
                 </Center>

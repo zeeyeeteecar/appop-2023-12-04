@@ -3,9 +3,9 @@ import { Text, Button, Tag } from "@chakra-ui/react";
 import { jsPDF } from "jspdf";
 
 
-export default function PrintButton({ application }:any) {
+export default function PrintButton({ application, permitType}:any & string) {
 
-  const permitType:string = (application.permitType);
+  //const permitType:string = (application.permitType);
 
   function generatePDF() {
     //alert(application);
