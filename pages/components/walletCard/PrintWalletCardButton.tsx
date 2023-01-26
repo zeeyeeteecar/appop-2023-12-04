@@ -2,7 +2,11 @@ import React, { useEffect, useState, useRef } from "react";
 import { Text, Button, Tag } from "@chakra-ui/react";
 import { jsPDF } from "jspdf";
 
-export default function PrintButton({ application }) {
+
+export default function PrintButton({ application }:any) {
+
+  const permitType:string = (application.permitType);
+
   function generatePDF() {
     //alert(application);
     //const doc = new jsPDF();
@@ -23,7 +27,7 @@ export default function PrintButton({ application }) {
     doc.save("a4.pdf"); // will save the file in the current working directory
   }
 
-  const permitType:string = application.permitType;
+ 
 
   let bgclr = "";
   let fontclr = "";
