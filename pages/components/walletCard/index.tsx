@@ -13,8 +13,8 @@ import WalletCard_Proc_Cmpl from "./WalletCard_Proc_Cmpl";
 
 export default function index() {
   return (
-    <Center width={"100%"} h="100vh" borderWidth={0}>
-      <VStack width={"1000px"} h="100%" borderWidth={0} p="10px">
+    <Center width={"100%"} h="100vh" borderWidth={0} bgColor="gray.200">
+      <VStack width={"1000px"} h="100%" borderWidth={0} p="10px" bgColor="white">
         <Tabs
           variant="enclosed"
           colorScheme="red"

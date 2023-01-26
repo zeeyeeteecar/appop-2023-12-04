@@ -130,10 +130,11 @@ export default function Index() {
           <TableCaption>Monthly PP Renewal </TableCaption>
           <Thead h="40px" bgColor={"green.50"}>
             <Tr color="green.300">
-              <Th w="30px">User ID</Th>
+              <Th w="20px">User ID</Th>
               <Th>F name</Th>
               <Th>L name</Th>
               <Th>DoB</Th>
+              <Th>Age</Th>
               <Th w="150px">address</Th>
               <Th w="80px">city</Th>
               <Th w="40px">prov</Th>
@@ -171,6 +172,31 @@ export default function Index() {
                     ? "yellow.100"
                     : "red.200";
 
+                const bgclrPerm_Temp =
+                  latestPermitType === "PERMANENT" ? "green.50" : "pink.200";
+
+                const getAge = (DpB,ppExpiryate ) => {
+                  let age =
+                    new Date(ppExpiryate).getFullYear() -
+                    new Date(DpB).getFullYear();
+
+                  const expiryMonth =
+                    new Date(ppExpiryate).getUTCMonth() + 1;
+                  const expiryDate = new Date(
+                    ppExpiryate
+                  ).getUTCDate();
+
+                  const DoBMonth =
+                    new Date(DpB).getUTCMonth() + 1;
+                  const DoBDate = new Date(DpB).getUTCDate();
+
+                  const diffMonthDate =
+                    +new Date("2000-" + expiryMonth + "-" + expiryDate) <
+                    +new Date("2000-" + DoBMonth + "-" + DoBDate);
+                  age = diffMonthDate ? age - 1 : age;
+                  return age;
+                };
+                
                 return (
                   <Tr
                     key={index}
@@ -184,21 +210,16 @@ export default function Index() {
                     <Td>{applicant.firstName}</Td>
                     <Td>{applicant.lastName}</Td>
                     <Td>{formatDate(applicant.dateOfBirth)}</Td>
+                    <Td>
+                      {getAge(applicant.dateOfBirth,latestPermitExpiryDate)}
+                    </Td>
                     <Td>{applicant.addressLine1}</Td>
                     <Td>{applicant.city}</Td>
                     <Td>{applicant.province}</Td>
                     <Td>{applicant.postalCode}</Td>
                     <Td bgColor={bgclr}>{latestPermitExpiryDate}</Td>
                     <Td bgColor={bgclr}>{latestPermitID}</Td>
-                    <Td
-                      bgColor={
-                        latestPermitType === "PERMANENT"
-                          ? "green.50"
-                          : "pink.200"
-                      }
-                    >
-                      {latestPermitType}
-                    </Td>
+                    <Td bgColor={bgclrPerm_Temp}>{latestPermitType}</Td>
 
                     <Td>{areaCode}</Td>
                     <Td>{phone}</Td>
