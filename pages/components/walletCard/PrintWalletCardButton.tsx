@@ -1,10 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Text, Button, Tag } from "@chakra-ui/react";
+import { Text, Button, Tag, Center, VStack } from "@chakra-ui/react";
 import { jsPDF } from "jspdf";
 
-
-export default function PrintButton({ application, permitType}:any & string) {
-
+export default function PrintButton({ application, permitType }: any & string) {
   //const permitType:string = (application.permitType);
 
   function generatePDF() {
@@ -20,14 +18,12 @@ export default function PrintButton({ application, permitType}:any & string) {
       ? application.permit.rcdPermitId
       : " N/A";
 
-      const applicantName = application.firstName + " " + application.lastName
+    const applicantName = application.firstName + " " + application.lastName;
     doc.text(permitID, 20, 50);
     doc.text(applicantName, 40, 50);
 
     doc.save("a4.pdf"); // will save the file in the current working directory
   }
-
- 
 
   let bgclr = "";
   let fontclr = "";
@@ -43,24 +39,32 @@ export default function PrintButton({ application, permitType}:any & string) {
   }
 
   return (
-    <>
-      <Tag
-        size={"lg"}
-        variant="solid"
-        bgColor={bgclr}
-        w={"150px"}
-        height={"40px"}
-        rounded="3xl"
-        alignContent={"center"}
-        textAlign="center"
-        color={fontclr}
-      >
-        <Text w={"100%"} align={"center"}>
-          {permitType}
-        </Text>
-      </Tag>
+    <Center
+      margin-left={"10px"}
+      borderWidth="0px"
+      height="220px"
+      w={"100%"}
+      bgColor="gray.50"
+    >
+      <VStack>
+        <Tag
+          size={"lg"}
+          variant="solid"
+          bgColor={bgclr}
+          w={"150px"}
+          height={"40px"}
+          rounded="3xl"
+          alignContent={"center"}
+          textAlign="center"
+          color={fontclr}
+        >
+          <Text w={"100%"} align={"center"}>
+            {permitType}
+          </Text>
+        </Tag>
 
-      <Button onClick={generatePDF}>Print Wallet Card</Button>
-    </>
+        <Button onClick={generatePDF} isDisabled={btnDisabled}>Print Wallet Card</Button>
+      </VStack>
+    </Center>
   );
 }
