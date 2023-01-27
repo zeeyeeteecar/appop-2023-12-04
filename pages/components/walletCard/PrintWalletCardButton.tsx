@@ -27,8 +27,8 @@ export default function PrintButton({ application }: any ) {
   let bgclr = "";
   let fontclr = "";
   let btnDisabled = null;
-  const permitType:string = application.permitType
-  
+  const permitType:string = application?application.permitType:""
+
   if (permitType === "PERMANENT") {
     bgclr = "green.100";
     fontclr = "green.500";
