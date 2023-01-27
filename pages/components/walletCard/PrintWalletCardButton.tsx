@@ -9,7 +9,7 @@ export default function PrintButton({ application }: any) {
     //alert(application);
     //const doc = new jsPDF();
 
-    const doc = new jsPDF("l", "mm", [100, 50]);
+    const doc = new jsPDF("l", "mm", [90, 38]);
 
     //alert((rcdPermitId))
     const permitID: string = appl.permit
@@ -23,20 +23,24 @@ export default function PrintButton({ application }: any) {
     const Mob = application.applicant
       ? application.applicant.dateOfBirth.substring(0, 7)
       : "N/A";
-      const userID = application.applicant ? application.applicant.id : "N/A";
+    const userID = application.applicant ? application.applicant.id : "N/A";
 
-    doc.setFontSize(20);
-    doc.text("Richmond Centre for Disaibility", 5, 0);
+    doc.setFontSize(18);
+    doc.setFont("", "bold");
+    doc.text("Richmond Centre for Disaibility", 0, 5);
 
     doc.setFontSize(15);
-    doc.text("Permit # " + permitID, 5, 10);
-    doc.text("Expiry: " + expiryDate, 45, 20);
-    doc.text("Name: " + applicantName, 5, 30);
-    doc.text("MoB: " + Mob, 5, 30);
-    doc.text("User # " + userID, 45, 40);
-    doc.text("604.232.2404 parkingpermit@rcdrichmond.org", 5, 40);
+    doc.setFont("helvetica","normal")
+    doc.text("Permit # " + permitID, 0, 15);
+    doc.text("Expiry: " + expiryDate, 40, 15);
+    doc.text("Name: " + applicantName, 0, 23);
+    doc.text("MoB: " + Mob, 0, 30);
+    doc.text("User # " + userID, 40, 30);
 
-    doc.save("user-" +  userID + " permit-" + permitID + ".pdf"); // will save the file in the current working directory
+    doc.setFontSize(13);
+    doc.text("604.232.2404 parkingpermit@rcdrichmond.org", 0, 37);
+
+    doc.save("user-" + userID + " permit-" + permitID + ".pdf"); // will save the file in the current working directory
   }
 
   let bgclr = "";
