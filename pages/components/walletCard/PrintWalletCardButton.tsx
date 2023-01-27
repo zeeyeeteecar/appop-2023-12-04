@@ -9,7 +9,7 @@ export default function PrintButton({ application }: any) {
     //alert(application);
     //const doc = new jsPDF();
 
-    const doc = new jsPDF("l", "mm", [83, 38]);
+    const doc = new jsPDF("l", "mm", [100, 50]);
 
     //alert((rcdPermitId))
     const permitID: string = appl.permit
@@ -23,20 +23,20 @@ export default function PrintButton({ application }: any) {
     const Mob = application.applicant
       ? application.applicant.dateOfBirth.substring(0, 7)
       : "N/A";
-      const userNo = application.applicant ? application.applicant.id : "N/A";
+      const userID = application.applicant ? application.applicant.id : "N/A";
+
+    doc.setFontSize(20);
+    doc.text("Richmond Centre for Disaibility", 5, 0);
 
     doc.setFontSize(15);
-    doc.text("Richmond Centre for Disaibility", 5, 10);
+    doc.text("Permit # " + permitID, 5, 10);
+    doc.text("Expiry: " + expiryDate, 45, 20);
+    doc.text("Name: " + applicantName, 5, 30);
+    doc.text("MoB: " + Mob, 5, 30);
+    doc.text("User # " + userID, 45, 40);
+    doc.text("604.232.2404 parkingpermit@rcdrichmond.org", 5, 40);
 
-    doc.setFontSize(10);
-    doc.text("permit # " + permitID, 5, 15);
-    doc.text("xpiry: " + expiryDate, 45, 15);
-    doc.text("Name: " + applicantName, 5, 20);
-    doc.text("MoB: " + Mob, 5, 25);
-    doc.text("User # " + userNo, 45, 25);
-    doc.text("604.232.2404 parkingpermit@rcdrichmond.org", 7, 30);
-
-    doc.save("a4.pdf"); // will save the file in the current working directory
+    doc.save("user-" +  userID + " permit-" + permitID + ".pdf"); // will save the file in the current working directory
   }
 
   let bgclr = "";
