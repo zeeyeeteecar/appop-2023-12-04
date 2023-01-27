@@ -23,22 +23,48 @@ export default function PrintButton({ application }: any) {
     const Mob = application.applicant
       ? application.applicant.dateOfBirth.substring(0, 7)
       : "N/A";
-    const userID = application.applicant ? application.applicant.id : "N/A";
+    const userID = application.applicant
+      ? application.applicant.id + ""
+      : "N/A";
 
     doc.setFontSize(18);
     doc.setFont("", "bold");
     doc.text("Richmond Centre for Disaibility", 0, 5);
 
-    doc.setFontSize(15);
-    doc.setFont("helvetica","normal")
-    doc.text("Permit # " + permitID, 0, 15);
-    doc.text("Expiry: " + expiryDate, 40, 15);
-    doc.text("Name: " + applicantName, 0, 23);
-    doc.text("MoB: " + Mob, 0, 30);
-    doc.text("User # " + userID, 40, 30);
-
     doc.setFontSize(13);
-    doc.text("604.232.2404 parkingpermit@rcdrichmond.org", 0, 37);
+    doc.setFont("helvetica", "normal");
+    doc.text("Permit # ", 0, 15);
+
+    doc.setFont("helvetica", "bold");
+    doc.text(permitID, 20, 15);
+
+    doc.setFont("helvetica", "normal");
+    doc.text("Expiry: ", 40, 15);
+
+    doc.setFont("helvetica", "bold");
+    doc.text(expiryDate, 60, 15);
+
+    doc.setFont("helvetica", "normal");
+    doc.text("Name: ", 0, 23);
+
+    doc.setFont("helvetica", "bold");
+    doc.text(applicantName, 20, 23);
+
+    doc.setFont("helvetica", "normal");
+    doc.text("MoB: ", 0, 30);
+
+    doc.setFont("helvetica", "bold");
+    doc.text("MoB: ", 20, 30);
+
+    doc.setFont("helvetica", "normal");
+    doc.text("User # ", 40, 30);
+
+    doc.setFont("helvetica", "bold");
+    doc.text(userID, 60, 30);
+
+    doc.setFontSize(12);
+    doc.setFont("helvetica", "normal");
+    doc.text("604.232.2404  parkingpermit@rcdrichmond.org", 0, 37);
 
     doc.save("user-" + userID + " permit-" + permitID + ".pdf"); // will save the file in the current working directory
   }
