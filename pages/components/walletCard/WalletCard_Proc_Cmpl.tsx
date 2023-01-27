@@ -133,7 +133,7 @@ export default function WalletCard_Proc_Cmpl({ apiUrl }) {
 
                 <PrintWalletCardButton
                   application={application}
-                  permitType={application.permitType}
+                  
                   
                  
                 />

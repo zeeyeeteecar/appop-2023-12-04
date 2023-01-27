@@ -2,32 +2,33 @@ import React, { useEffect, useState, useRef } from "react";
 import { Text, Button, Tag, Center, VStack } from "@chakra-ui/react";
 import { jsPDF } from "jspdf";
 
-export default function PrintButton({ application, permitType }: any & string) {
+export default function PrintButton({ application }: any ) {
   //const permitType:string = (application.permitType);
 
-  console.log("application",application)
-  console.log("permitType",permitType)
 
 
-  function GeneratePDF(appl){
+  function GeneratePDF(appl) {
     //alert(application);
     //const doc = new jsPDF();
-    const doc = new jsPDF("p", "mm", [500, 250]);
-    doc.text("Richmond Centre for Disaibility", 10, 30);
-    doc.text("permit#:", 20, 50);
-   //alert((rcdPermitId))
-    const permitID:string = application.permit
+    
+    const doc = new jsPDF("p", "mm", [83, 83]);
+    doc.text("Richmond Centre for Disaibility", 10, 5);
+    //alert((rcdPermitId))
+    const permitID: string = application.permit
       ? application.permit.rcdPermitId.toString()
       : "N/A";
     const applicantName = appl.firstName + " " + appl.lastName;
-    doc.text(permitID, 20, 40);
+    doc.text("permit# " + permitID, 10, 10);
     doc.text(applicantName, 60, 50);
     doc.save("a4.pdf"); // will save the file in the current working directory
   }
 
+
   let bgclr = "";
   let fontclr = "";
   let btnDisabled = null;
+  const permitType:string = application.permitType
+  
   if (permitType === "PERMANENT") {
     bgclr = "green.100";
     fontclr = "green.500";
@@ -63,7 +64,10 @@ export default function PrintButton({ application, permitType }: any & string) {
           </Text>
         </Tag>
 
-        <Button onClick={()=>GeneratePDF(application)} isDisabled={btnDisabled}>
+        <Button
+          onClick={() => GeneratePDF(application)}
+          isDisabled={btnDisabled}
+        >
           Print Wallet Card
         </Button>
       </VStack>
