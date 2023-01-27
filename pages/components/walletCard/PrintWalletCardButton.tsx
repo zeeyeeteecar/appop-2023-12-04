@@ -5,23 +5,23 @@ import { jsPDF } from "jspdf";
 export default function PrintButton({ application, permitType }: any & string) {
   //const permitType:string = (application.permitType);
 
-  function generatePDF() {
+  console.log("application",application)
+  console.log("permitType",permitType)
+
+
+  function GeneratePDF(appl){
     //alert(application);
     //const doc = new jsPDF();
     const doc = new jsPDF("p", "mm", [500, 250]);
-
     doc.text("Richmond Centre for Disaibility", 10, 30);
-
-    doc.text("permit#:", 20, 30);
-
-    const permitID = application.permit
-      ? application.permit.rcdPermitId
-      : " N/A";
-
-    const applicantName = application.firstName + " " + application.lastName;
-    doc.text(permitID, 20, 50);
-    doc.text(applicantName, 40, 50);
-
+    doc.text("permit#:", 20, 50);
+   //alert((rcdPermitId))
+    const permitID:string = application.permit
+      ? application.permit.rcdPermitId.toString()
+      : "N/A";
+    const applicantName = appl.firstName + " " + appl.lastName;
+    doc.text(permitID, 20, 40);
+    doc.text(applicantName, 60, 50);
     doc.save("a4.pdf"); // will save the file in the current working directory
   }
 
@@ -63,7 +63,9 @@ export default function PrintButton({ application, permitType }: any & string) {
           </Text>
         </Tag>
 
-        <Button onClick={generatePDF} isDisabled={btnDisabled}>Print Wallet Card</Button>
+        <Button onClick={()=>GeneratePDF(application)} isDisabled={btnDisabled}>
+          Print Wallet Card
+        </Button>
       </VStack>
     </Center>
   );

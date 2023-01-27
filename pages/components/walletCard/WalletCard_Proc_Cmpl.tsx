@@ -36,14 +36,20 @@ export default function WalletCard_Proc_Cmpl({ apiUrl }) {
 
   console.log(fetchData);
   return (
-    <VStack width={"100%"} h="780px" borderWidth={0} p="10px" overflowY="scroll">
+    <VStack
+      width={"100%"}
+      h="780px"
+      borderWidth={0}
+      p="10px"
+      overflowY="scroll"
+    >
       {fetchData &&
         fetchData.map((application, index) => {
           //const application = applicationProcessing.application;
 
           return (
-            <>
-              <HStack
+            
+              <HStack key={index}
                 w={"800px"}
                 borderWidth={0}
                 p="10px"
@@ -52,7 +58,7 @@ export default function WalletCard_Proc_Cmpl({ apiUrl }) {
                 bgColor={"white"}
               >
                 <VStack
-                  key={index}
+                  
                   w={"500px"}
                   height="200px"
                   borderWidth={1}
@@ -70,7 +76,12 @@ export default function WalletCard_Proc_Cmpl({ apiUrl }) {
                   <VStack align={"left"}>
                     <HStack borderWidth={"0px"}>
                       <Text borderWidth={"0px"}>permit#: </Text>
-                      <Text w={"100PX"} borderWidth={"0px"} fontWeight={"bold"} align={"left"}>
+                      <Text
+                        w={"100PX"}
+                        borderWidth={"0px"}
+                        fontWeight={"bold"}
+                        align={"left"}
+                      >
                         {application.permit
                           ? application.permit.rcdPermitId
                           : " N/A"}
@@ -78,13 +89,18 @@ export default function WalletCard_Proc_Cmpl({ apiUrl }) {
                       <Text w={"50PX"} borderWidth={"0px"} align={"left"}>
                         Expiry:
                       </Text>
-                      <Text w={"100PX"} borderWidth={"0px"} fontWeight={"bold"} align={"left"}>
+                      <Text
+                        w={"100PX"}
+                        borderWidth={"0px"}
+                        fontWeight={"bold"}
+                        align={"left"}
+                      >
                         {application.permit
                           ? application.permit.expiryDate.substring(0, 7)
                           : " N/A"}
                       </Text>
                     </HStack>
-                    <HStack >
+                    <HStack>
                       <Text w={"60PX"} borderWidth={"0px"} align={"left"}>
                         Name:
                       </Text>
@@ -93,13 +109,17 @@ export default function WalletCard_Proc_Cmpl({ apiUrl }) {
                       </Text>
                     </HStack>
                     <HStack>
-                      <Text w={"60PX"} align={"left"}>MoB:</Text>
+                      <Text w={"60PX"} align={"left"}>
+                        MoB:
+                      </Text>
                       <Text w={"100PX"} fontWeight={"bold"} align={"left"}>
                         {application.applicant
                           ? application.applicant.dateOfBirth.substring(0, 7)
                           : ""}
                       </Text>
-                      <Text w={"50PX"} align={"left"}>User #:</Text>
+                      <Text w={"50PX"} align={"left"}>
+                        User #:
+                      </Text>
                       <Text w={"100PX"} fontWeight={"bold"} align={"left"}>
                         {application.applicant ? application.applicant.id : ""}
                       </Text>
@@ -114,9 +134,11 @@ export default function WalletCard_Proc_Cmpl({ apiUrl }) {
                 <PrintWalletCardButton
                   application={application}
                   permitType={application.permitType}
+                  
+                 
                 />
               </HStack>
-            </>
+            
           );
         })}
     </VStack>
