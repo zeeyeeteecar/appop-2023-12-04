@@ -5,12 +5,7 @@ import { jsPDF } from "jspdf";
 export default function PrintButton({ application }: any) {
   //const permitType:string = (application.permitType);
 
-  function GeneratePDF(appl) {
-    //alert(application);
-    //const doc = new jsPDF();
-
-    const doc = new jsPDF("l", "mm", [90, 38]);
-
+  async function GeneratePDF(appl) {
     //alert((rcdPermitId))
     const permitID: string = appl.permit
       ? appl.permit.rcdPermitId.toString()
@@ -27,6 +22,8 @@ export default function PrintButton({ application }: any) {
       ? application.applicant.id + ""
       : "N/A";
 
+    const doc = new jsPDF("l", "mm", [90, 38]);
+    
     doc.setFontSize(18);
     doc.setFont("", "bold");
     doc.text("Richmond Centre for Disaibility", 0, 5);
@@ -66,7 +63,7 @@ export default function PrintButton({ application }: any) {
     doc.setFont("helvetica", "normal");
     doc.text("604.232.2404  parkingpermit@rcdrichmond.org", 0, 37);
 
-    doc.save("user-" + userID + " permit-" + permitID + ".pdf"); // will save the file in the current working directory
+    await doc.save("user-" + userID + " permit-" + permitID + ".pdf"); // will save the file in the current working directory
   }
 
   let bgclr = "";

@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 import { EditIcon } from "@chakra-ui/icons";
 
-export default function Index() {
+export default function DonationTaxReceipt() {
   const router = useRouter();
   const toast = useToast();
 
