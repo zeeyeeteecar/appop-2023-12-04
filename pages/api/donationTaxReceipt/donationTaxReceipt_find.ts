@@ -6,8 +6,26 @@ import { prisma } from "../prisma";
 export default async function handle(req: any, res: any) {
   //const prisma = new PrismaClient();
   //await prisma.$connect();
-  const { userNo, fName, lName, searchDateStart, searchDateEnd } = req.body;
+  const {
+    userNo,
+    fName,
+    lName,
+    searchDateStart,
+    searchDateEnd,
+    searchProcessing,
+    searchCompleted,
+    SearchDonationOnly,
+  } = req.body;
 
+  const array_status = [] 
+  if(searchProcessing){
+    array_status.push(searchProcessing)
+  }
+
+  if(searchCompleted){
+    array_status.push(searchCompleted)
+  }
+  
   const result = await prisma.application.findMany({
     //==========applicationProcessing=========
     where: {
@@ -17,8 +35,14 @@ export default async function handle(req: any, res: any) {
       },
 
       applicationProcessing: {
-       // status: "COMPLETED",
+        status: {
+          in: array_status ,
+        },
       },
+
+      donationAmount:{
+        gt:0,
+      }
     },
 
     // application: {
@@ -55,9 +79,13 @@ export default async function handle(req: any, res: any) {
       //     select: { rcdPermitId: true, expiryDate: true },
       //   },
       applicant: { select: { dateOfBirth: true, id: true } },
-      applicationProcessing:{select:{status:true}}
+      applicationProcessing: { select: { status: true } },
     },
-    orderBy: { id: "desc" },
+    orderBy: {
+      applicationProcessing: {
+        status: "desc",
+      },
+    },
     //take:100,
   });
 

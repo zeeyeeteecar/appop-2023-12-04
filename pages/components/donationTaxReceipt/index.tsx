@@ -28,12 +28,21 @@ export default function Index_applicationInfo() {
   const [searchUserNo, setSearchUserNo] = useState("");
   const [searchUserFName, setSearchUserFName] = useState("");
   const [searchUserLName, setSearchUserLName] = useState("");
+  const [searchProcessing, setSearchProcessing] = useState("IN_PROGRESS");
+  const [searchCompleted, setSearchCompleted] = useState("COMPLETED");
+  const [searchDonationOnly, setSearchDonationOnly] = useState(0);
+  
+
   const [searchDateStart, setSearchDateStart] = useState(
     new Date(currentYear + "-" + currentMonth + "-" + nextMonthDay1)
   );
   const [searchDateEnd, setSearchDateEnd] = useState(
     new Date(currentYear + "-" + currentMonth + "-" + nextMonthLastDay)
   );
+
+  const [sumDonation, setSumDonation] = useState(0);
+  const [sumFee, setSumFee] = useState(0);
+  const [sumTotal, setSumTotal] = useState(0);
 
   const [fetchData, setFetchData] = useState([]);
 
@@ -45,7 +54,11 @@ export default function Index_applicationInfo() {
       lName: searchUserLName,
       searchDateStart: searchDateStart,
       searchDateEnd: searchDateEnd,
+      searchProcessing: searchProcessing,
+      searchCompleted: searchCompleted,
+      searchDonationOnly:searchDonationOnly
     };
+    console.log("body: ", body);
 
     const data = await (
       await fetch("/api/donationTaxReceipt/donationTaxReceipt_find", {
@@ -54,11 +67,55 @@ export default function Index_applicationInfo() {
         body: JSON.stringify(body),
       })
     ).json();
+
+    let sum_Fee = data.reduce((acc, obj) => {
+      return acc + parseFloat(obj.processingFee);
+    }, 0);
+    setSumFee(sum_Fee);
+
+    let sum_donation = data.reduce((acc, obj) => {
+      return acc + parseFloat(obj.donationAmount);
+    }, 0);
+    setSumDonation(sum_donation);
+
+    let sum_total = data.reduce((acc, obj) => {
+      return (
+        acc + parseFloat(obj.processingFee) + parseFloat(obj.donationAmount)
+      );
+    }, 0);
+    setSumTotal(sum_total);
+
     setFetchData(data);
   };
 
   console.log(fetchData);
 
+  function handle_onChange_Processing(e) {
+    if (e.target.checked) {
+      //alert(e.target.value)
+      setSearchProcessing("IN_PROGRESS");
+    } else setSearchProcessing("");
+  }
+
+
+  function handle_onChange_Completed(e) {
+    if (e.target.checked) {
+      //alert(e.target.value)
+      setSearchCompleted("COMPLETED");
+    } else {
+      setSearchCompleted("");
+    }
+  }
+
+
+  function handle_onChange_DonationOnly(e) {
+    if (e.target.checked) {
+      //alert(e.target.value)
+      setSearchDonationOnly(1);
+    } else {
+      setSearchDonationOnly(0);
+    }
+  }
   // useEffect(() => {
   //   dataFetch();
   // }, []);
@@ -85,16 +142,16 @@ export default function Index_applicationInfo() {
     >
       {/* <SpinnerOverlay fetchData={fetchData} setFetchData={setFetchData} /> */}
 
-      <VStack borderWidth={"0px"} h="100%" w="100%" spacing={1}>
+      <VStack borderWidth={"0px"} h="100%" w="100%" spacing={0}>
         <HStack borderWidth={"0px"} direction="row" w={"100%"}>
-          <HStack w={"150px"} borderWidth={"0px"}>
+          <HStack w={"130px"} borderWidth={"0px"}>
             <SingleDatepicker
               name="date-start"
               date={searchDateStart}
               onDateChange={setSearchDateStart}
             />
           </HStack>
-          <HStack w={"150px"} borderWidth={"0px"}>
+          <HStack w={"130px"} borderWidth={"0px"}>
             <SingleDatepicker
               name="date-end"
               date={searchDateEnd}
@@ -116,25 +173,30 @@ export default function Index_applicationInfo() {
             placeholder="L Name"
             onChange={(e) => setSearchUserLName(e.target.value)}
           />
-          <HStack
-            spacing={[1, 5]}
-            direction={["column", "row"]}
-            width={"450px"}
-          >
-            <Checkbox size="lg" colorScheme="blue" defaultChecked>
+          <HStack direction={["column", "row"]} width={"450px"}>
+            <Checkbox
+              size="lg"
+              colorScheme="blue"
+              defaultChecked
+              value={"IN_PROGRESS"}
+              onChange={handle_onChange_Processing}
+            >
               In Processing
             </Checkbox>
-            <Checkbox size="lg" colorScheme="red" defaultChecked>
+            <Checkbox
+              size="lg"
+              colorScheme="red"
+              defaultChecked
+              value={"COMPLETED"}
+              onChange={handle_onChange_Completed}
+            >
               Completed
             </Checkbox>
-            <Checkbox size="lg" colorScheme="green" defaultChecked>
+            <Checkbox size="lg" colorScheme="green" defaultChecked onChange={handle_onChange_DonationOnly}>
               Donation Only
             </Checkbox>
           </HStack>
-          {/* <Input placeholder="MSP #" {...register("mspNo")}   />
-    <Input placeholder="F Name" {...register("fName")}   />
-    <Input placeholder="L Name" {...register("lName")}   />
-    <Input placeholder="phone" {...register("phone")}  /> */}
+
           <Box>
             <Button type="submit" w={"150px"} onClick={dataFetch}>
               Donation List
@@ -152,91 +214,96 @@ export default function Index_applicationInfo() {
           </Text>
         </HStack>
 
+        <VStack borderWidth={"0px"} direction="row" align="stretch" w="100%">
+          <HStack spacing={0}>
+            <Text w={"110px"} borderWidth={0} fontWeight={"bold"}>
+              Status
+            </Text>
+            <Text w={"150px"} borderWidth={0} fontWeight={"bold"}>
+              FName
+            </Text>
+            <Text w={"150px"} borderWidth={0} fontWeight={"bold"}>
+              LName
+            </Text>
+            <Text w={"150px"} borderWidth={0} fontWeight={"bold"}>
+              phone
+            </Text>
+            <Text w={"150px"} borderWidth={0} fontWeight={"bold"}>
+              address
+            </Text>
+            <Text w={"150px"} borderWidth={0} fontWeight={"bold"}>
+              city
+            </Text>
+            <Text w={"150px"} borderWidth={0} fontWeight={"bold"}>
+              province
+            </Text>
+            <Text w={"150px"} borderWidth={0} fontWeight={"bold"}>
+              postal
+            </Text>
+            <Text w={"100px"} borderWidth={0} fontWeight={"bold"}>
+              Fee - {sumFee}
+            </Text>
+
+            <Text w={"100px"} borderWidth={0} fontWeight={"bold"}>
+              Dona - {sumDonation}
+            </Text>
+
+            <Text w={"100px"} borderWidth={0} fontWeight={"bold"}>
+              Total - {sumTotal}
+            </Text>
+            <Box w={"70px"}></Box>
+          </HStack>
+        </VStack>
         <VStack
           borderWidth={"0px"}
           direction="row"
           align="stretch"
           w="100%"
-          overflow={"auto"}
+          overflowY={"auto"}
         >
-          <HStack  spacing={0}> 
-            <Text w={"100px"} borderWidth={1} fontWeight={"bold"}>
-              proc_comp
-            </Text>
-            <Text w={"150px"} borderWidth={1} fontWeight={"bold"}>
-              FName
-            </Text>
-            <Text w={"150px"} borderWidth={1} fontWeight={"bold"}>
-              LName
-            </Text>
-            <Text w={"150px"} borderWidth={1} fontWeight={"bold"}>
-              phone
-            </Text>
-            <Text w={"150px"} borderWidth={1} fontWeight={"bold"}>
-              address
-            </Text>
-            <Text w={"150px"} borderWidth={1} fontWeight={"bold"}>
-              city
-            </Text>
-            <Text w={"150px"} borderWidth={1} fontWeight={"bold"}>
-              province
-            </Text>
-            <Text w={"150px"} borderWidth={1} fontWeight={"bold"}>
-              postal
-            </Text>
-            <Text w={"50px"} borderWidth={1} fontWeight={"bold"}>
-              Fee
-            </Text>
-            <Text w={"50px"} borderWidth={1} fontWeight={"bold"}>
-              Donation
-            </Text>
-            <Text w={"50px"} borderWidth={1} fontWeight={"bold"}>
-              Total
-            </Text>
-          </HStack>
           {fetchData &&
             fetchData.map((application, index) => {
               return (
                 <HStack
                   key={index}
-                  spacing={1}
+                  spacing={3}
                   _hover={{
                     background: "gray.100",
                     color: "black",
                   }}
                 >
-                  <Text w={"100px"} borderWidth={1}>
+                  <Text w={"110px"} borderWidth={0}>
                     {application.applicationProcessing.status}
                   </Text>
-                  <Text w={"150px"} borderWidth={1}>
+                  <Text w={"150px"} borderWidth={0}>
                     {application.firstName}
                   </Text>
-                  <Text w={"150px"} borderWidth={1}>
+                  <Text w={"150px"} borderWidth={0}>
                     {application.lastName}
                   </Text>
-                  <Text w={"150px"} borderWidth={1}>
+                  <Text w={"150px"} borderWidth={0}>
                     {application.phone}
                   </Text>
 
-                  <Text w={"150px"} borderWidth={1}>
+                  <Text w={"150px"} borderWidth={0}>
                     {application.addressLine1}
                   </Text>
-                  <Text w={"150px"} borderWidth={1}>
+                  <Text w={"150px"} borderWidth={0}>
                     {application.city}
                   </Text>
-                  <Text w={"150px"} borderWidth={1}>
+                  <Text w={"150px"} borderWidth={0}>
                     {application.province}
                   </Text>
-                  <Text w={"150px"} borderWidth={1}>
+                  <Text w={"150px"} borderWidth={0}>
                     {application.postalCode}
                   </Text>
-                  <Text w={"50px"} borderWidth={1}>
+                  <Text w={"100px"} borderWidth={0}>
                     {application.processingFee}
                   </Text>
-                  <Text w={"50px"} borderWidth={1}>
+                  <Text w={"100px"} borderWidth={0}>
                     {application.donationAmount}
                   </Text>
-                  <Text w={"50px"} borderWidth={1}>
+                  <Text w={"100px"} borderWidth={0}>
                     {parseFloat(application.processingFee) +
                       parseFloat(application.donationAmount)}
                   </Text>
