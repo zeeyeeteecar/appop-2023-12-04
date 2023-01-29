@@ -15,6 +15,7 @@ import {
 } from "@chakra-ui/react";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import { SingleDatepicker, RangeDatepicker } from "chakra-dayzed-datepicker";
+import ExportCSV from "./ExportCSV";
 
 import SpinnerOverlay from "../common/SpinnerOverlay";
 
@@ -30,8 +31,7 @@ export default function Index_applicationInfo() {
   const [searchUserLName, setSearchUserLName] = useState("");
   const [searchProcessing, setSearchProcessing] = useState("IN_PROGRESS");
   const [searchCompleted, setSearchCompleted] = useState("COMPLETED");
-  const [searchDonationOnly, setSearchDonationOnly] = useState(0);
-  
+  const [searchDonationOnly, setSearchDonationOnly] = useState(false);
 
   const [searchDateStart, setSearchDateStart] = useState(
     new Date(currentYear + "-" + currentMonth + "-" + nextMonthDay1)
@@ -56,7 +56,7 @@ export default function Index_applicationInfo() {
       searchDateEnd: searchDateEnd,
       searchProcessing: searchProcessing,
       searchCompleted: searchCompleted,
-      searchDonationOnly:searchDonationOnly
+      searchDonationOnly: searchDonationOnly,
     };
     console.log("body: ", body);
 
@@ -97,7 +97,6 @@ export default function Index_applicationInfo() {
     } else setSearchProcessing("");
   }
 
-
   function handle_onChange_Completed(e) {
     if (e.target.checked) {
       //alert(e.target.value)
@@ -107,13 +106,12 @@ export default function Index_applicationInfo() {
     }
   }
 
-
   function handle_onChange_DonationOnly(e) {
     if (e.target.checked) {
       //alert(e.target.value)
-      setSearchDonationOnly(1);
+      setSearchDonationOnly(true);
     } else {
-      setSearchDonationOnly(0);
+      setSearchDonationOnly(false);
     }
   }
   // useEffect(() => {
@@ -192,16 +190,21 @@ export default function Index_applicationInfo() {
             >
               Completed
             </Checkbox>
-            <Checkbox size="lg" colorScheme="green" defaultChecked onChange={handle_onChange_DonationOnly}>
+            <Checkbox
+              size="lg"
+              colorScheme="green"
+              onChange={handle_onChange_DonationOnly}
+            >
               Donation Only
             </Checkbox>
           </HStack>
 
           <Box>
             <Button type="submit" w={"150px"} onClick={dataFetch}>
-              Donation List
+              Search
             </Button>
           </Box>
+          <ExportCSV fetchData={fetchData} />
           <Text
             color="red.300"
             bgColor={"yellow.100"}
@@ -284,7 +287,6 @@ export default function Index_applicationInfo() {
                   <Text w={"150px"} borderWidth={0}>
                     {application.phone}
                   </Text>
-
                   <Text w={"150px"} borderWidth={0}>
                     {application.addressLine1}
                   </Text>

@@ -14,7 +14,7 @@ export default async function handle(req: any, res: any) {
     searchDateEnd,
     searchProcessing,
     searchCompleted,
-    SearchDonationOnly,
+    searchDonationOnly,
   } = req.body;
 
   const array_status = [] 
@@ -41,13 +41,10 @@ export default async function handle(req: any, res: any) {
       },
 
       donationAmount:{
-        gt:0,
+        gte:searchDonationOnly?1:0,
       }
     },
 
-    // application: {
-    //   firstName: "Claire",
-    // },
 
     select: {
       // id: true,
@@ -75,9 +72,9 @@ export default async function handle(req: any, res: any) {
       notes: true,
       applicantId: true,
 
-      //   permit: {
-      //     select: { rcdPermitId: true, expiryDate: true },
-      //   },
+         permit: {
+           select: { rcdPermitId: true, expiryDate: true },
+         },
       applicant: { select: { dateOfBirth: true, id: true } },
       applicationProcessing: { select: { status: true } },
     },
