@@ -49,7 +49,6 @@ export default function ExportCSV({ fetchData }) {
     <>
       <CSVLink data={csvData}>Export</CSVLink>
 
-      <CSVDownload data={csvData} target="_blank" /> 
     </>
   );
 }
