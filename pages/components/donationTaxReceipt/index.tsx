@@ -126,7 +126,7 @@ export default function Index_applicationInfo() {
     const port = window.location.port ? ":" + window.location.port : "";
     const filename_pdf_template = "with_update_sections.pdf";
 
-    const url = "http://" + hostname + port + "/with_update_sections.pdf";
+    const url = "https://" + hostname + port + "/with_update_sections.pdf";
     const existingPdfBytes = await fetch(url).then((res) => res.arrayBuffer());
 
     const pdfDoc = await PDFDocument.load(existingPdfBytes);
