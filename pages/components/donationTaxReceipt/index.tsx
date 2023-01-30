@@ -122,11 +122,12 @@ export default function Index_applicationInfo() {
   async function GenerateTaxReceiptPDF() {
     //alert("GenerateTaxReceiptPDF");
 
+    const protocol = window.location.protocol;
     const hostname = window.location.hostname;
     const port = window.location.port ? ":" + window.location.port : "";
     const filename_pdf_template = "with_update_sections.pdf";
 
-    const url = "https://" + hostname + port + "/with_update_sections.pdf";
+    const url = protocol + "//" + hostname + port + "/" + filename_pdf_template;
     const existingPdfBytes = await fetch(url).then((res) => res.arrayBuffer());
 
     const pdfDoc = await PDFDocument.load(existingPdfBytes);
@@ -155,9 +156,10 @@ export default function Index_applicationInfo() {
   useEffect(() => {
     //ataFetch();
 
-    console.log("hostname", window.location.hostname);
-    console.log("href", window.location.href); // Logs `http://localhost:3000/blog/incididunt-ut-lobare-et-dolore`
-    console.log("port", window.location.port);
+    console.log("hostname---", window.location.hostname);
+    console.log("href---", window.location.href); // Logs `http://localhost:3000/blog/incididunt-ut-lobare-et-dolore`
+    console.log("port---", window.location.port);
+    console.log("protocol---", window.location.protocol);
   }, []);
 
   // const applications = fetchData.filter((item) => {
