@@ -16,10 +16,14 @@ import {
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import { SingleDatepicker, RangeDatepicker } from "chakra-dayzed-datepicker";
 import ExportCSV from "./ExportCSV";
+import { degrees, PDFDocument, rgb, StandardFonts } from "pdf-lib";
+import { useRouter } from "next/router";
 
 import SpinnerOverlay from "../common/SpinnerOverlay";
 
 export default function Index_applicationInfo() {
+  const { locales, asPath } = useRouter();
+
   const currentYear = new Date().getFullYear();
   const currentMonth = new Date().getMonth() + 1;
   const nextMonthDay1: string = "01";
@@ -58,7 +62,7 @@ export default function Index_applicationInfo() {
       searchCompleted: searchCompleted,
       searchDonationOnly: searchDonationOnly,
     };
-    console.log("body: ", body);
+    //console.log("body: ", body);
 
     const data = await (
       await fetch("/api/donationTaxReceipt/donationTaxReceipt_find", {
@@ -88,7 +92,7 @@ export default function Index_applicationInfo() {
     setFetchData(data);
   };
 
-  console.log(fetchData);
+  //console.log(fetchData);
 
   function handle_onChange_Processing(e) {
     if (e.target.checked) {
@@ -114,9 +118,47 @@ export default function Index_applicationInfo() {
       setSearchDonationOnly(false);
     }
   }
-  // useEffect(() => {
-  //   dataFetch();
-  // }, []);
+
+  async function GenerateTaxReceiptPDF() {
+    //alert("GenerateTaxReceiptPDF");
+
+    const hostname = window.location.hostname;
+    const port = window.location.port ? ":" + window.location.port : "";
+    const filename_pdf_template = "with_update_sections.pdf";
+
+    const url = "http://" + hostname + port + "/with_update_sections.pdf";
+    const existingPdfBytes = await fetch(url).then((res) => res.arrayBuffer());
+
+    const pdfDoc = await PDFDocument.load(existingPdfBytes);
+    const helveticaFont = await pdfDoc.embedFont(StandardFonts.Helvetica);
+
+    const pages = pdfDoc.getPages();
+    const firstPage = pages[0];
+    const { width, height } = firstPage.getSize();
+    firstPage.drawText("This  JavaScript!", {
+      x: 5,
+      y: height / 2 + 300,
+      size: 50,
+      font: helveticaFont,
+      color: rgb(0.95, 0.1, 0.1),
+      rotate: degrees(-45),
+    });
+
+    const pdfBytes = await pdfDoc.save();
+    let file = new Blob([pdfBytes], { type: "application/pdf" });
+
+    var fileURL = URL.createObjectURL(file);
+
+    window.open(fileURL);
+  }
+
+  useEffect(() => {
+    //ataFetch();
+
+    console.log("hostname", window.location.hostname);
+    console.log("href", window.location.href); // Logs `http://localhost:3000/blog/incididunt-ut-lobare-et-dolore`
+    console.log("port", window.location.port);
+  }, []);
 
   // const applications = fetchData.filter((item) => {
   //   return searchMspNo.toLowerCase() === "" &&
@@ -197,11 +239,11 @@ export default function Index_applicationInfo() {
             Donation Only
           </Checkbox>
           <Box>
-              <Button type="submit" w={"150px"} onClick={dataFetch}>
-                Search
-              </Button>
-            </Box>
-            <ExportCSV fetchData={fetchData} />
+            <Button type="submit" w={"150px"} onClick={dataFetch}>
+              Search
+            </Button>
+          </Box>
+          <ExportCSV fetchData={fetchData} />
         </HStack>
         <HStack borderWidth={0} width={"100%"} spacing={5}>
           <HStack>
@@ -215,7 +257,6 @@ export default function Index_applicationInfo() {
             >
               Total Record(s):{fetchData.length}
             </Text>
-
           </HStack>
         </HStack>
 
@@ -329,6 +370,7 @@ export default function Index_applicationInfo() {
                       background: "gray.100",
                       color: "black",
                     }}
+                    onClick={GenerateTaxReceiptPDF}
                   />
                 </HStack>
               );
