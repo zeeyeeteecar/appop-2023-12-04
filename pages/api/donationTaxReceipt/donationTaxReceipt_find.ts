@@ -1,13 +1,16 @@
+import { PrismaClient } from "@prisma/client";
 import { readFileSync } from "fs";
-import { prisma } from "../prisma";
-//import { PrismaClient } from "@prisma/client";
-//const prisma = new PrismaClient();
+//import { prisma } from "../prisma";
+
+
+const prisma = new PrismaClient();
 
 export default async function handle(req: any, res: any) {
+
   //const prisma = new PrismaClient();
   //await prisma.$connect();
   const {
-    userNo,
+    searchUserNo,
     fName,
     lName,
     searchDateStart,
@@ -17,18 +20,22 @@ export default async function handle(req: any, res: any) {
     searchDonationOnly,
   } = req.body;
 
-  const array_status = [] 
-  if(searchProcessing){
-    array_status.push(searchProcessing)
+
+
+  const array_status = [];
+  if (searchProcessing) {
+    array_status.push(searchProcessing);
   }
 
-  if(searchCompleted){
-    array_status.push(searchCompleted)
+  if (searchCompleted) {
+    array_status.push(searchCompleted);
   }
-  
+
   const result = await prisma.application.findMany({
     //==========applicationProcessing=========
     where: {
+        
+
       createdAt: {
         gte: new Date(searchDateStart),
         lte: new Date(searchDateEnd),
@@ -36,22 +43,21 @@ export default async function handle(req: any, res: any) {
 
       applicationProcessing: {
         status: {
-          in: array_status ,
+          in: array_status,
         },
       },
 
-      donationAmount:{
-        gte:searchDonationOnly?1:0,
-      }
+      donationAmount: {
+        gte: searchDonationOnly ? 1 : 0,
+      },
     },
-
 
     select: {
       // id: true,
       // status: true,
       // applicationInvoice: true,
       //application: true,
-
+      
       firstName: true,
       middleName: true,
       lastName: true,
@@ -72,9 +78,9 @@ export default async function handle(req: any, res: any) {
       notes: true,
       applicantId: true,
 
-         permit: {
-           select: { rcdPermitId: true, expiryDate: true },
-         },
+      permit: {
+        select: { rcdPermitId: true, expiryDate: true },
+      },
       applicant: { select: { dateOfBirth: true, id: true } },
       applicationProcessing: { select: { status: true } },
     },

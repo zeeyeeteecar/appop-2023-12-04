@@ -49,7 +49,7 @@ export default function Index_applicationInfo() {
   const dataFetch = async () => {
     setFetchData([]);
     const body = {
-      userNo: searchUserNo,
+      searchUserNo: searchUserNo,
       fName: searchUserFName,
       lName: searchUserLName,
       searchDateStart: searchDateStart,
@@ -141,21 +141,21 @@ export default function Index_applicationInfo() {
       {/* <SpinnerOverlay fetchData={fetchData} setFetchData={setFetchData} /> */}
 
       <VStack borderWidth={"0px"} h="100%" w="100%" spacing={0}>
-        <HStack borderWidth={"0px"} direction="row" w={"100%"}>
-          <HStack w={"130px"} borderWidth={"0px"}>
+        <HStack borderWidth={"0px"} direction="row" w={"100%"} spacing={5}>
+          <Box w={"130px"} borderWidth={"0px"}>
             <SingleDatepicker
               name="date-start"
               date={searchDateStart}
               onDateChange={setSearchDateStart}
             />
-          </HStack>
-          <HStack w={"130px"} borderWidth={"0px"}>
+          </Box>
+          <Box w={"130px"} borderWidth={"0px"}>
             <SingleDatepicker
               name="date-end"
               date={searchDateEnd}
               onDateChange={setSearchDateEnd}
             />
-          </HStack>
+          </Box>
           <Input
             w={"150px"}
             placeholder="MSP #"
@@ -171,56 +171,61 @@ export default function Index_applicationInfo() {
             placeholder="L Name"
             onChange={(e) => setSearchUserLName(e.target.value)}
           />
-          <HStack direction={["column", "row"]} width={"450px"}>
-            <Checkbox
-              size="lg"
-              colorScheme="blue"
-              defaultChecked
-              value={"IN_PROGRESS"}
-              onChange={handle_onChange_Processing}
-            >
-              In Processing
-            </Checkbox>
-            <Checkbox
-              size="lg"
-              colorScheme="red"
-              defaultChecked
-              value={"COMPLETED"}
-              onChange={handle_onChange_Completed}
-            >
-              Completed
-            </Checkbox>
-            <Checkbox
-              size="lg"
-              colorScheme="green"
-              onChange={handle_onChange_DonationOnly}
-            >
-              Donation Only
-            </Checkbox>
-          </HStack>
-
-          <Box>
-            <Button type="submit" w={"150px"} onClick={dataFetch}>
-              Search
-            </Button>
-          </Box>
-          <ExportCSV fetchData={fetchData} />
-          <Text
-            color="red.300"
-            bgColor={"yellow.100"}
-            w="150px"
-            alignContent="center"
-            align={"center"}
-            fontSize="16px"
+          <Checkbox
+            size="lg"
+            colorScheme="blue"
+            defaultChecked
+            value={"IN_PROGRESS"}
+            onChange={handle_onChange_Processing}
           >
-            Total Record(s):{fetchData.length}
-          </Text>
+            In Processing
+          </Checkbox>
+          <Checkbox
+            size="lg"
+            colorScheme="red"
+            defaultChecked
+            value={"COMPLETED"}
+            onChange={handle_onChange_Completed}
+          >
+            Completed
+          </Checkbox>
+          <Checkbox
+            size="lg"
+            colorScheme="green"
+            onChange={handle_onChange_DonationOnly}
+          >
+            Donation Only
+          </Checkbox>
+          <Box>
+              <Button type="submit" w={"150px"} onClick={dataFetch}>
+                Search
+              </Button>
+            </Box>
+            <ExportCSV fetchData={fetchData} />
+        </HStack>
+        <HStack borderWidth={0} width={"100%"} spacing={5}>
+          <HStack>
+            <Text
+              color="red.300"
+              bgColor={"yellow.100"}
+              w="150px"
+              alignContent="center"
+              align={"center"}
+              fontSize="16px"
+            >
+              Total Record(s):{fetchData.length}
+            </Text>
+
+          </HStack>
         </HStack>
 
         <VStack borderWidth={"0px"} direction="row" align="stretch" w="100%">
           <HStack spacing={0}>
             <Text w={"110px"} borderWidth={0} fontWeight={"bold"}>
               Status
+            </Text>
+            <Text w={"150px"} borderWidth={0} fontWeight={"bold"}>
+              User #
             </Text>
             <Text w={"150px"} borderWidth={0} fontWeight={"bold"}>
               FName
@@ -277,6 +282,9 @@ export default function Index_applicationInfo() {
                 >
                   <Text w={"110px"} borderWidth={0}>
                     {application.applicationProcessing.status}
+                  </Text>
+                  <Text w={"150px"} borderWidth={0}>
+                    {application.applicantId}
                   </Text>
                   <Text w={"150px"} borderWidth={0}>
                     {application.firstName}

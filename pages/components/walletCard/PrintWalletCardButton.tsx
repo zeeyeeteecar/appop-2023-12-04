@@ -23,7 +23,7 @@ export default function PrintButton({ application }: any) {
       : "N/A";
 
     const doc = new jsPDF("l", "mm", [90, 38]);
-    
+
     doc.setFontSize(18);
     doc.setFont("", "bold");
     doc.text("Richmond Centre for Disaibility", 0, 5);
@@ -51,7 +51,7 @@ export default function PrintButton({ application }: any) {
     doc.text("MoB: ", 0, 30);
 
     doc.setFont("helvetica", "bold");
-    doc.text("MoB: ", 20, 30);
+    doc.text(Mob, 20, 30);
 
     doc.setFont("helvetica", "normal");
     doc.text("User # ", 40, 30);

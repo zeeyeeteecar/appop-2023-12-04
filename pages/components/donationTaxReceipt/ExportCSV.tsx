@@ -1,6 +1,7 @@
-import { CSVLink, CSVDownload } from "react-csv";
-
 import React from "react";
+import { Box, Flex, Center } from "@chakra-ui/react";
+
+import { CSVLink, CSVDownload } from "react-csv";
 
 export default function ExportCSV({ fetchData }) {
   const csvData_1 = [
@@ -12,6 +13,7 @@ export default function ExportCSV({ fetchData }) {
   const csvData = [
     [
       "Status",
+      "UserID",
       "FName",
       "LName",
       "phone",
@@ -29,6 +31,7 @@ export default function ExportCSV({ fetchData }) {
     fetchData.map((application, index) => {
       const csvDataEachLine = [];
       csvDataEachLine.push(application.applicationProcessing.status);
+      csvDataEachLine.push(application.applicantId);
       csvDataEachLine.push(application.firstName);
       csvDataEachLine.push(application.lastName);
       csvDataEachLine.push(application.phone);
@@ -44,11 +47,28 @@ export default function ExportCSV({ fetchData }) {
       );
       csvData.push(csvDataEachLine);
     });
-  console.log(csvData);
+  //console.log(csvData);
   return (
     <>
-      <CSVLink data={csvData}>Export</CSVLink>
-
+      <Center
+        rounded={3}
+        backgroundColor={"gray.100"}
+        w={"150px"}
+        h={"40px"}
+        fontWeight={"semibold"}
+        _hover={{
+          background: "gray.200",
+          color: "black",
+        }}
+      >
+        <CSVLink
+          data={csvData}
+          filename={"my-file.csv"}
+          
+        >
+          Export
+        </CSVLink>
+      </Center>
     </>
   );
 }
