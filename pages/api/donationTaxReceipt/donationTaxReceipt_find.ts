@@ -9,14 +9,16 @@ export default async function handle(req: any, res: any) {
   //await prisma.$connect();
   const {
     searchUserNo,
-    fName,
-    lName,
+    searchUserFName,
+    searchUserLName,
     searchDateStart,
     searchDateEnd,
     searchProcessing,
     searchCompleted,
     searchDonationOnly,
   } = req.body;
+
+  const DonationOnly: boolean = searchDonationOnly;
 
   const array_status = [];
   if (searchProcessing) {
@@ -30,9 +32,9 @@ export default async function handle(req: any, res: any) {
   const result = await prisma.application.findMany({
     //==========applicationProcessing=========
     where: {
-      applicantId: {equals:Number(searchUserNo) || undefined,},
-      firstName:{contains:fName.trim() || undefined,},
-      lastName:{contains:lName.trim() || undefined,},
+      applicantId: { equals: Number(searchUserNo) || undefined },
+      firstName: { contains: searchUserFName.trim() || undefined },
+      lastName: { contains: searchUserLName.trim() || undefined },
       createdAt: {
         gte: new Date(searchDateStart),
         lte: new Date(searchDateEnd),
@@ -45,7 +47,7 @@ export default async function handle(req: any, res: any) {
       },
 
       donationAmount: {
-        gte: Number(searchDonationOnly) ? 1 : 0,
+        gte: DonationOnly ? 1 : 0,
       },
     },
 

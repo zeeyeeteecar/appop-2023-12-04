@@ -25,13 +25,12 @@ export default function Index_applicationInfo() {
   const nextMonthDay1: string = "01";
   const nextMonthLastDay = new Date(currentYear, currentMonth, 0).getDate();
 
-  const [value, setValue] = React.useState("1");
   const [searchUserNo, setSearchUserNo] = useState("");
   const [searchUserFName, setSearchUserFName] = useState("");
   const [searchUserLName, setSearchUserLName] = useState("");
   const [searchProcessing, setSearchProcessing] = useState("IN_PROGRESS");
   const [searchCompleted, setSearchCompleted] = useState("COMPLETED");
-  const [searchDonationOnly, setSearchDonationOnly] = useState(false);
+  const [searchDonationOnly, setSearchDonationOnly] = useState<boolean>(false);
 
   const [searchDateStart, setSearchDateStart] = useState(
     new Date(currentYear + "-" + currentMonth + "-" + nextMonthDay1)
@@ -50,8 +49,8 @@ export default function Index_applicationInfo() {
     setFetchData([]);
     const body = {
       searchUserNo: searchUserNo,
-      fName: searchUserFName,
-      lName: searchUserLName,
+      searchUserFName: searchUserFName,
+      searchUserLName: searchUserLName,
       searchDateStart: searchDateStart,
       searchDateEnd: searchDateEnd,
       searchProcessing: searchProcessing,
