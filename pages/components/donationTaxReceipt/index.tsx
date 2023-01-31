@@ -13,17 +13,13 @@ import {
   Button,
   IconButton,
 } from "@chakra-ui/react";
-import { ExternalLinkIcon } from "@chakra-ui/icons";
+
 import { SingleDatepicker, RangeDatepicker } from "chakra-dayzed-datepicker";
 import ExportCSV from "./ExportCSV";
-import { degrees, PDFDocument, rgb, StandardFonts } from "pdf-lib";
-import { useRouter } from "next/router";
 
-import SpinnerOverlay from "../common/SpinnerOverlay";
+import GeneratePPTaxReceipt from "./GeneratePPTaxReceipt";
 
 export default function Index_applicationInfo() {
-  const { locales, asPath } = useRouter();
-
   const currentYear = new Date().getFullYear();
   const currentMonth = new Date().getMonth() + 1;
   const nextMonthDay1: string = "01";
@@ -119,47 +115,8 @@ export default function Index_applicationInfo() {
     }
   }
 
-  async function GenerateTaxReceiptPDF() {
-    //alert("GenerateTaxReceiptPDF");
-
-    const protocol = window.location.protocol;
-    const hostname = window.location.hostname;
-    const port = window.location.port ? ":" + window.location.port : "";
-    const filename_pdf_template = "with_update_sections.pdf";
-
-    const url = protocol + "//" + hostname + port + "/" + filename_pdf_template;
-    const existingPdfBytes = await fetch(url).then((res) => res.arrayBuffer());
-
-    const pdfDoc = await PDFDocument.load(existingPdfBytes);
-    const helveticaFont = await pdfDoc.embedFont(StandardFonts.Helvetica);
-
-    const pages = pdfDoc.getPages();
-    const firstPage = pages[0];
-    const { width, height } = firstPage.getSize();
-    firstPage.drawText("This  JavaScript!", {
-      x: 5,
-      y: height / 2 + 300,
-      size: 50,
-      font: helveticaFont,
-      color: rgb(0.95, 0.1, 0.1),
-      rotate: degrees(-45),
-    });
-
-    const pdfBytes = await pdfDoc.save();
-    let file = new Blob([pdfBytes], { type: "application/pdf" });
-
-    var fileURL = URL.createObjectURL(file);
-
-    window.open(fileURL);
-  }
-
   useEffect(() => {
     //ataFetch();
-
-    console.log("hostname---", window.location.hostname);
-    console.log("href---", window.location.href); // Logs `http://localhost:3000/blog/incididunt-ut-lobare-et-dolore`
-    console.log("port---", window.location.port);
-    console.log("protocol---", window.location.protocol);
   }, []);
 
   // const applications = fetchData.filter((item) => {
@@ -360,20 +317,7 @@ export default function Index_applicationInfo() {
                     {parseFloat(application.processingFee) +
                       parseFloat(application.donationAmount)}
                   </Text>
-
-                  <IconButton
-                    color="gray.100"
-                    borderWidth={0}
-                    variant="outline"
-                    aria-label="edit application info"
-                    fontSize="20px"
-                    icon={<ExternalLinkIcon />}
-                    _hover={{
-                      background: "gray.100",
-                      color: "black",
-                    }}
-                    onClick={GenerateTaxReceiptPDF}
-                  />
+                  <GeneratePPTaxReceipt application={application}/>
                 </HStack>
               );
             })}

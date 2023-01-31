@@ -77,6 +77,7 @@ export default async function handle(req: any, res: any) {
       type: true,
       notes: true,
       applicantId: true,
+      createdAt:true,
 
       permit: {
         select: { rcdPermitId: true, expiryDate: true },
