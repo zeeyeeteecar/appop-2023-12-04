@@ -54,6 +54,8 @@ export default function GeneratePPTaxReceipt({ application, donationAmount }) {
     const donorID = "P" + application.applicantId;
     const donorDonationAmount = "$" + application.donationAmount + ".00";
 
+    //const donationAmt: number = application.donationAmount;
+
     //******************************************** */
 
     firstPage.drawText(taxreceipt_No, {
@@ -176,9 +178,11 @@ export default function GeneratePPTaxReceipt({ application, donationAmount }) {
       // For Firefox it is necessary to delay revoking the ObjectURL
       window.URL.revokeObjectURL(fileURL);
     }, 100);
+
+
     //window.open(fileURL);
   }
-  const donationAmt: number = application.donationAmount;
+  
 
   //if (donationAmt > 0.0) {
     return (
