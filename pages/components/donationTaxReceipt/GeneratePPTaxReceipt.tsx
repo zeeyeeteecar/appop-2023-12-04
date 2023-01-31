@@ -54,7 +54,7 @@ export default function GeneratePPTaxReceipt({ application, donationAmount }) {
     const donorID = "P" + application.applicantId;
     const donorDonationAmount = "$" + application.donationAmount + ".00";
 
-    //const donationAmt: number = application.donationAmount;
+    const donationAmt: number = application.donationAmount;
 
     //******************************************** */
 
