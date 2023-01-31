@@ -182,9 +182,11 @@ export default function GeneratePPTaxReceipt({ application, donationAmount }) {
     //window.open(fileURL);
   }
 
-  const donationAmt: number = application.donationAmount;
-  // if (donationAmt > 0.0) {
-  // }
+  function temp (){  const donationAmt: number = application.donationAmount;
+    if (donationAmt > 0.0) {
+    }}
+
+
   //if (donationAmt > 0.0) {
   return (
     <>
