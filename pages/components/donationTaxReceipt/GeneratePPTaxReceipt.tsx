@@ -54,9 +54,7 @@ export default function GeneratePPTaxReceipt({ application, donationAmount }) {
     const donorID = "P" + application.applicantId;
     const donorDonationAmount = "$" + application.donationAmount + ".00";
 
-    const donationAmt: number = application.donationAmount;
-    if (donationAmt > 0.0) {
-    }
+
 
     //******************************************** */
 
@@ -184,6 +182,9 @@ export default function GeneratePPTaxReceipt({ application, donationAmount }) {
     //window.open(fileURL);
   }
 
+  const donationAmt: number = application.donationAmount;
+  if (donationAmt > 0.0) {
+  }
   //if (donationAmt > 0.0) {
   return (
     <>
