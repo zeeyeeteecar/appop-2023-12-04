@@ -265,6 +265,7 @@ export default function Index_applicationInfo() {
               return (
                 <HStack
                   key={index}
+                  height={"50px"}
                   spacing={3}
                   _hover={{
                     background: "gray.100",
