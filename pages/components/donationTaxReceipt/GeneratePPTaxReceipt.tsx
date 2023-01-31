@@ -180,6 +180,8 @@ export default function GeneratePPTaxReceipt({ application, donationAmount}) {
       window.URL.revokeObjectURL(fileURL);
     }, 100);
     //window.open(fileURL);
+
+    const donationAmt = application.donationAmount
   }
 
     if (donationAmount > 0) {
