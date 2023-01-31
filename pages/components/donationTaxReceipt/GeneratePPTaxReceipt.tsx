@@ -55,6 +55,8 @@ export default function GeneratePPTaxReceipt({ application, donationAmount }) {
     const donorDonationAmount = "$" + application.donationAmount + ".00";
 
     const donationAmt: number = application.donationAmount;
+    if (donationAmt > 0.0) {
+    }
 
     //******************************************** */
 
@@ -179,29 +181,26 @@ export default function GeneratePPTaxReceipt({ application, donationAmount }) {
       window.URL.revokeObjectURL(fileURL);
     }, 100);
 
-
     //window.open(fileURL);
   }
-  
 
   //if (donationAmt > 0.0) {
-    return (
-      <>
-        <IconButton
-          color="gray.300"
-          borderWidth={0}
-          variant="outline"
-          aria-label="edit application info"
-          fontSize="20px"
-          icon={<ExternalLinkIcon />}
-          _hover={{
-            background: "gray.100",
-            color: "black",
-          }}
-          onClick={GenerateTaxReceiptPDF}
-        />
-      </>
-    );
+  return (
+    <>
+      <IconButton
+        color="gray.300"
+        borderWidth={0}
+        variant="outline"
+        aria-label="edit application info"
+        fontSize="20px"
+        icon={<ExternalLinkIcon />}
+        _hover={{
+          background: "gray.100",
+          color: "black",
+        }}
+        onClick={GenerateTaxReceiptPDF}
+      />
+    </>
+  );
   // } else {    return <></>;  }
-  
 }
