@@ -118,17 +118,7 @@ export default function Index_applicationInfo() {
     //ataFetch();
   }, []);
 
-  // const applications = fetchData.filter((item) => {
-  //   return searchMspNo.toLowerCase() === "" &&
-  //     searchFName.toLowerCase() === "" &&
-  //     searchLName.toLowerCase() === "" &&
-  //     searchPhone.toLowerCase() === ""
-  //     ? item
-  //     : item.mspNumber.toLowerCase().includes(searchMspNo) &&
-  //         item.firstName.toLowerCase().includes(searchFName) &&
-  //         item.lastName.toLowerCase().includes(searchLName) &&
-  //         item.phone.toLowerCase().includes(searchPhone);
-  // });
+
 
   return (
     <Center
@@ -158,7 +148,7 @@ export default function Index_applicationInfo() {
           </Box>
           <Input
             w={"150px"}
-            placeholder="MSP #"
+            placeholder="User #"
             onChange={(e) => setSearchUserNo(e.target.value)}
           />
           <Input
