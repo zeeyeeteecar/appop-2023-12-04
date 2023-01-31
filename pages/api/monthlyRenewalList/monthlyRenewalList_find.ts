@@ -28,16 +28,6 @@ export default async function handle(req: any, res: any) {
     },
   });
 
-  // await prisma.$disconnect();
-  // res.json(result);
-
-  // const result = await prisma.performers.findMany({
-  //   include: {
-  //     donors: true,
-  //   },
-  //   orderBy: { Performer_id: "asc" },
-  // });
-
   await prisma.$disconnect();
   res.json(result);
 }

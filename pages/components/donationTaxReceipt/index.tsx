@@ -319,7 +319,7 @@ export default function Index_applicationInfo() {
                       parseFloat(application.donationAmount)}
                   </Text>
                   <Box w={"70px"}>
-                    <GeneratePPTaxReceipt application={application} />
+                    <GeneratePPTaxReceipt application={application} donationAmount={application.donationAmount}/>
                   </Box>
                 </HStack>
               );
