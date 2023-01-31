@@ -2,11 +2,9 @@ import { PrismaClient } from "@prisma/client";
 import { readFileSync } from "fs";
 //import { prisma } from "../prisma";
 
-
 const prisma = new PrismaClient();
 
 export default async function handle(req: any, res: any) {
-
   //const prisma = new PrismaClient();
   //await prisma.$connect();
   const {
@@ -20,8 +18,6 @@ export default async function handle(req: any, res: any) {
     searchDonationOnly,
   } = req.body;
 
-
-
   const array_status = [];
   if (searchProcessing) {
     array_status.push(searchProcessing);
@@ -34,8 +30,9 @@ export default async function handle(req: any, res: any) {
   const result = await prisma.application.findMany({
     //==========applicationProcessing=========
     where: {
-        
-
+      applicantId: {equals:Number(searchUserNo) || undefined,},
+      firstName:{contains:fName || undefined,},
+      lastName:{contains:lName || undefined,},
       createdAt: {
         gte: new Date(searchDateStart),
         lte: new Date(searchDateEnd),
@@ -57,7 +54,7 @@ export default async function handle(req: any, res: any) {
       // status: true,
       // applicationInvoice: true,
       //application: true,
-      
+
       firstName: true,
       middleName: true,
       lastName: true,
@@ -77,7 +74,7 @@ export default async function handle(req: any, res: any) {
       type: true,
       notes: true,
       applicantId: true,
-      createdAt:true,
+      createdAt: true,
 
       permit: {
         select: { rcdPermitId: true, expiryDate: true },

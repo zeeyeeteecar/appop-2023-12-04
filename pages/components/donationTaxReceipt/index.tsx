@@ -271,6 +271,8 @@ export default function Index_applicationInfo() {
         >
           {fetchData &&
             fetchData.map((application, index) => {
+
+              const clr_donationAmount = application.donationAmount==0?"gray.200":"black"
               return (
                 <HStack
                   key={index}
@@ -310,14 +312,16 @@ export default function Index_applicationInfo() {
                   <Text w={"100px"} borderWidth={0}>
                     {application.processingFee}
                   </Text>
-                  <Text w={"100px"} borderWidth={0}>
+                  <Text w={"100px"} borderWidth={0} color={clr_donationAmount}>
                     {application.donationAmount}
                   </Text>
                   <Text w={"100px"} borderWidth={0}>
                     {parseFloat(application.processingFee) +
                       parseFloat(application.donationAmount)}
                   </Text>
-                  <GeneratePPTaxReceipt application={application}/>
+                  <Box w={"70px"}>
+                    <GeneratePPTaxReceipt application={application} />
+                  </Box>
                 </HStack>
               );
             })}
