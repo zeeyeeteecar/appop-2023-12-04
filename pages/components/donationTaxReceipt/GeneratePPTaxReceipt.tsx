@@ -181,7 +181,7 @@ export default function GeneratePPTaxReceipt({ application, donationAmount }) {
 
   const donationAmt = application.donationAmount;
 
-  if (donationAmt > 0) {
+  if (donationAmt > 0.01) {
     return (
       <>
         <IconButton
