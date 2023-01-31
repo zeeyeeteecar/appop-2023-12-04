@@ -31,8 +31,8 @@ export default async function handle(req: any, res: any) {
     //==========applicationProcessing=========
     where: {
       applicantId: {equals:Number(searchUserNo) || undefined,},
-      firstName:{contains:fName || undefined,},
-      lastName:{contains:lName || undefined,},
+      firstName:{contains:fName.trim() || undefined,},
+      lastName:{contains:lName.trim() || undefined,},
       createdAt: {
         gte: new Date(searchDateStart),
         lte: new Date(searchDateEnd),
@@ -45,7 +45,7 @@ export default async function handle(req: any, res: any) {
       },
 
       donationAmount: {
-        gte: searchDonationOnly ? 1 : 0,
+        gte: Number(searchDonationOnly) ? 1 : 0,
       },
     },
 
