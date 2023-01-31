@@ -147,7 +147,7 @@ export default function GeneratePPTaxReceipt({ application, donationAmount }) {
     });
 
     firstPage.drawText(donorFnameLname, {
-      x: 70,
+      x: 75,
       y: height - 465,
       size: 12,
       font: helveticaFont,
