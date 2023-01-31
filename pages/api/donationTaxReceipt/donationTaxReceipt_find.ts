@@ -18,7 +18,7 @@ export default async function handle(req: any, res: any) {
     searchDonationOnly,
   } = req.body;
 
-  const DonationOnly: boolean = searchDonationOnly;
+  //const DonationOnly: boolean = searchDonationOnly;
 
   const array_status = [];
   if (searchProcessing) {
@@ -47,7 +47,7 @@ export default async function handle(req: any, res: any) {
       },
 
       donationAmount: {
-        gte: DonationOnly ? 1 : 0,
+        gte: searchDonationOnly ? 1 : 0,
       },
     },
 

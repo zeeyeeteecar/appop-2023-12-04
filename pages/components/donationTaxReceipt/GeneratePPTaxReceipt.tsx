@@ -179,23 +179,23 @@ export default function GeneratePPTaxReceipt({ application }) {
     //window.open(fileURL);
   }
 
-  if (application.donationAmount > 0) {
-    return (
-      <>
-        <IconButton
-          color="gray.300"
-          borderWidth={0}
-          variant="outline"
-          aria-label="edit application info"
-          fontSize="20px"
-          icon={<ExternalLinkIcon />}
-          _hover={{
-            background: "gray.100",
-            color: "black",
-          }}
-          onClick={GenerateTaxReceiptPDF}
-        />
-      </>
-    );
-  }else{return (<></>)}
+  //if (application.donationAmount > 0) {
+  return (
+    <>
+      <IconButton
+        color="gray.300"
+        borderWidth={0}
+        variant="outline"
+        aria-label="edit application info"
+        fontSize="20px"
+        icon={<ExternalLinkIcon />}
+        _hover={{
+          background: "gray.100",
+          color: "black",
+        }}
+        onClick={GenerateTaxReceiptPDF}
+      />
+    </>
+  );
+  //  }else{return (<></>)}
 }
