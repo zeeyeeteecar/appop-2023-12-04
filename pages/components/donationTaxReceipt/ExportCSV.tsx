@@ -4,11 +4,6 @@ import { Box, Flex, Center } from "@chakra-ui/react";
 import { CSVLink, CSVDownload } from "react-csv";
 
 export default function ExportCSV({ fetchData }) {
-  const csvData_1 = [
-    ["firstname", "lastname", "email"],
-    ["John", "Doe", "john.doe@xyz.com"],
-    ["Jane", "Doe", "jane.doe@xyz.com"],
-  ];
 
   const csvData = [
     [
