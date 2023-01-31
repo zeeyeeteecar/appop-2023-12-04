@@ -61,7 +61,7 @@ export default function GeneratePPTaxReceipt({ application, donationAmount }) {
       y: height - 105,
       size: 12,
       font: helveticaFont,
-      color: rgb(0.95, 0.1, 0.1),
+      color: rgb(0, 0, 0),
       //rotate: degrees(-45),
     });
 
@@ -70,7 +70,7 @@ export default function GeneratePPTaxReceipt({ application, donationAmount }) {
       y: height - 105,
       size: 12,
       font: helveticaFont,
-      color: rgb(0.95, 0.1, 0.1),
+      color: rgb(0, 0, 0),
       //rotate: degrees(-45),
     });
 
@@ -79,7 +79,7 @@ export default function GeneratePPTaxReceipt({ application, donationAmount }) {
       y: height - 150,
       size: 12,
       font: helveticaFont,
-      color: rgb(0.95, 0.1, 0.1),
+      color: rgb(0, 0, 0),
       //rotate: degrees(-45),
     });
 
@@ -88,7 +88,7 @@ export default function GeneratePPTaxReceipt({ application, donationAmount }) {
       y: height - 165,
       size: 12,
       font: helveticaFont,
-      color: rgb(0.95, 0.1, 0.1),
+      color: rgb(0, 0, 0),
       //rotate: degrees(-45),
     });
 
@@ -97,7 +97,7 @@ export default function GeneratePPTaxReceipt({ application, donationAmount }) {
       y: height - 180,
       size: 12,
       font: helveticaFont,
-      color: rgb(0.95, 0.1, 0.1),
+      color: rgb(0, 0, 0),
       //rotate: degrees(-45),
     });
 
@@ -106,7 +106,7 @@ export default function GeneratePPTaxReceipt({ application, donationAmount }) {
       y: height - 275,
       size: 12,
       font: helveticaFont,
-      color: rgb(0.95, 0.1, 0.1),
+      color: rgb(0, 0, 0),
       //rotate: degrees(-45),
     });
 
@@ -115,7 +115,7 @@ export default function GeneratePPTaxReceipt({ application, donationAmount }) {
       y: height - 298,
       size: 12,
       font: helveticaFont,
-      color: rgb(0.95, 0.1, 0.1),
+      color: rgb(0, 0, 0),
       //rotate: degrees(-45),
     });
 
@@ -124,7 +124,7 @@ export default function GeneratePPTaxReceipt({ application, donationAmount }) {
       y: height - 155,
       size: 12,
       font: helveticaFont,
-      color: rgb(0.95, 0.1, 0.1),
+      color: rgb(0, 0, 0),
       //rotate: degrees(-45),
     });
 
@@ -133,7 +133,7 @@ export default function GeneratePPTaxReceipt({ application, donationAmount }) {
       y: height - 183,
       size: 12,
       font: helveticaFont,
-      color: rgb(0.95, 0.1, 0.1),
+      color: rgb(0, 0, 0),
       //rotate: degrees(-45),
     });
 
@@ -142,7 +142,7 @@ export default function GeneratePPTaxReceipt({ application, donationAmount }) {
       y: height - 280,
       size: 12,
       font: helveticaFont,
-      color: rgb(0.95, 0.1, 0.1),
+      color: rgb(0, 0, 0),
       //rotate: degrees(-45),
     });
 
@@ -151,7 +151,7 @@ export default function GeneratePPTaxReceipt({ application, donationAmount }) {
       y: height - 465,
       size: 12,
       font: helveticaFont,
-      color: rgb(0.95, 0.1, 0.1),
+      color: rgb(0, 0, 0),
       //rotate: degrees(-45),
     });
     //******************************************** */
