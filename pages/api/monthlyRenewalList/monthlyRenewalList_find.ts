@@ -27,7 +27,7 @@ export default async function handle(req: any, res: any) {
       permits: true,
     },
   });
-
+  
   await prisma.$disconnect();
   res.json(result);
 }
