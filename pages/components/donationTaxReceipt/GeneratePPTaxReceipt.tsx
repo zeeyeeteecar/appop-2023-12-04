@@ -21,7 +21,7 @@ export default function GeneratePPTaxReceipt({ application }) {
     //******************************************** */
 
     const current = new Date();
-    const taxreceipt_No_1 =
+    const taxreceipt_No =
       "PPD_" +
       current.getFullYear() +
       current.getUTCMonth() +
@@ -52,11 +52,11 @@ export default function GeneratePPTaxReceipt({ application }) {
 
     const donorEmail = application.email;
     const donorID = "P" + application.applicantId;
-    const donorDonationAmount = "$"+application.donationAmount + ".00";
+    const donorDonationAmount = "$" + application.donationAmount + ".00";
 
     //******************************************** */
 
-    firstPage.drawText(taxreceipt_No_1, {
+    firstPage.drawText(taxreceipt_No, {
       x: 125,
       y: height - 105,
       size: 12,
@@ -120,7 +120,7 @@ export default function GeneratePPTaxReceipt({ application }) {
     });
 
     firstPage.drawText(donorID, {
-      x:520,
+      x: 520,
       y: height - 155,
       size: 12,
       font: helveticaFont,
@@ -128,10 +128,9 @@ export default function GeneratePPTaxReceipt({ application }) {
       //rotate: degrees(-45),
     });
 
-    
     firstPage.drawText(donorDonationAmount, {
-      x:525,
-      y: height -183,
+      x: 525,
+      y: height - 183,
       size: 12,
       font: helveticaFont,
       color: rgb(0.95, 0.1, 0.1),
@@ -139,8 +138,8 @@ export default function GeneratePPTaxReceipt({ application }) {
     });
 
     firstPage.drawText(donorDonationAmount, {
-      x:525,
-      y: height -280,
+      x: 525,
+      y: height - 280,
       size: 12,
       font: helveticaFont,
       color: rgb(0.95, 0.1, 0.1),
@@ -148,8 +147,8 @@ export default function GeneratePPTaxReceipt({ application }) {
     });
 
     firstPage.drawText(donorFnameLname, {
-      x:70,
-      y: height -465,
+      x: 70,
+      y: height - 465,
       size: 12,
       font: helveticaFont,
       color: rgb(0.95, 0.1, 0.1),
@@ -158,17 +157,32 @@ export default function GeneratePPTaxReceipt({ application }) {
     //******************************************** */
 
     const pdfBytes = await pdfDoc.save();
-    let file = new Blob([pdfBytes], { type: "application/pdf" });
+    const fileName = taxreceipt_No;
 
-    var fileURL = URL.createObjectURL(file);
+    let blob = new Blob([pdfBytes], { type: "application/pdf" });
+    var fileURL = URL.createObjectURL(blob);
 
-    window.open(fileURL);
+    const tempLink = document.createElement("a");
+    tempLink.style.display = "none";
+    tempLink.href = fileURL;
+    tempLink.setAttribute("download", fileName);
+    if (typeof tempLink.download === "undefined") {
+      tempLink.setAttribute("target", "_blank");
+    }
+    document.body.appendChild(tempLink);
+    tempLink.click();
+    document.body.removeChild(tempLink);
+    setTimeout(() => {
+      // For Firefox it is necessary to delay revoking the ObjectURL
+      window.URL.revokeObjectURL(fileURL);
+    }, 100);
+    //window.open(fileURL);
   }
 
   return (
     <>
       <IconButton
-        color="gray.100"
+        color="gray.300"
         borderWidth={0}
         variant="outline"
         aria-label="edit application info"
