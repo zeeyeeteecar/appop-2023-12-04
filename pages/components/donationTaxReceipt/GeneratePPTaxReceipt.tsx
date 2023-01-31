@@ -3,7 +3,9 @@ import { IconButton } from "@chakra-ui/react";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import { degrees, PDFDocument, rgb, StandardFonts } from "pdf-lib";
 
-export default function GeneratePPTaxReceipt({ application, donationAmount }) {
+export default function GeneratePPTaxReceipt(
+  { application, donationAmount },
+  any) {
   async function GenerateTaxReceiptPDF() {
     //alert("GenerateTaxReceiptPDF");
 
@@ -179,9 +181,9 @@ export default function GeneratePPTaxReceipt({ application, donationAmount }) {
     //window.open(fileURL);
   }
 
-  const donationAmt:number = application.donationAmount;
+  const donationAmt: number = application.donationAmount;
 
-  if (donationAmt > 0.01) {
+  //if (donationAmt > 0.01) {
     return (
       <>
         <IconButton
@@ -199,7 +201,5 @@ export default function GeneratePPTaxReceipt({ application, donationAmount }) {
         />
       </>
     );
-  } else {
-    return <></>;
-  }
+ // } else {    return <></>;  }
 }
