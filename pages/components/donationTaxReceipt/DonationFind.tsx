@@ -51,7 +51,7 @@ export default function DonationList({ fetchData }) {
           <Text w={"150px"} borderWidth={0} fontWeight={"bold"}>
             FName
           </Text>
-          <Text w={"150px"} borderWidth={0} fontWeight={"bold"}>
+          <Text w={"100px"} borderWidth={0} fontWeight={"bold"}>
             LName
           </Text>
           <Text w={"150px"} borderWidth={0} fontWeight={"bold"} align="center">
@@ -129,8 +129,9 @@ export default function DonationList({ fetchData }) {
             return (
               <HStack
                 key={index}
-                h="80px"
+                h="50px"
                 spacing={0}
+                
                 _hover={{
                   background: "gray.50",
                   color: "black",
@@ -168,7 +169,7 @@ export default function DonationList({ fetchData }) {
                 <Text w={"150px"} borderWidth={0}>
                   {application.firstName}
                 </Text>
-                <Text w={"150px"} borderWidth={0}>
+                <Text w={"100px"} borderWidth={0}>
                   {application.lastName}
                 </Text>
                 <Text w={"150px"} borderWidth={0}>
@@ -196,7 +197,7 @@ export default function DonationList({ fetchData }) {
                   {parseFloat(application.processingFee) +
                     parseFloat(application.donationAmount)}
                 </Text>
-                <Box w={"70px"} h="50px">
+                <Box w={"70px"} h="40px">
                   <GeneratePPTaxReceipt
                     application={application}
                     donationAmount={application.donationAmount}

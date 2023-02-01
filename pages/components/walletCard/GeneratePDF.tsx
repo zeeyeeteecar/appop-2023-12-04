@@ -10,9 +10,16 @@ export default function GeneratePDF(application): any {
 
   doc.text("permit#:", 20, 30);
 
-  const permitID:string = application.permit ? application.permit.rcdPermitId.tostring() : " N/A";
+  const permitID: string = application.permit
+    ? application.permit.rcdPermitId.tostring()
+    : " N/A";
 
-  const applicantName = application.firstName + " " + application.lastName;
+  const applicantName =
+    application.firstName +
+    " " +
+    application.middleName +
+    " " +
+    application.lastName;
   doc.text(permitID, 20, 50);
   doc.text(applicantName, 40, 50);
 

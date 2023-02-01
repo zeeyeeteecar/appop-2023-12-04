@@ -18,7 +18,8 @@ import { SingleDatepicker, RangeDatepicker } from "chakra-dayzed-datepicker";
 import ExportCSV from "./ExportCSV";
 
 import DonationList from "./DonationFind";
-import GeneratePPTaxReceipt from "./GeneratePPTaxReceipt";
+import SpinnerOverlay from "../common/SpinnerOverlay";
+
 
 export default function Index_applicationInfo() {
   const currentYear = new Date().getFullYear();
@@ -164,7 +165,7 @@ export default function Index_applicationInfo() {
       p="10px"
       alignItems={"flex-start"}
     >
-      {/* <SpinnerOverlay fetchData={fetchData} setFetchData={setFetchData} /> */}
+      
 
       <VStack borderWidth={"0px"} h="100%" w="100%" spacing={0}>
         <VStack borderWidth={"0px"} direction="row" w={"100%"} >

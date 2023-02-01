@@ -41,7 +41,12 @@ export default function GeneratePPTaxReceipt({ application, donationAmount }) {
     const donationReceived = application.createdAt.substring(0, 10);
     console.log("donationReceived", donationReceived);
 
-    const donorFnameLname = application.firstName + " " + application.lastName;
+    const donorFnameMnameLname =
+      application.firstName +
+      " " +
+      application.middleName +
+      " " +
+      application.lastName;
     const donorAddress = application.addressLine1;
     const donorCityProvPostal =
       application.city +
@@ -50,8 +55,10 @@ export default function GeneratePPTaxReceipt({ application, donationAmount }) {
       " " +
       application.postalCode;
 
-    const donorEmail = application.email?application.email:"";
-    const donorID = "P" + application.applicantId;
+    const donorEmail = application.email ? application.email : "";
+    const donorID: string = application.applicant
+      ? "P" + application.applicantId
+      : "N/A";
     const donorDonationAmount = "$" + application.donationAmount + ".00";
 
     //******************************************** */
@@ -74,7 +81,7 @@ export default function GeneratePPTaxReceipt({ application, donationAmount }) {
       //rotate: degrees(-45),
     });
 
-    firstPage.drawText(donorFnameLname, {
+    firstPage.drawText(donorFnameMnameLname, {
       x: 65,
       y: height - 150,
       size: 12,
@@ -146,7 +153,7 @@ export default function GeneratePPTaxReceipt({ application, donationAmount }) {
       //rotate: degrees(-45),
     });
 
-    firstPage.drawText(donorFnameLname, {
+    firstPage.drawText(donorFnameMnameLname, {
       x: 75,
       y: height - 465,
       size: 12,
