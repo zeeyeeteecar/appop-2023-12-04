@@ -17,6 +17,7 @@ import {
 import { SingleDatepicker, RangeDatepicker } from "chakra-dayzed-datepicker";
 import ExportCSV from "./ExportCSV";
 
+import DonationList from "./DonationFind";
 import GeneratePPTaxReceipt from "./GeneratePPTaxReceipt";
 
 export default function Index_applicationInfo() {
@@ -42,17 +43,12 @@ export default function Index_applicationInfo() {
   const [searchRequestType_REPLACEMENT, setSearchRequestType_REPLACEMENT] =
     useState("REPLACEMENT");
 
-
   const [searchDateStart, setSearchDateStart] = useState(
     new Date(currentYear + "-" + currentMonth + "-" + nextMonthDay1)
   );
   const [searchDateEnd, setSearchDateEnd] = useState(
     new Date(currentYear + "-" + currentMonth + "-" + nextMonthLastDay)
   );
-
-  const [sumDonation, setSumDonation] = useState(0);
-  const [sumFee, setSumFee] = useState(0);
-  const [sumTotal, setSumTotal] = useState(0);
 
   const [fetchData, setFetchData] = useState([]);
 
@@ -69,9 +65,9 @@ export default function Index_applicationInfo() {
       searchDonationOnly: searchDonationOnly,
       searchPermitType_Permanent: searchPermitType_Permanent,
       searchPermitType_Temporary: searchPermitType_Temporary,
-      searchRequestType_New:searchRequestType_New,
-      searchRequestType_RENEWAL:searchRequestType_RENEWAL,
-      searchRequestType_REPLACEMENT:searchRequestType_REPLACEMENT,
+      searchRequestType_New: searchRequestType_New,
+      searchRequestType_RENEWAL: searchRequestType_RENEWAL,
+      searchRequestType_REPLACEMENT: searchRequestType_REPLACEMENT,
     };
     console.log("body: ", body);
 
@@ -82,23 +78,6 @@ export default function Index_applicationInfo() {
         body: JSON.stringify(body),
       })
     ).json();
-
-    let sum_Fee = data.reduce((acc, obj) => {
-      return acc + parseFloat(obj.processingFee);
-    }, 0);
-    setSumFee(sum_Fee);
-
-    let sum_donation = data.reduce((acc, obj) => {
-      return acc + parseFloat(obj.donationAmount);
-    }, 0);
-    setSumDonation(sum_donation);
-
-    let sum_total = data.reduce((acc, obj) => {
-      return (
-        acc + parseFloat(obj.processingFee) + parseFloat(obj.donationAmount)
-      );
-    }, 0);
-    setSumTotal(sum_total);
 
     setFetchData(data);
   };
@@ -136,7 +115,6 @@ export default function Index_applicationInfo() {
     } else {
       setSearchPermitType_Permanent(null);
     }
-    
   }
 
   function handle_onChange_Temporary(e) {
@@ -146,8 +124,6 @@ export default function Index_applicationInfo() {
     } else {
       setSearchPermitType_Temporary(null);
     }
-    
-    
   }
 
   function handle_onChange_NewApplication(e) {
@@ -166,7 +142,6 @@ export default function Index_applicationInfo() {
     } else {
       setSearchRequestType_RENEWAL(null);
     }
-    
   }
   function handle_onChange_ReplacementApplication(e) {
     if (e.target.checked) {
@@ -175,15 +150,11 @@ export default function Index_applicationInfo() {
     } else {
       setSearchRequestType_REPLACEMENT(null);
     }
-
-  
-}
+  }
 
   useEffect(() => {
     //ataFetch();
   }, []);
-
-
 
   return (
     <Center
@@ -196,8 +167,8 @@ export default function Index_applicationInfo() {
       {/* <SpinnerOverlay fetchData={fetchData} setFetchData={setFetchData} /> */}
 
       <VStack borderWidth={"0px"} h="100%" w="100%" spacing={0}>
-        <VStack borderWidth={"0px"} direction="row" w={"100%"} spacing={5}>
-        <HStack>
+        <VStack borderWidth={"0px"} direction="row" w={"100%"} >
+          <HStack spacing={5}>
             <Box w={"130px"} borderWidth={"0px"}>
               <SingleDatepicker
                 name="date-start"
@@ -234,7 +205,7 @@ export default function Index_applicationInfo() {
             </Box>
             <ExportCSV fetchData={fetchData} />
           </HStack>
-          <HStack>
+          <HStack spacing={6} > 
             <Checkbox
               p={1}
               size="lg"
@@ -263,7 +234,7 @@ export default function Index_applicationInfo() {
             >
               Donation Only
             </Checkbox>
-            <HStack borderWidth={1} p={2} bgColor="gray.50" margin={"20"}>
+            <HStack borderWidth={1} p={2} bgColor="gray.50" margin={"20"} spacing={6}>
               <Checkbox
                 defaultChecked
                 size="lg"
@@ -281,7 +252,7 @@ export default function Index_applicationInfo() {
                 Temporary
               </Checkbox>
             </HStack>
-            <HStack borderWidth={1} p={2} bgColor="gray.50">
+            <HStack borderWidth={1} p={2} bgColor="gray.50" spacing={6}>
               <Checkbox
                 defaultChecked
                 size="lg"
@@ -323,127 +294,7 @@ export default function Index_applicationInfo() {
             </Text>
           </HStack>
         </HStack>
-
-        <VStack borderWidth={"0px"} direction="row" align="stretch" w="100%">
-          <HStack spacing={0}>
-            <Text w={"70px"} borderWidth={0} fontWeight={"bold"}>
-              Status
-            </Text>
-            <Text w={"70px"} borderWidth={0} fontWeight={"bold"}>
-              Type
-            </Text>
-            <Text w={"70px"} borderWidth={0} fontWeight={"bold"}>
-              Type
-            </Text>
-            <Text w={"70px"} borderWidth={0} fontWeight={"bold"}>
-              User #
-            </Text>
-            <Text w={"150px"} borderWidth={0} fontWeight={"bold"}>
-              FName
-            </Text>
-            <Text w={"150px"} borderWidth={0} fontWeight={"bold"}>
-              LName
-            </Text>
-            <Text w={"150px"} borderWidth={0} fontWeight={"bold"}>
-              phone
-            </Text>
-            <Text w={"150px"} borderWidth={0} fontWeight={"bold"}>
-              address
-            </Text>
-            <Text w={"150px"} borderWidth={0} fontWeight={"bold"}>
-              city
-            </Text>
-            <Text w={"150px"} borderWidth={0} fontWeight={"bold"}>
-              province
-            </Text>
-            <Text w={"150px"} borderWidth={0} fontWeight={"bold"}>
-              postal
-            </Text>
-            <Text w={"100px"} borderWidth={0} fontWeight={"bold"}>
-              Fee - {sumFee}
-            </Text>
-
-            <Text w={"100px"} borderWidth={0} fontWeight={"bold"}>
-              Dona - {sumDonation}
-            </Text>
-
-            <Text w={"100px"} borderWidth={0} fontWeight={"bold"}>
-              Total - {sumTotal}
-            </Text>
-            <Box w={"70px"}></Box>
-          </HStack>
-        </VStack>
-        <VStack
-          borderWidth={"0px"}
-          direction="row"
-          align="stretch"
-          w="100%"
-          overflowY={"auto"}
-        >
-          {fetchData &&
-            fetchData.map((application, index) => {
-
-              const clr_donationAmount = application.donationAmount==0?"gray.200":"black"
-              return (
-                <HStack
-                  key={index}
-                  height={"50px"}
-                  spacing={0}
-                  _hover={{
-                    background: "gray.100",
-                    color: "black",
-                  }}
-                >
-                  <Text w={"70px"} borderWidth={0}>
-                    {application.applicationProcessing.status.substring(0,5)}
-                  </Text>
-                  <Text w={"70px"} borderWidth={0}>
-                    {application.permitType.substring(0,4)}
-                  </Text>
-                  <Text w={"70px"} borderWidth={0}>
-                    {application.type.substring(0,3)}
-                  </Text>
-                  <Text w={"70px"} borderWidth={0}>
-                    {application.applicantId}
-                  </Text>
-                  <Text w={"150px"} borderWidth={0}>
-                    {application.firstName}
-                  </Text>
-                  <Text w={"150px"} borderWidth={0}>
-                    {application.lastName}
-                  </Text>
-                  <Text w={"150px"} borderWidth={0}>
-                    {application.phone}
-                  </Text>
-                  <Text w={"150px"} borderWidth={0}>
-                    {application.addressLine1}
-                  </Text>
-                  <Text w={"150px"} borderWidth={0}>
-                    {application.city}
-                  </Text>
-                  <Text w={"150px"} borderWidth={0}>
-                    {application.province}
-                  </Text>
-                  <Text w={"150px"} borderWidth={0}>
-                    {application.postalCode}
-                  </Text>
-                  <Text w={"100px"} borderWidth={0}>
-                    {application.processingFee}
-                  </Text>
-                  <Text w={"100px"} borderWidth={0} color={clr_donationAmount}>
-                    {application.donationAmount}
-                  </Text>
-                  <Text w={"100px"} borderWidth={0}>
-                    {parseFloat(application.processingFee) +
-                      parseFloat(application.donationAmount)}
-                  </Text>
-                  <Box w={"70px"}>
-                    <GeneratePPTaxReceipt application={application} donationAmount={application.donationAmount}/>
-                  </Box>
-                </HStack>
-              );
-            })}
-        </VStack>
+        <DonationList fetchData={fetchData} />
       </VStack>
     </Center>
   );
