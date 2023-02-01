@@ -31,6 +31,17 @@ export default function Index_applicationInfo() {
   const [searchProcessing, setSearchProcessing] = useState("IN_PROGRESS");
   const [searchCompleted, setSearchCompleted] = useState("COMPLETED");
   const [searchDonationOnly, setSearchDonationOnly] = useState<boolean>(false);
+  const [searchPermitType_Permanent, setSearchPermitType_Permanent] =
+    useState("PERMANENT");
+  const [searchPermitType_Temporary, setSearchPermitType_Temporary] =
+    useState("TEMPORARY");
+  const [searchRequestType_New, setSearchRequestType_New] = useState("NEW");
+  const [searchRequestType_RENEWAL, setSearchRequestType_RENEWAL] =
+    useState("RENEWAL");
+
+  const [searchRequestType_REPLACEMENT, setSearchRequestType_REPLACEMENT] =
+    useState("REPLACEMENT");
+
 
   const [searchDateStart, setSearchDateStart] = useState(
     new Date(currentYear + "-" + currentMonth + "-" + nextMonthDay1)
@@ -56,8 +67,13 @@ export default function Index_applicationInfo() {
       searchProcessing: searchProcessing,
       searchCompleted: searchCompleted,
       searchDonationOnly: searchDonationOnly,
+      searchPermitType_Permanent: searchPermitType_Permanent,
+      searchPermitType_Temporary: searchPermitType_Temporary,
+      searchRequestType_New:searchRequestType_New,
+      searchRequestType_RENEWAL:searchRequestType_RENEWAL,
+      searchRequestType_REPLACEMENT:searchRequestType_REPLACEMENT,
     };
-    //console.log("body: ", body);
+    console.log("body: ", body);
 
     const data = await (
       await fetch("/api/donationTaxReceipt/donationTaxReceipt_find", {
@@ -113,6 +129,55 @@ export default function Index_applicationInfo() {
       setSearchDonationOnly(false);
     }
   }
+  function handle_onChange_Permanent(e) {
+    if (e.target.checked) {
+      //alert(e.target.value)
+      setSearchPermitType_Permanent("PERMANENT");
+    } else {
+      setSearchPermitType_Permanent(null);
+    }
+    
+  }
+
+  function handle_onChange_Temporary(e) {
+    if (e.target.checked) {
+      //alert(e.target.value)
+      setSearchPermitType_Temporary("TEMPORARY");
+    } else {
+      setSearchPermitType_Temporary(null);
+    }
+    
+    
+  }
+
+  function handle_onChange_NewApplication(e) {
+    if (e.target.checked) {
+      //alert(e.target.value)
+      setSearchRequestType_New("NEW");
+    } else {
+      setSearchRequestType_New(null);
+    }
+  }
+
+  function handle_onChange_RenewalApplication(e) {
+    if (e.target.checked) {
+      //alert(e.target.value)
+      setSearchRequestType_RENEWAL("RENEWAL");
+    } else {
+      setSearchRequestType_RENEWAL(null);
+    }
+    
+  }
+  function handle_onChange_ReplacementApplication(e) {
+    if (e.target.checked) {
+      //alert(e.target.value)
+      setSearchRequestType_REPLACEMENT("REPLACEMENT");
+    } else {
+      setSearchRequestType_REPLACEMENT(null);
+    }
+
+  
+}
 
   useEffect(() => {
     //ataFetch();
@@ -131,68 +196,119 @@ export default function Index_applicationInfo() {
       {/* <SpinnerOverlay fetchData={fetchData} setFetchData={setFetchData} /> */}
 
       <VStack borderWidth={"0px"} h="100%" w="100%" spacing={0}>
-        <HStack borderWidth={"0px"} direction="row" w={"100%"} spacing={5}>
-          <Box w={"130px"} borderWidth={"0px"}>
-            <SingleDatepicker
-              name="date-start"
-              date={searchDateStart}
-              onDateChange={setSearchDateStart}
+        <VStack borderWidth={"0px"} direction="row" w={"100%"} spacing={5}>
+        <HStack>
+            <Box w={"130px"} borderWidth={"0px"}>
+              <SingleDatepicker
+                name="date-start"
+                date={searchDateStart}
+                onDateChange={setSearchDateStart}
+              />
+            </Box>
+            <Box w={"130px"} borderWidth={"0px"}>
+              <SingleDatepicker
+                name="date-end"
+                date={searchDateEnd}
+                onDateChange={setSearchDateEnd}
+              />
+            </Box>
+            <Input
+              w={"150px"}
+              placeholder="User #"
+              onChange={(e) => setSearchUserNo(e.target.value)}
             />
-          </Box>
-          <Box w={"130px"} borderWidth={"0px"}>
-            <SingleDatepicker
-              name="date-end"
-              date={searchDateEnd}
-              onDateChange={setSearchDateEnd}
+            <Input
+              w={"150px"}
+              placeholder="F Name"
+              onChange={(e) => setSearchUserFName(e.target.value)}
             />
-          </Box>
-          <Input
-            w={"150px"}
-            placeholder="User #"
-            onChange={(e) => setSearchUserNo(e.target.value)}
-          />
-          <Input
-            w={"150px"}
-            placeholder="F Name"
-            onChange={(e) => setSearchUserFName(e.target.value)}
-          />
-          <Input
-            w={"150px"}
-            placeholder="L Name"
-            onChange={(e) => setSearchUserLName(e.target.value)}
-          />
-          <Checkbox
-            size="lg"
-            colorScheme="blue"
-            defaultChecked
-            value={"IN_PROGRESS"}
-            onChange={handle_onChange_Processing}
-          >
-            In Processing
-          </Checkbox>
-          <Checkbox
-            size="lg"
-            colorScheme="red"
-            defaultChecked
-            value={"COMPLETED"}
-            onChange={handle_onChange_Completed}
-          >
-            Completed
-          </Checkbox>
-          <Checkbox
-            size="lg"
-            colorScheme="green"
-            onChange={handle_onChange_DonationOnly}
-          >
-            Donation Only
-          </Checkbox>
-          <Box>
-            <Button type="submit" w={"150px"} onClick={dataFetch}>
-              Search
-            </Button>
-          </Box>
-          <ExportCSV fetchData={fetchData} />
-        </HStack>
+            <Input
+              w={"150px"}
+              placeholder="L Name"
+              onChange={(e) => setSearchUserLName(e.target.value)}
+            />
+            <Box>
+              <Button type="submit" w={"150px"} onClick={dataFetch}>
+                Search
+              </Button>
+            </Box>
+            <ExportCSV fetchData={fetchData} />
+          </HStack>
+          <HStack>
+            <Checkbox
+              p={1}
+              size="lg"
+              colorScheme="blue"
+              defaultChecked
+              value={"IN_PROGRESS"}
+              onChange={handle_onChange_Processing}
+            >
+              In Processing
+            </Checkbox>
+            <Checkbox
+              p={1}
+              size="lg"
+              colorScheme="red"
+              defaultChecked
+              value={"COMPLETED"}
+              onChange={handle_onChange_Completed}
+            >
+              Completed
+            </Checkbox>
+            <Checkbox
+              p={1}
+              size="lg"
+              colorScheme="green"
+              onChange={handle_onChange_DonationOnly}
+            >
+              Donation Only
+            </Checkbox>
+            <HStack borderWidth={1} p={2} bgColor="gray.50" margin={"20"}>
+              <Checkbox
+                defaultChecked
+                size="lg"
+                colorScheme="pink"
+                onChange={handle_onChange_Permanent}
+              >
+                Permanent
+              </Checkbox>
+              <Checkbox
+                defaultChecked
+                size="lg"
+                colorScheme="orange"
+                onChange={handle_onChange_Temporary}
+              >
+                Temporary
+              </Checkbox>
+            </HStack>
+            <HStack borderWidth={1} p={2} bgColor="gray.50">
+              <Checkbox
+                defaultChecked
+                size="lg"
+                colorScheme="cyan"
+                onChange={handle_onChange_NewApplication}
+              >
+                New
+              </Checkbox>
+              <Checkbox
+                defaultChecked
+                size="lg"
+                colorScheme="purple"
+                onChange={handle_onChange_RenewalApplication}
+              >
+                Renewal
+              </Checkbox>
+              <Checkbox
+                defaultChecked
+                size="lg"
+                colorScheme="messenger"
+                onChange={handle_onChange_ReplacementApplication}
+              >
+                Replacement
+              </Checkbox>
+            </HStack>
+          </HStack>
+        </VStack>
         <HStack borderWidth={0} width={"100%"} spacing={5}>
           <HStack>
             <Text
@@ -210,10 +326,16 @@ export default function Index_applicationInfo() {
 
         <VStack borderWidth={"0px"} direction="row" align="stretch" w="100%">
           <HStack spacing={0}>
-            <Text w={"110px"} borderWidth={0} fontWeight={"bold"}>
+            <Text w={"70px"} borderWidth={0} fontWeight={"bold"}>
               Status
             </Text>
-            <Text w={"150px"} borderWidth={0} fontWeight={"bold"}>
+            <Text w={"70px"} borderWidth={0} fontWeight={"bold"}>
+              Type
+            </Text>
+            <Text w={"70px"} borderWidth={0} fontWeight={"bold"}>
+              Type
+            </Text>
+            <Text w={"70px"} borderWidth={0} fontWeight={"bold"}>
               User #
             </Text>
             <Text w={"150px"} borderWidth={0} fontWeight={"bold"}>
@@ -266,16 +388,22 @@ export default function Index_applicationInfo() {
                 <HStack
                   key={index}
                   height={"50px"}
-                  spacing={3}
+                  spacing={0}
                   _hover={{
                     background: "gray.100",
                     color: "black",
                   }}
                 >
-                  <Text w={"110px"} borderWidth={0}>
-                    {application.applicationProcessing.status}
+                  <Text w={"70px"} borderWidth={0}>
+                    {application.applicationProcessing.status.substring(0,5)}
                   </Text>
-                  <Text w={"150px"} borderWidth={0}>
+                  <Text w={"70px"} borderWidth={0}>
+                    {application.permitType.substring(0,4)}
+                  </Text>
+                  <Text w={"70px"} borderWidth={0}>
+                    {application.type.substring(0,3)}
+                  </Text>
+                  <Text w={"70px"} borderWidth={0}>
                     {application.applicantId}
                   </Text>
                   <Text w={"150px"} borderWidth={0}>

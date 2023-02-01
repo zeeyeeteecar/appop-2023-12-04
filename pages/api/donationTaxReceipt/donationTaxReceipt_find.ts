@@ -16,6 +16,11 @@ export default async function handle(req: any, res: any) {
     searchProcessing,
     searchCompleted,
     searchDonationOnly,
+    searchPermitType_Permanent,
+    searchPermitType_Temporary,
+    searchRequestType_New,
+    searchRequestType_RENEWAL,
+    searchRequestType_REPLACEMENT,
   } = req.body;
 
   //const DonationOnly: boolean = searchDonationOnly;
@@ -32,6 +37,23 @@ export default async function handle(req: any, res: any) {
   const result = await prisma.application.findMany({
     //==========applicationProcessing=========
     where: {
+      AND: [
+        {
+          OR: [
+            { permitType: { equals: searchPermitType_Permanent || undefined  } },
+            { permitType: { equals: searchPermitType_Temporary || undefined  } },
+          ],
+        },
+        {
+          OR: [
+            { type: { equals: searchRequestType_New || undefined  } },
+             { type: { equals: searchRequestType_RENEWAL || undefined  } },
+             { type: { equals: searchRequestType_REPLACEMENT || undefined  } },
+          ],
+        },
+      ],
+      //type:{ in:[searchRequestType_New,"",""]},
+
       applicantId: { equals: Number(searchUserNo) || undefined },
       firstName: { contains: searchUserFName.trim() || undefined },
       lastName: { contains: searchUserLName.trim() || undefined },
