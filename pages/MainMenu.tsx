@@ -63,6 +63,7 @@ export default function Index() {
         {BtnMain("/components/doctorInfo", "Doctor Info")}
         {BtnMain("/components/walletCard", "Wallet Card")}
         {BtnMain("/components/donationTaxReceipt", "Donation Tax Receipt")}
+        {BtnMain("#", "More")}
       </VStack>
     </Box>
   );

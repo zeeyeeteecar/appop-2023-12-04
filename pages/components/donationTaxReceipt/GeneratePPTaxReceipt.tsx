@@ -50,7 +50,7 @@ export default function GeneratePPTaxReceipt({ application, donationAmount }) {
       " " +
       application.postalCode;
 
-    const donorEmail = application.email;
+    const donorEmail = application.email?application.email:"";
     const donorID = "P" + application.applicantId;
     const donorDonationAmount = "$" + application.donationAmount + ".00";
 
