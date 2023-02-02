@@ -10,8 +10,11 @@ export default function PrintButton({ application }: any) {
     const permitID: string = appl.permit
       ? appl.permit.rcdPermitId.toString()
       : "N/A";
+
+      const middleName =
+            application.middleName === null ? "" : application.middleName;
     const applicantName =
-      appl.firstName + " " + application.middleName + " " + appl.lastName;
+      appl.firstName + " " + middleName + " " + appl.lastName;
     const expiryDate = appl.permit
       ? application.permit.expiryDate.substring(0, 7)
       : "N/A";

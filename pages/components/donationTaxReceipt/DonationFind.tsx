@@ -55,9 +55,9 @@ export default function DonationList({ fetchData }) {
           <Text w={"70px"} borderWidth={0} fontWeight={"bold"} align="center">
             Type
           </Text>
-          <Text w={"70px"} borderWidth={0} fontWeight={"bold"} align="center">
+          {/* <Text w={"70px"} borderWidth={0} fontWeight={"bold"} align="center">
             User #
-          </Text>
+          </Text> */}
           <Text w={"150px"} borderWidth={0} fontWeight={"bold"}>
             FName
           </Text>
