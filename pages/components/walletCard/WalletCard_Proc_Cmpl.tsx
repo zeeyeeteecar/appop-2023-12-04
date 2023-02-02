@@ -105,7 +105,7 @@ export default function WalletCard_Proc_Cmpl({ apiUrl }) {
                         Name:
                       </Text>
                       <Text w={"300PX"} fontWeight={"bold"} align={"left"}>
-                        {application.firstName + " " + application.lastName}
+                        {application.firstName + " " + application.middleName + " " + application.lastName}
                       </Text>
                     </HStack>
                     <HStack>
