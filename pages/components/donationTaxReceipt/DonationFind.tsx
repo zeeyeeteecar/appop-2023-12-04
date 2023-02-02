@@ -55,9 +55,9 @@ export default function DonationList({ fetchData }) {
           <Text w={"70px"} borderWidth={0} fontWeight={"bold"} align="center">
             Type
           </Text>
-          {/* <Text w={"70px"} borderWidth={0} fontWeight={"bold"} align="center">
+          <Text w={"70px"} borderWidth={0} fontWeight={"bold"} align="center">
             User #
-          </Text> */}
+          </Text>
           <Text w={"150px"} borderWidth={0} fontWeight={"bold"}>
             FName
           </Text>
@@ -136,6 +136,13 @@ export default function DonationList({ fetchData }) {
               if (Apptype === "IN_PROGRESS") return "red.100";
             }
 
+            const phone =
+              application.phone.substring(0, 3) +
+              "-" +
+              application.phone.substring(3, 6) +
+              "-" +
+              application.phone.substring(6);
+
             return (
               <HStack
                 key={index}
@@ -182,7 +189,7 @@ export default function DonationList({ fetchData }) {
                   {application.lastName}
                 </Text>
                 <Text w={"150px"} borderWidth={0}>
-                  {application.phone}
+                  {phone}
                 </Text>
                 <Text w={"200px"} borderWidth={0}>
                   {application.addressLine1}

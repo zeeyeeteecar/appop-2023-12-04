@@ -44,7 +44,7 @@ export default function GeneratePPTaxReceipt({ application, donationAmount }) {
     const donorFnameMnameLname =
       application.firstName +
       " " +
-      application.middleName +
+      (application.middleName?application.middleName:"") +
       " " +
       application.lastName;
     const donorAddress = application.addressLine1;
@@ -187,7 +187,7 @@ export default function GeneratePPTaxReceipt({ application, donationAmount }) {
     //window.open(fileURL);
   }
 
-  if (donationAmount > 0.0) {
+  if (donationAmount >= 20.0) {
     return (
       <>
         <IconButton

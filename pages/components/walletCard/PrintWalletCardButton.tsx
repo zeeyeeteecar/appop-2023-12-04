@@ -14,7 +14,7 @@ export default function PrintButton({ application }: any) {
       const middleName =
             application.middleName === null ? "" : application.middleName;
     const applicantName =
-      appl.firstName + " " + middleName + " " + appl.lastName;
+      appl.firstName + " " + (application.middleName === null ? "" : application.middleName) + " " + appl.lastName;
     const expiryDate = appl.permit
       ? application.permit.expiryDate.substring(0, 7)
       : "N/A";

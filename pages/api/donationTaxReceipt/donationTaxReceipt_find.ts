@@ -40,15 +40,15 @@ export default async function handle(req: any, res: any) {
       AND: [
         {
           OR: [
-            { permitType: { equals: searchPermitType_Permanent || undefined  } },
-            { permitType: { equals: searchPermitType_Temporary || undefined  } },
+            { permitType: { equals: searchPermitType_Permanent || undefined } },
+            { permitType: { equals: searchPermitType_Temporary || undefined } },
           ],
         },
         {
           OR: [
-            { type: { equals: searchRequestType_New || undefined  } },
-             { type: { equals: searchRequestType_RENEWAL || undefined  } },
-             { type: { equals: searchRequestType_REPLACEMENT || undefined  } },
+            { type: { equals: searchRequestType_New || undefined } },
+            { type: { equals: searchRequestType_RENEWAL || undefined } },
+            { type: { equals: searchRequestType_REPLACEMENT || undefined } },
           ],
         },
       ],
@@ -107,9 +107,10 @@ export default async function handle(req: any, res: any) {
       applicationProcessing: { select: { status: true } },
     },
     orderBy: {
-      applicationProcessing: {
-        status: "desc",
-      },
+      // applicationProcessing: {
+      //   status: "desc",
+      // },
+      applicantId: "desc",
     },
     //take:100,
   });

@@ -46,12 +46,6 @@ export default function WalletCard_Proc_Cmpl({ apiUrl }) {
       {fetchData &&
         fetchData.map((application, index) => {
           //const application = applicationProcessing.application;
-
-          const middleName =
-            application.middleName === null ? "" : application.middleName;
-
-          console.log("middleName", middleName);
-
           return (
             <HStack
               key={index}
@@ -106,7 +100,9 @@ export default function WalletCard_Proc_Cmpl({ apiUrl }) {
                     <Text w={"300PX"} fontWeight={"bold"} align={"left"}>
                       {application.firstName +
                         " " +
-                        middleName +
+                        (application.middleName === null
+                          ? ""
+                          : application.middleName) +
                         " " +
                         application.lastName}
                     </Text>
