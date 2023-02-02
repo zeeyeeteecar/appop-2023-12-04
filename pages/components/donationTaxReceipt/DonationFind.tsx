@@ -20,17 +20,27 @@ export default function DonationList({ fetchData }) {
   // const [sumFee, setSumFee] =  React.useState(0);
   // const [sumTotal, setSumTotal] =  React.useState(0);
 
-  const sum_Fee = fetchData.reduce((acc, obj) => {
-    return acc + parseFloat(obj.processingFee);
-  }, 0);
+  // const sum_Fee = fetchData.reduce((acc, obj) => {
+  //   return acc + parseFloat(obj.processingFee);
+  // }, 0);
 
-  const sum_donation = fetchData.reduce((acc, obj) => {
-    return acc + parseFloat(obj.donationAmount);
-  }, 0);
+  // const sum_donation = fetchData.reduce((acc, obj) => {
+  //   return acc + parseFloat(obj.donationAmount);
+  // }, 0);
 
-  const sum_total = fetchData.reduce((acc, obj) => {
-    return acc + parseFloat(obj.processingFee) + parseFloat(obj.donationAmount);
-  }, 0);
+  // const sum_total = fetchData.reduce((acc, obj) => {
+  //   return acc + parseFloat(obj.processingFee) + parseFloat(obj.donationAmount);
+  // }, 0);
+  let sum_fee: number = 0;
+  let sum_donation: number = 0;
+  let sum_total: number = 0;
+
+  fetchData &&
+    fetchData.map((application, index) => {
+      sum_fee += parseFloat(application.processingFee);
+      sum_donation += parseFloat(application.donationAmount);
+    });
+  sum_total = sum_fee + sum_donation;
 
   return (
     <>
@@ -74,7 +84,7 @@ export default function DonationList({ fetchData }) {
               Fee
             </Text>
             <Text w={"50px"} borderWidth={0} color="gray.500">
-              {sum_Fee}
+              {sum_fee}
             </Text>
           </HStack>
 
@@ -131,7 +141,6 @@ export default function DonationList({ fetchData }) {
                 key={index}
                 h="50px"
                 spacing={0}
-                
                 _hover={{
                   background: "gray.50",
                   color: "black",
