@@ -22,7 +22,7 @@ import DonationList from "./DonationFind";
 import SpinnerOverlay from "../common/SpinnerOverlay";
 
 import SideBar from "../common/SideBar";
-import DonationTaxReceipt_Count from "./DonationTaxReceipt_Count";
+
 
 export default function Index_applicationInfo() {
   const currentYear = new Date().getFullYear();
@@ -294,5 +294,28 @@ export default function Index_applicationInfo() {
         <DonationList fetchData={fetchData} />
       </VStack>
     </HStack>
+  );
+}
+
+
+
+function DonationTaxReceipt_Count({ fetchData }:any) {
+  return (
+    <>
+      <HStack borderWidth={0} width={"100%"} spacing={5}>
+        <HStack>
+          <Text
+            color="red.300"
+            bgColor={"yellow.100"}
+            w="150px"
+            alignContent="center"
+            align={"center"}
+            fontSize="16px"
+          >
+            Total Record(s):{fetchData.length}
+          </Text>
+        </HStack>
+      </HStack>
+    </>
   );
 }
