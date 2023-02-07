@@ -51,7 +51,7 @@ export default function DonationTaxReceipt() {
 
     if (envUserName === userName && envPassword === userPassword) {
       console.log("okok");
-      router.push("/MainMenu");
+      router.push("/components/walletCard");
     } else {
       console.log("fail");
       toast({
