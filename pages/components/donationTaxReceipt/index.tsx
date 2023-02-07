@@ -22,7 +22,7 @@ import DonationList from "./DonationFind";
 import SpinnerOverlay from "../common/SpinnerOverlay";
 
 import SideBar from "../common/SideBar";
-import ListCount from "../common/ListCount"
+import ListCount from "../common/ListCount";
 
 export default function Index_applicationInfo() {
   const currentYear = new Date().getFullYear();
@@ -165,12 +165,11 @@ export default function Index_applicationInfo() {
       <SideBar />
       <VStack borderWidth={"0px"} w={"100%"} h="100vh">
         <HStack borderWidth={"0px"} w="full">
-          <Flex borderWidth={"0px"} w="200px" h={"full"}>
-            <ListCount count={fetchData.length} />
-          </Flex>
-
-          <VStack borderWidth={"0px"} w={"1200px"} p="10px">
+          <VStack borderWidth={"0px"} w={"1500px"} p="10px">
             <HStack spacing={5} borderWidth={"0px"}>
+              <Flex borderWidth={"0px"} w="250px" h={"full"}>
+                <ListCount count={fetchData.length} />
+              </Flex>
               <Box w={"130px"} borderWidth={"0px"}>
                 <SingleDatepicker
                   name="date-start"
@@ -296,4 +295,3 @@ export default function Index_applicationInfo() {
     </HStack>
   );
 }
-

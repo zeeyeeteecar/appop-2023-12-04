@@ -81,7 +81,7 @@ export default function Index() {
       <SideBar />
       <VStack width={"100%"} height="100vh" borderWidth={1} p={"10px"} spacing={3}>
         <HStack borderWidth="100%">
-          <Flex borderWidth={"0px"} w="200px" h={"full"}>
+          <Flex borderWidth={"0px"} w="250px" h={"full"}>
             <ListCount count={fetchData.length} />
           </Flex>
           <SingleDatepicker

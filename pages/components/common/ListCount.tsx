@@ -1,21 +1,33 @@
-import React from 'react'
-import {Box,Text,} from "@chakra-ui/react";
+import React from "react";
+import { Box, Text, Center, HStack } from "@chakra-ui/react";
 
 export default function ListCount({ count }) {
-    
-        return (
-          <Box>
-            <Text
-              color="red.300"
-              bgColor={"yellow.100"}
-              w="200px"
-              alignContent="center"
-              align={"center"}
-              fontSize="lg"
-            >
-              Total Record(s):{count}
-            </Text>
-          </Box>
-        );
- 
+  return (
+    <Center h="40px" bgColor={"yellow.100"} alignContent="center" rounded={10} padding={5} borderWidth={1}>
+      <HStack>
+        <Text
+          color="gray.300"
+          w="150px"
+          alignContent="center"
+          align={"center"}
+          fontSize="lg"
+          borderWidth={0}
+          verticalAlign="middle"
+        >
+          Total Record(s):
+        </Text>
+        <Text
+          color="red.500"
+          w="50px"
+          alignContent="center"
+          align={"center"}
+          fontSize="lg"
+          borderWidth={0}
+          verticalAlign="middle"
+        >
+          {count}
+        </Text>
+      </HStack>
+    </Center>
+  );
 }
