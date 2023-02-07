@@ -166,7 +166,7 @@ export default function Index_applicationInfo() {
       <VStack borderWidth={"0px"} w={"100%"} h="100vh">
         <HStack borderWidth={"0px"} w="full">
           <Flex borderWidth={"0px"} w="200px" h={"full"}>
-            <DonationTaxReceipt_Count fetchData={fetchData} />
+            <DonationTaxReceipt_Count fetchData_Length={fetchData.length} />
           </Flex>
 
           <VStack borderWidth={"0px"} w={"100%"} p="10px">
@@ -299,7 +299,7 @@ export default function Index_applicationInfo() {
 
 
 
-function DonationTaxReceipt_Count({ fetchData }:any) {
+function DonationTaxReceipt_Count({ fetchData_Length }) {
   return (
     <>
       <HStack borderWidth={0} width={"100%"} spacing={5}>
@@ -312,7 +312,7 @@ function DonationTaxReceipt_Count({ fetchData }:any) {
             align={"center"}
             fontSize="16px"
           >
-            Total Record(s):{fetchData.length}
+            Total Recordd(s):{fetchData_Length}
           </Text>
         </HStack>
       </HStack>
