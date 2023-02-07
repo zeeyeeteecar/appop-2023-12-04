@@ -1,10 +1,9 @@
 import React from "react";
-import { Box, Flex, Center } from "@chakra-ui/react";
+import { Box, Flex, Center, Button } from "@chakra-ui/react";
 
 import { CSVLink, CSVDownload } from "react-csv";
 
 export default function ExportCSV({ fetchData }) {
-
   const csvData = [
     [
       "Status",
@@ -45,25 +44,23 @@ export default function ExportCSV({ fetchData }) {
   //console.log(csvData);
   return (
     <>
-      <Center
-        rounded={3}
-        backgroundColor={"gray.100"}
+      <Button
+        rounded={5}
+        backgroundColor={"white"}
         w={"150px"}
         h={"40px"}
+        colorScheme={"teal"}
+        variant={"outline"}
         fontWeight={"semibold"}
         _hover={{
-          background: "gray.200",
-          color: "black",
+          background: "teal.500",
+          color: "white",
         }}
       >
-        <CSVLink
-          data={csvData}
-          filename={"my-file.csv"}
-          
-        >
+        <CSVLink data={csvData} filename={"my-file.csv"}>
           Export
         </CSVLink>
-      </Center>
+      </Button>
     </>
   );
 }

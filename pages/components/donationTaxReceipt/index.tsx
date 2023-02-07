@@ -161,7 +161,7 @@ export default function Index_applicationInfo() {
   }, []);
 
   return (
-    <HStack borderWidth={"0px"} h="full" w="100%" spacing={0} overflow={"true"}>
+    <HStack borderWidth={"0px"} h="100vh" w="100%" spacing={0}>
       <SideBar />
       <VStack borderWidth={"0px"} w={"100%"} h="100vh">
         <HStack borderWidth={"0px"} w="full">
@@ -200,7 +200,17 @@ export default function Index_applicationInfo() {
                 onChange={(e) => setSearchUserLName(e.target.value)}
               />
               <Box>
-                <Button type="submit" w={"150px"} onClick={dataFetch}>
+                <Button type="submit" 
+
+                colorScheme={"teal"}
+                variant={"outline"}
+
+                 w={"150px"} onClick={dataFetch}
+                
+                _hover={{
+                  background: "teal.500",
+                  color: "white",
+                }}>
                   Search
                 </Button>
               </Box>

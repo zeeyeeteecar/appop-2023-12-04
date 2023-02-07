@@ -44,7 +44,7 @@ export default function Index() {
   const { isOpen, onClose, onOpen } = useDisclosure();
 
   return (
-    <Box width={"250px"} h="95vh" borderWidth={"0px"}>
+    <Box width={"200px"} h="full" borderWidth={"0px"} shadow={"2xl"} marginRight="30px">
       <SidebarContent display={{ base: "none", md: "unset" }} />
       <Drawer isOpen={isOpen} onClose={onClose} placement="left">
         <DrawerOverlay />
@@ -68,11 +68,12 @@ const SidebarContent = ({ ...props }: BoxProps) => (
     //overflowY="auto"
     bg={useColorModeValue("white", "gray.800")}
     borderColor={"green.100"}
+    
     //borderRightWidth="1px"
 
-    borderWidth={"0px"}
+   
   >
-    <VStack h="full" w="full" alignItems="flex-start" justify="space-between">
+    <VStack h="full" w="full" alignItems="flex-start" justify="space-between" >
       <Box w="full">
         <Flex px="4" py="5" align="center">
           <Icon as={RiFlashlightFill} h={8} w={8} />
@@ -144,7 +145,6 @@ const NavItem = (props: any) => {
   return (
     <Link
       href={url}
-      
       style={{ textDecoration: "none" }}
       borderWidth={"0px"}
       w="full"
@@ -160,7 +160,8 @@ const NavItem = (props: any) => {
         transition=".15s ease"
         color={useColorModeValue("inherit", "gray.400")}
         _hover={{
-          bg: useColorModeValue("gray.100", "gray.900"),
+          bgColor: useColorModeValue("green.100", "green.100"),
+          //bg: useColorModeValue("gray.100", "gray.900"),
           color: useColorModeValue("gray.900", "gray.200"),
         }}
       >
