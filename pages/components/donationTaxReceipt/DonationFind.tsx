@@ -114,6 +114,8 @@ export default function DonationList({ fetchData }) {
         direction="row"
         align="stretch"
         w="100%"
+        h="full"
+        
         overflowY={"auto"}
       >
         {fetchData &&

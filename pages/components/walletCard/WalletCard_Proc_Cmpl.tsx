@@ -11,6 +11,8 @@ import {
 } from "@chakra-ui/react";
 
 import PrintWalletCardButton from "./PrintWalletCardButton";
+import SpinnerOverlay from "../common/SpinnerOverlay";
+
 
 export default function WalletCard_Proc_Cmpl({ apiUrl }) {
   const [fetchData, setFetchData] = React.useState(null);
@@ -43,6 +45,8 @@ export default function WalletCard_Proc_Cmpl({ apiUrl }) {
       p="10px"
       overflowY="scroll"
     >
+      <SpinnerOverlay fetchData={fetchData} setFetchData={setFetchData} />
+
       {fetchData &&
         fetchData.map((application, index) => {
           //const application = applicationProcessing.application;

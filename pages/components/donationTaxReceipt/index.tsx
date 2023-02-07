@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import {
   Center,
+  Flex,
   VStack,
   HStack,
   Text,
@@ -20,6 +21,8 @@ import ExportCSV from "./ExportCSV";
 import DonationList from "./DonationFind";
 import SpinnerOverlay from "../common/SpinnerOverlay";
 
+import SideBar from "../common/SideBar";
+import DonationTaxReceipt_Count from "./DonationTaxReceipt_Count";
 
 export default function Index_applicationInfo() {
   const currentYear = new Date().getFullYear();
@@ -158,145 +161,138 @@ export default function Index_applicationInfo() {
   }, []);
 
   return (
-    <Center
-      borderWidth={"7px"}
-      h="100vh"
-      w="100%"
-      p="10px"
-      alignItems={"flex-start"}
-    >
-      
+    <HStack borderWidth={"0px"} h="full" w="100%" spacing={0} overflow={"true"}>
+      <SideBar />
+      <VStack borderWidth={"0px"} w={"100%"} h="100vh">
+        <HStack borderWidth={"0px"} w="full">
+          <Flex borderWidth={"0px"} w="200px" h={"full"}>
+            <DonationTaxReceipt_Count fetchData={fetchData} />
+          </Flex>
 
-      <VStack borderWidth={"0px"} h="100%" w="100%" spacing={0}>
-        <VStack borderWidth={"0px"} direction="row" w={"100%"} >
-          <HStack spacing={5}>
-            <Box w={"130px"} borderWidth={"0px"}>
-              <SingleDatepicker
-                name="date-start"
-                date={searchDateStart}
-                onDateChange={setSearchDateStart}
+          <VStack borderWidth={"0px"} w={"100%"} p="10px">
+            <HStack spacing={5} borderWidth={"0px"}>
+              <Box w={"130px"} borderWidth={"0px"}>
+                <SingleDatepicker
+                  name="date-start"
+                  date={searchDateStart}
+                  onDateChange={setSearchDateStart}
+                />
+              </Box>
+              <Box w={"130px"} borderWidth={"0px"}>
+                <SingleDatepicker
+                  name="date-end"
+                  date={searchDateEnd}
+                  onDateChange={setSearchDateEnd}
+                />
+              </Box>
+              <Input
+                w={"150px"}
+                placeholder="User #"
+                onChange={(e) => setSearchUserNo(e.target.value)}
               />
-            </Box>
-            <Box w={"130px"} borderWidth={"0px"}>
-              <SingleDatepicker
-                name="date-end"
-                date={searchDateEnd}
-                onDateChange={setSearchDateEnd}
+              <Input
+                w={"150px"}
+                placeholder="F Name"
+                onChange={(e) => setSearchUserFName(e.target.value)}
               />
-            </Box>
-            <Input
-              w={"150px"}
-              placeholder="User #"
-              onChange={(e) => setSearchUserNo(e.target.value)}
-            />
-            <Input
-              w={"150px"}
-              placeholder="F Name"
-              onChange={(e) => setSearchUserFName(e.target.value)}
-            />
-            <Input
-              w={"150px"}
-              placeholder="L Name"
-              onChange={(e) => setSearchUserLName(e.target.value)}
-            />
-            <Box>
-              <Button type="submit" w={"150px"} onClick={dataFetch}>
-                Search
-              </Button>
-            </Box>
-            <ExportCSV fetchData={fetchData} />
-          </HStack>
-          <HStack spacing={6} > 
-            <Checkbox
-              p={1}
-              size="lg"
-              colorScheme="blue"
-              defaultChecked
-              value={"IN_PROGRESS"}
-              onChange={handle_onChange_Processing}
-            >
-              In Processing
-            </Checkbox>
-            <Checkbox
-              p={1}
-              size="lg"
-              colorScheme="red"
-              defaultChecked
-              value={"COMPLETED"}
-              onChange={handle_onChange_Completed}
-            >
-              Completed
-            </Checkbox>
-            <Checkbox
-              p={1}
-              size="lg"
-              colorScheme="green"
-              onChange={handle_onChange_DonationOnly}
-            >
-              Donation Only
-            </Checkbox>
-            <HStack borderWidth={1} p={2} bgColor="gray.50" margin={"20"} spacing={6}>
-              <Checkbox
-                defaultChecked
-                size="lg"
-                colorScheme="pink"
-                onChange={handle_onChange_Permanent}
-              >
-                Permanent
-              </Checkbox>
-              <Checkbox
-                defaultChecked
-                size="lg"
-                colorScheme="orange"
-                onChange={handle_onChange_Temporary}
-              >
-                Temporary
-              </Checkbox>
+              <Input
+                w={"150px"}
+                placeholder="L Name"
+                onChange={(e) => setSearchUserLName(e.target.value)}
+              />
+              <Box>
+                <Button type="submit" w={"150px"} onClick={dataFetch}>
+                  Search
+                </Button>
+              </Box>
+              <ExportCSV fetchData={fetchData} />
             </HStack>
-            <HStack borderWidth={1} p={2} bgColor="gray.50" spacing={6}>
+
+            <HStack spacing={6}>
               <Checkbox
-                defaultChecked
+                p={1}
                 size="lg"
-                colorScheme="cyan"
-                onChange={handle_onChange_NewApplication}
+                colorScheme="blue"
+                defaultChecked
+                value={"IN_PROGRESS"}
+                onChange={handle_onChange_Processing}
               >
-                New
+                In Processing
               </Checkbox>
               <Checkbox
-                defaultChecked
+                p={1}
                 size="lg"
-                colorScheme="purple"
-                onChange={handle_onChange_RenewalApplication}
+                colorScheme="red"
+                defaultChecked
+                value={"COMPLETED"}
+                onChange={handle_onChange_Completed}
               >
-                Renewal
+                Completed
               </Checkbox>
               <Checkbox
-                defaultChecked
+                p={1}
                 size="lg"
-                colorScheme="messenger"
-                onChange={handle_onChange_ReplacementApplication}
+                colorScheme="green"
+                onChange={handle_onChange_DonationOnly}
               >
-                Replacement
+                Donation Only
               </Checkbox>
+              <HStack
+                borderWidth={1}
+                p={2}
+                bgColor="gray.50"
+                margin={"20"}
+                spacing={6}
+              >
+                <Checkbox
+                  defaultChecked
+                  size="lg"
+                  colorScheme="pink"
+                  onChange={handle_onChange_Permanent}
+                >
+                  Permanent
+                </Checkbox>
+                <Checkbox
+                  defaultChecked
+                  size="lg"
+                  colorScheme="orange"
+                  onChange={handle_onChange_Temporary}
+                >
+                  Temporary
+                </Checkbox>
+              </HStack>
+              <HStack borderWidth={1} p={2} bgColor="gray.50" spacing={6}>
+                <Checkbox
+                  defaultChecked
+                  size="lg"
+                  colorScheme="cyan"
+                  onChange={handle_onChange_NewApplication}
+                >
+                  New
+                </Checkbox>
+                <Checkbox
+                  defaultChecked
+                  size="lg"
+                  colorScheme="purple"
+                  onChange={handle_onChange_RenewalApplication}
+                >
+                  Renewal
+                </Checkbox>
+                <Checkbox
+                  defaultChecked
+                  size="lg"
+                  colorScheme="messenger"
+                  onChange={handle_onChange_ReplacementApplication}
+                >
+                  Replacement
+                </Checkbox>
+              </HStack>
             </HStack>
-          </HStack>
-        </VStack>
-        <HStack borderWidth={0} width={"100%"} spacing={5}>
-          <HStack>
-            <Text
-              color="red.300"
-              bgColor={"yellow.100"}
-              w="150px"
-              alignContent="center"
-              align={"center"}
-              fontSize="16px"
-            >
-              Total Record(s):{fetchData.length}
-            </Text>
-          </HStack>
+          </VStack>
         </HStack>
+
         <DonationList fetchData={fetchData} />
       </VStack>
-    </Center>
+    </HStack>
   );
 }
