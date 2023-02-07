@@ -22,7 +22,7 @@ import DonationList from "./DonationFind";
 import SpinnerOverlay from "../common/SpinnerOverlay";
 
 import SideBar from "../common/SideBar";
-
+import { FiAlignCenter } from "react-icons/fi";
 
 export default function Index_applicationInfo() {
   const currentYear = new Date().getFullYear();
@@ -169,7 +169,7 @@ export default function Index_applicationInfo() {
             <DonationTaxReceipt_Count fetchData_Length={fetchData.length} />
           </Flex>
 
-          <VStack borderWidth={"0px"} w={"100%"} p="10px">
+          <VStack borderWidth={"0px"} w={"1200px"} p="10px">
             <HStack spacing={5} borderWidth={"0px"}>
               <Box w={"130px"} borderWidth={"0px"}>
                 <SingleDatepicker
@@ -238,9 +238,9 @@ export default function Index_applicationInfo() {
                 Donation Only
               </Checkbox>
               <HStack
-                borderWidth={1}
+                borderWidth={0}
                 p={2}
-                bgColor="gray.50"
+                bgColor="gray.100"
                 margin={"20"}
                 spacing={6}
               >
@@ -261,7 +261,7 @@ export default function Index_applicationInfo() {
                   Temporary
                 </Checkbox>
               </HStack>
-              <HStack borderWidth={1} p={2} bgColor="gray.50" spacing={6}>
+              <HStack borderWidth={0} p={2} bgColor="gray.100" spacing={6}>
                 <Checkbox
                   defaultChecked
                   size="lg"
@@ -297,24 +297,20 @@ export default function Index_applicationInfo() {
   );
 }
 
-
-
 function DonationTaxReceipt_Count({ fetchData_Length }) {
   return (
     <>
       <HStack borderWidth={0} width={"100%"} spacing={5}>
-        <HStack>
-          <Text
-            color="red.300"
-            bgColor={"yellow.100"}
-            w="150px"
-            alignContent="center"
-            align={"center"}
-            fontSize="16px"
-          >
-            Total Recordd(s):{fetchData_Length}
-          </Text>
-        </HStack>
+        <Center
+          color="red.300"
+          bgColor={"yellow.100"}
+          w="200px"
+          h="40px"
+          alignContent="center"
+          fontSize="17px"
+        >
+          Total Recordd(s): {fetchData_Length}
+        </Center>
       </HStack>
     </>
   );

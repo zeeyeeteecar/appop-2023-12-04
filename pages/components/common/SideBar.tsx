@@ -44,7 +44,7 @@ export default function Index() {
   const { isOpen, onClose, onOpen } = useDisclosure();
 
   return (
-    <Box width={"200px"} h="95vh" borderWidth={"0px"}>
+    <Box width={"250px"} h="95vh" borderWidth={"0px"}>
       <SidebarContent display={{ base: "none", md: "unset" }} />
       <Drawer isOpen={isOpen} onClose={onClose} placement="left">
         <DrawerOverlay />
@@ -120,11 +120,7 @@ const SidebarContent = ({ ...props }: BoxProps) => (
             cursor={"pointer"}
             _hover={{ textDecoration: "none" }}
           >
-            <Avatar
-              size={"sm"}
-              name="Ahmad"
-              src="https://avatars2.githubusercontent.com/u/37842853?v=4"
-            />
+            <Image src="/coffee_3.png" alt="take 5 mins break" />
           </MenuButton>
           <MenuList fontSize={20} zIndex={5555}>
             <MenuItem as={Link} to="#">
