@@ -28,19 +28,19 @@ export default function Doctor_Search({
 }: any) {
   return (
     <>
-      <Input
+      <Input w={"200px"}
         placeholder="MSP #"
         onChange={(e) => setSearchMspNo(e.target.value)}
       />
-      <Input
+      <Input w={"200px"}
         placeholder="F Name"
         onChange={(e) => setSearchFName(e.target.value)}
       />
-      <Input
+      <Input w={"200px"}
         placeholder="L Name"
         onChange={(e) => setSearchLName(e.target.value)}
-      />
-      <Input
+      /> 
+      <Input w={"200px"}
         placeholder="phone"
         onChange={(e) => setSearchPhone(e.target.value)}
       />
