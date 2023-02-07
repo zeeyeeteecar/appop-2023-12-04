@@ -1,5 +1,12 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Center, VStack, HStack, Text, IconButton,Box } from "@chakra-ui/react";
+import {
+  Center,
+  VStack,
+  HStack,
+  Text,
+  IconButton,
+  Box,
+} from "@chakra-ui/react";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 
 import Doctor_Search from "./doctor_search";
@@ -51,20 +58,16 @@ export default function Index_DoctorInfo() {
   });
 
   return (
-    <HStack
-      borderWidth={"0px"}
-      h="100vh"
-      w="100%"
-      p="10px"
-      alignItems={"flex-start"}
-    >
+    <HStack borderWidth={"0px"} h="100vh" w="100%" spacing={0} overflow={"true"}>
       <SpinnerOverlay fetchData={fetchData} setFetchData={setFetchData} />
 
       <SideBar />
 
       <VStack borderWidth={"0px"} h="100%" w="100%" spacing={3}>
         <HStack borderWidth={"0px"} direction="row" w="100%">
-          <Box w={"400px"}><Text fontSize={30}>Doctor Info</Text></Box>
+          <Box w={"400px"}>
+            <Text fontSize={30}>Doctor Info</Text>
+          </Box>
           <List_Count count={fetchData.length} />
           <Doctor_Search
             setSearchMspNo={setSearchMspNo}
@@ -76,10 +79,11 @@ export default function Index_DoctorInfo() {
 
         <VStack
           borderWidth={"0px"}
-          direction="row"
+          //direction="row"
           align="stretch"
-          w="100%"
-          overflow={"auto"}
+          w="full"
+          h="100vh"
+          overflowY={"auto"}
         >
           {doctors &&
             doctors.map((doctor, index) => {
