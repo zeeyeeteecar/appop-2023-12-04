@@ -11,7 +11,7 @@ import { ExternalLinkIcon } from "@chakra-ui/icons";
 
 import Doctor_Search from "./doctor_search";
 import SpinnerOverlay from "../common/SpinnerOverlay";
-
+import ListCount from "../common/ListCount"
 import SideBar from "../common/SideBar";
 
 export default function Index_DoctorInfo() {
@@ -60,15 +60,13 @@ export default function Index_DoctorInfo() {
   return (
     <HStack borderWidth={"0px"} h="100vh" w="100%" spacing={0} overflow={"true"}>
       <SpinnerOverlay fetchData={fetchData} setFetchData={setFetchData} />
-
       <SideBar />
-
-      <VStack borderWidth={"0px"} h="100%" w="100%" spacing={3}>
-        <HStack borderWidth={"0px"} direction="row" w="100%">
+      <VStack width={"100%"} height="100vh" borderWidth={1} p={"10px"} spacing={3}>
+        <HStack borderWidth={"0px"} direction="row" w="100%" spacing={5}>
           <Box w={"400px"}>
             <Text fontSize={30}>Doctor Info</Text>
           </Box>
-          <List_Count count={fetchData.length} />
+          <ListCount count={fetchData.length} />
           <Doctor_Search
             setSearchMspNo={setSearchMspNo}
             setSearchFName={setSearchFName}
@@ -130,19 +128,4 @@ export default function Index_DoctorInfo() {
   );
 }
 
-const List_Count = ({ count }) => {
-  return (
-    <Box>
-      <Text
-        color="red.300"
-        bgColor={"yellow.100"}
-        w="200px"
-        alignContent="center"
-        align={"center"}
-        fontSize="lg"
-      >
-        Total Record(s):{count}
-      </Text>
-    </Box>
-  );
-};
+

@@ -22,7 +22,7 @@ import DonationList from "./DonationFind";
 import SpinnerOverlay from "../common/SpinnerOverlay";
 
 import SideBar from "../common/SideBar";
-import { FiAlignCenter } from "react-icons/fi";
+import ListCount from "../common/ListCount"
 
 export default function Index_applicationInfo() {
   const currentYear = new Date().getFullYear();
@@ -166,7 +166,7 @@ export default function Index_applicationInfo() {
       <VStack borderWidth={"0px"} w={"100%"} h="100vh">
         <HStack borderWidth={"0px"} w="full">
           <Flex borderWidth={"0px"} w="200px" h={"full"}>
-            <DonationTaxReceipt_Count fetchData_Length={fetchData.length} />
+            <ListCount count={fetchData.length} />
           </Flex>
 
           <VStack borderWidth={"0px"} w={"1200px"} p="10px">
@@ -297,21 +297,3 @@ export default function Index_applicationInfo() {
   );
 }
 
-function DonationTaxReceipt_Count({ fetchData_Length }) {
-  return (
-    <>
-      <HStack borderWidth={0} width={"100%"} spacing={5}>
-        <Center
-          color="red.300"
-          bgColor={"yellow.100"}
-          w="200px"
-          h="40px"
-          alignContent="center"
-          fontSize="17px"
-        >
-          Total Recordd(s): {fetchData_Length}
-        </Center>
-      </HStack>
-    </>
-  );
-}
