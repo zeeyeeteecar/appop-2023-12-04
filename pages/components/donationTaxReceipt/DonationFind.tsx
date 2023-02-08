@@ -45,7 +45,13 @@ export default function DonationList({ fetchData }) {
   return (
     <>
       <VStack borderWidth={"0px"} direction="row" align="stretch" w="100%">
-        <HStack spacing={0} h="50px" borderBottomWidth={1} bgColor="green.50">
+        <HStack
+          spacing={2}
+          h="50px"
+          borderBottomWidth={1}
+          bgColor="green.50"
+          color={"green"}
+        >
           <Text w={"70px"} borderWidth={0} fontWeight={"bold"} align="center">
             Status
           </Text>
@@ -115,28 +121,56 @@ export default function DonationList({ fetchData }) {
         align="stretch"
         w="100%"
         h="full"
-        
         overflowY={"auto"}
       >
         {fetchData &&
           fetchData.map((application, index) => {
             const clr_donationAmount =
               application.donationAmount == 0 ? "gray.200" : "black";
-            const bgclr_permitType =
-              application.permitType === "PERMANENT"
-                ? "pink.100"
-                : "orange.100";
+            const permitType_bgclr_clr = (permitType) => {
+              const bgclr_clr = { bgclr: "", clr: "" };
 
-            function bgclr_Type(Apptype): string {
-              if (Apptype === "NEW") return "green.100";
-              if (Apptype === "RENEWAL") return "purple.100";
-              if (Apptype === "REPLACEMENT") return "blue.100";
-            }
+              if (permitType === "PERMANENT") {
+                bgclr_clr.bgclr = "pink.100";
+                bgclr_clr.clr = "red";
+              }
 
-            function bgclr_Status(Apptype): string {
-              if (Apptype === "COMPLETED") return "blue.100";
-              if (Apptype === "IN_PROGRESS") return "red.100";
-            }
+              if (permitType === "TEMPORARY") {
+                bgclr_clr.bgclr = "orange.50";
+                bgclr_clr.clr = "orange";
+              }
+              return bgclr_clr;
+            };
+
+            const type_bgclr_clr = (Apptype) => {
+              const bgclr_clr = { bgclr: "", clr: "" };
+              if (Apptype === "NEW") {
+                bgclr_clr.bgclr = "green.100";
+                bgclr_clr.clr = "green";
+              }
+
+              if (Apptype === "RENEWAL") {
+                bgclr_clr.bgclr = "purple.100";
+                bgclr_clr.clr = "purple";
+              }
+
+              if (Apptype === "REPLACEMENT") {
+                bgclr_clr.bgclr = "blue.100";
+                bgclr_clr.clr = "blue";
+              }
+              return bgclr_clr;
+            };
+
+            const bgclr_Status = (AppStatus) => {
+              const bgclr_clr = [
+                { category: "COMPLETED", clr: "blue", bgclr: "blue.100" },
+                { category: "IN_PROGRESS", clr: "red", bgclr: "red.100" },
+              ];
+
+              return bgclr_clr.find((element) => {
+                return element.category === AppStatus;
+              });
+            };
 
             const phone =
               application.phone.substring(0, 3) +
@@ -149,35 +183,53 @@ export default function DonationList({ fetchData }) {
               <HStack
                 key={index}
                 h="50px"
-                spacing={0}
+                spacing={2}
+                color={"gray.500"}
                 _hover={{
                   background: "gray.50",
                   color: "black",
                 }}
               >
                 <Text
+                  rounded={"full"}
+                  fontSize="12px"
+                  fontWeight={"semibold"}
+                  p="3px"
                   w={"70px"}
                   borderWidth={0}
                   align={"center"}
-                  bgColor={bgclr_Status(
-                    application.applicationProcessing.status
-                  )}
+                  bgColor={
+                    bgclr_Status(application.applicationProcessing.status).bgclr
+                  }
+                  color={
+                    bgclr_Status(application.applicationProcessing.status).clr
+                  }
                 >
                   {application.applicationProcessing.status.substring(0, 5)}
                 </Text>
                 <Text
+                  rounded={"full"}
+                  fontSize="12px"
+                  fontWeight={"semibold"}
+                  p="3px"
                   w={"70px"}
                   borderWidth={0}
-                  bgColor={bgclr_permitType}
+                  bgColor={permitType_bgclr_clr(application.permitType).bgclr}
+                  color={permitType_bgclr_clr(application.permitType).clr}
                   align={"center"}
                 >
                   {application.permitType.substring(0, 4)}
                 </Text>
                 <Text
+                  rounded={"full"}
+                  fontSize="12px"
+                  fontWeight={"semibold"}
+                  p="3px"
                   w={"70px"}
                   borderWidth={0}
                   align={"center"}
-                  bgColor={bgclr_Type(application.type)}
+                  bgColor={type_bgclr_clr(application.type).bgclr}
+                  color={type_bgclr_clr(application.type).clr}
                 >
                   {application.type.substring(0, 3)}
                 </Text>
