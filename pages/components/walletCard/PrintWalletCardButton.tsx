@@ -43,25 +43,25 @@ export default function PrintButton({ application }: any) {
     doc.text("Expiry: ", 40, 15);
 
     doc.setFont("helvetica", "bold");
-    doc.text(expiryDate, 60, 15);
+    doc.text(expiryDate, 55, 15);
 
     doc.setFont("helvetica", "normal");
     doc.text("Name: ", 0, 23);
 
     doc.setFont("helvetica", "bold");
-    doc.text(applicantName, 20, 23);
+    doc.text(applicantName, 15, 23);
 
     doc.setFont("helvetica", "normal");
     doc.text("MoB: ", 0, 30);
 
     doc.setFont("helvetica", "bold");
-    doc.text(Mob, 20, 30);
+    doc.text(Mob, 15, 30);
 
     doc.setFont("helvetica", "normal");
     doc.text("User # ", 40, 30);
 
     doc.setFont("helvetica", "bold");
-    doc.text(userID, 60, 30);
+    doc.text(userID, 55, 30);
 
     doc.setFontSize(12);
     doc.setFont("helvetica", "normal");

@@ -52,16 +52,36 @@ export default function DonationList({ fetchData }) {
           bgColor="green.50"
           color={"green"}
         >
-          <Text w={"70px"} borderWidth={0} fontWeight={"semibold"} align="center">
+          <Text
+            w={"70px"}
+            borderWidth={0}
+            fontWeight={"semibold"}
+            align="center"
+          >
             Status
           </Text>
-          <Text w={"70px"} borderWidth={0} fontWeight={"semibold"} align="center">
+          <Text
+            w={"70px"}
+            borderWidth={0}
+            fontWeight={"semibold"}
+            align="center"
+          >
             Type
           </Text>
-          <Text w={"70px"} borderWidth={0} fontWeight={"semibold"} align="center">
+          <Text
+            w={"70px"}
+            borderWidth={0}
+            fontWeight={"semibold"}
+            align="center"
+          >
             Type
           </Text>
-          <Text w={"90px"} borderWidth={0} fontWeight={"semibold"} align="center">
+          <Text
+            w={"90px"}
+            borderWidth={0}
+            fontWeight={"semibold"}
+            align="center"
+          >
             User #
           </Text>
           <Text w={"150px"} borderWidth={0} fontWeight={"semibold"}>
@@ -70,23 +90,53 @@ export default function DonationList({ fetchData }) {
           <Text w={"100px"} borderWidth={0} fontWeight={"semibold"}>
             LName
           </Text>
-          <Text w={"150px"} borderWidth={0} fontWeight={"semibold"} align="center">
+          <Text
+            w={"150px"}
+            borderWidth={0}
+            fontWeight={"semibold"}
+            align="center"
+          >
             phone
           </Text>
-          <Text w={"230px"} borderWidth={0} fontWeight={"semibold"} align="center">
+          <Text
+            w={"230px"}
+            borderWidth={0}
+            fontWeight={"semibold"}
+            align="center"
+          >
             address
           </Text>
-          <Text w={"100px"} borderWidth={0} fontWeight={"semibold"} align="center">
+          <Text
+            w={"100px"}
+            borderWidth={0}
+            fontWeight={"semibold"}
+            align="center"
+          >
             city
           </Text>
-          <Text w={"50px"} borderWidth={0} fontWeight={"semibold"} align="center">
+          <Text
+            w={"50px"}
+            borderWidth={0}
+            fontWeight={"semibold"}
+            align="center"
+          >
             prov
           </Text>
-          <Text w={"100px"} borderWidth={0} fontWeight={"semibold"} align="center">
+          <Text
+            w={"100px"}
+            borderWidth={0}
+            fontWeight={"semibold"}
+            align="center"
+          >
             postal
           </Text>
           <HStack spacing={0}>
-            <Text w={"30px"} borderWidth={0} fontWeight={"semibold"} align="center">
+            <Text
+              w={"30px"}
+              borderWidth={0}
+              fontWeight={"semibold"}
+              align="center"
+            >
               Fee
             </Text>
             <Text w={"50px"} borderWidth={0} color="red.500">
@@ -143,22 +193,13 @@ export default function DonationList({ fetchData }) {
             };
 
             const type_bgclr_clr = (Apptype) => {
-              const bgclr_clr = { bgclr: "", clr: "" };
-              if (Apptype === "NEW") {
-                bgclr_clr.bgclr = "green.100";
-                bgclr_clr.clr = "green";
-              }
+              const bgclr_clr = [
+                { category: "NEW", clr: "green", bgclr: "green.100" },
+                { category: "RENEWAL", clr: "purple", bgclr: "purple.100" },
+                { category: "REPLACEMENT", clr: "blue", bgclr: "blue.100" },
+              ];
 
-              if (Apptype === "RENEWAL") {
-                bgclr_clr.bgclr = "purple.100";
-                bgclr_clr.clr = "purple";
-              }
-
-              if (Apptype === "REPLACEMENT") {
-                bgclr_clr.bgclr = "blue.100";
-                bgclr_clr.clr = "blue";
-              }
-              return bgclr_clr;
+              return bgclr_clr.find((e) => e.category === Apptype);
             };
 
             const bgclr_Status = (AppStatus) => {
