@@ -165,7 +165,7 @@ export default function Index_applicationInfo() {
       <SideBar />
       <VStack borderWidth={"0px"} w={"100%"} h="100vh">
         <HStack borderWidth={"0px"} w="full">
-          <VStack borderWidth={"0px"} w={"1500px"} p="10px">
+          <VStack borderWidth={"0px"} w={"1500px"} p="5px">
             <HStack spacing={5} borderWidth={"0px"}>
               <Flex borderWidth={"0px"} w="250px" h={"full"}>
                 <ListCount count={fetchData.length} />

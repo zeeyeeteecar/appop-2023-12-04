@@ -45,7 +45,7 @@ export default function DonationList({ fetchData }) {
   return (
     <>
       <VStack borderWidth={"0px"} direction="row" align="stretch" w="100%">
-        <HStack spacing={0} h="50px" borderBottomWidth={1}>
+        <HStack spacing={0} h="50px" borderBottomWidth={1} bgColor="green.50">
           <Text w={"70px"} borderWidth={0} fontWeight={"bold"} align="center">
             Status
           </Text>
@@ -55,7 +55,7 @@ export default function DonationList({ fetchData }) {
           <Text w={"70px"} borderWidth={0} fontWeight={"bold"} align="center">
             Type
           </Text>
-          <Text w={"70px"} borderWidth={0} fontWeight={"bold"} align="center">
+          <Text w={"90px"} borderWidth={0} fontWeight={"bold"} align="center">
             User #
           </Text>
           <Text w={"150px"} borderWidth={0} fontWeight={"bold"}>
@@ -67,7 +67,7 @@ export default function DonationList({ fetchData }) {
           <Text w={"150px"} borderWidth={0} fontWeight={"bold"} align="center">
             phone
           </Text>
-          <Text w={"200px"} borderWidth={0} fontWeight={"bold"} align="center">
+          <Text w={"230px"} borderWidth={0} fontWeight={"bold"} align="center">
             address
           </Text>
           <Text w={"100px"} borderWidth={0} fontWeight={"bold"} align="center">
@@ -76,14 +76,14 @@ export default function DonationList({ fetchData }) {
           <Text w={"50px"} borderWidth={0} fontWeight={"bold"} align="center">
             prov
           </Text>
-          <Text w={"80px"} borderWidth={0} fontWeight={"bold"} align="center">
+          <Text w={"100px"} borderWidth={0} fontWeight={"bold"} align="center">
             postal
           </Text>
           <HStack spacing={0}>
             <Text w={"30px"} borderWidth={0} fontWeight={"bold"} align="center">
               Fee
             </Text>
-            <Text w={"50px"} borderWidth={0} color="gray.500">
+            <Text w={"50px"} borderWidth={0} color="red.500">
               {sum_fee}
             </Text>
           </HStack>
@@ -92,7 +92,7 @@ export default function DonationList({ fetchData }) {
             <Text w={"50px"} borderWidth={0} fontWeight={"bold"}>
               Dona
             </Text>
-            <Text w={"50px"} borderWidth={0} color="gray.500">
+            <Text w={"50px"} borderWidth={0} color="red.500">
               {sum_donation}
             </Text>
           </HStack>
@@ -101,7 +101,7 @@ export default function DonationList({ fetchData }) {
             <Text w={"50px"} borderWidth={0} fontWeight={"bold"}>
               Total
             </Text>
-            <Text w={"50px"} borderWidth={0} color="gray.500">
+            <Text w={"50px"} borderWidth={0} color="red.500">
               {sum_total}
             </Text>
           </HStack>
@@ -181,16 +181,16 @@ export default function DonationList({ fetchData }) {
                 >
                   {application.type.substring(0, 3)}
                 </Text>
-                <Text w={"70px"} borderWidth={0} align="center">
+                <Text w={"90px"} borderWidth={0} align="center">
                   {application.applicantId}
                 </Text>
                 <Text w={"150px"} borderWidth={0}>
                   {application.firstName}
                 </Text>
-                <Text w={"100px"} borderWidth={0}>
+                <Text w={"130px"} borderWidth={0}>
                   {application.lastName}
                 </Text>
-                <Text w={"150px"} borderWidth={0}>
+                <Text w={"170px"} borderWidth={0}>
                   {phone}
                 </Text>
                 <Text w={"200px"} borderWidth={0}>

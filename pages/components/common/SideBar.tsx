@@ -44,7 +44,7 @@ export default function Index() {
   const { isOpen, onClose, onOpen } = useDisclosure();
 
   return (
-    <Box width={"200px"} h="full" borderWidth={"0px"} shadow={"2xl"} marginRight="30px">
+    <Box width={"200px"} h="full" borderWidth={"0px"} shadow={"lg"} marginRight="30px">
       <SidebarContent display={{ base: "none", md: "unset" }} />
       <Drawer isOpen={isOpen} onClose={onClose} placement="left">
         <DrawerOverlay />
@@ -76,11 +76,11 @@ const SidebarContent = ({ ...props }: BoxProps) => (
     <VStack h="full" w="full" alignItems="flex-start" justify="space-between" >
       <Box w="full">
         <Flex px="4" py="5" align="center">
-          <Icon as={RiFlashlightFill} h={8} w={8} />
+          <Icon as={RiFlashlightFill} h={8} w={8} color="green.600" />
           <Text
             fontSize="2xl"
             ml="2"
-            color={useColorModeValue("brand.500", "white")}
+            color="green.600"
             fontWeight="semibold"
           >
             APPOP
@@ -157,18 +157,21 @@ const NavItem = (props: any) => {
         cursor="pointer"
         role="group"
         fontWeight="semibold"
+        fontSize={"18px"}
         transition=".15s ease"
-        color={useColorModeValue("inherit", "gray.400")}
+        color={"gray.500"}
         _hover={{
-          bgColor: useColorModeValue("green.100", "green.100"),
+          shadow:"lg",  
+          bgColor: useColorModeValue("green.50", "green.100"),
           //bg: useColorModeValue("gray.100", "gray.900"),
-          color: useColorModeValue("gray.900", "gray.200"),
+          color: "green.700",
         }}
       >
         {icon && (
           <Icon
             mx="2"
-            boxSize="4"
+            boxSize="5"
+            mr={"15px"}
             _groupHover={{
               color: color,
             }}
