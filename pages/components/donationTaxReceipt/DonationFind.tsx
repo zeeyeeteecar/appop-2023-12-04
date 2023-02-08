@@ -52,41 +52,41 @@ export default function DonationList({ fetchData }) {
           bgColor="green.50"
           color={"green"}
         >
-          <Text w={"70px"} borderWidth={0} fontWeight={"bold"} align="center">
+          <Text w={"70px"} borderWidth={0} fontWeight={"semibold"} align="center">
             Status
           </Text>
-          <Text w={"70px"} borderWidth={0} fontWeight={"bold"} align="center">
+          <Text w={"70px"} borderWidth={0} fontWeight={"semibold"} align="center">
             Type
           </Text>
-          <Text w={"70px"} borderWidth={0} fontWeight={"bold"} align="center">
+          <Text w={"70px"} borderWidth={0} fontWeight={"semibold"} align="center">
             Type
           </Text>
-          <Text w={"90px"} borderWidth={0} fontWeight={"bold"} align="center">
+          <Text w={"90px"} borderWidth={0} fontWeight={"semibold"} align="center">
             User #
           </Text>
-          <Text w={"150px"} borderWidth={0} fontWeight={"bold"}>
+          <Text w={"150px"} borderWidth={0} fontWeight={"semibold"}>
             FName
           </Text>
-          <Text w={"100px"} borderWidth={0} fontWeight={"bold"}>
+          <Text w={"100px"} borderWidth={0} fontWeight={"semibold"}>
             LName
           </Text>
-          <Text w={"150px"} borderWidth={0} fontWeight={"bold"} align="center">
+          <Text w={"150px"} borderWidth={0} fontWeight={"semibold"} align="center">
             phone
           </Text>
-          <Text w={"230px"} borderWidth={0} fontWeight={"bold"} align="center">
+          <Text w={"230px"} borderWidth={0} fontWeight={"semibold"} align="center">
             address
           </Text>
-          <Text w={"100px"} borderWidth={0} fontWeight={"bold"} align="center">
+          <Text w={"100px"} borderWidth={0} fontWeight={"semibold"} align="center">
             city
           </Text>
-          <Text w={"50px"} borderWidth={0} fontWeight={"bold"} align="center">
+          <Text w={"50px"} borderWidth={0} fontWeight={"semibold"} align="center">
             prov
           </Text>
-          <Text w={"100px"} borderWidth={0} fontWeight={"bold"} align="center">
+          <Text w={"100px"} borderWidth={0} fontWeight={"semibold"} align="center">
             postal
           </Text>
           <HStack spacing={0}>
-            <Text w={"30px"} borderWidth={0} fontWeight={"bold"} align="center">
+            <Text w={"30px"} borderWidth={0} fontWeight={"semibold"} align="center">
               Fee
             </Text>
             <Text w={"50px"} borderWidth={0} color="red.500">
@@ -95,7 +95,7 @@ export default function DonationList({ fetchData }) {
           </HStack>
 
           <HStack spacing={0}>
-            <Text w={"50px"} borderWidth={0} fontWeight={"bold"}>
+            <Text w={"50px"} borderWidth={0} fontWeight={"semibold"}>
               Dona
             </Text>
             <Text w={"50px"} borderWidth={0} color="red.500">
@@ -104,7 +104,7 @@ export default function DonationList({ fetchData }) {
           </HStack>
 
           <HStack spacing={0}>
-            <Text w={"50px"} borderWidth={0} fontWeight={"bold"}>
+            <Text w={"50px"} borderWidth={0} fontWeight={"semibold"}>
               Total
             </Text>
             <Text w={"50px"} borderWidth={0} color="red.500">
@@ -136,7 +136,7 @@ export default function DonationList({ fetchData }) {
               }
 
               if (permitType === "TEMPORARY") {
-                bgclr_clr.bgclr = "orange.50";
+                bgclr_clr.bgclr = "orange.100";
                 bgclr_clr.clr = "orange";
               }
               return bgclr_clr;
@@ -167,9 +167,7 @@ export default function DonationList({ fetchData }) {
                 { category: "IN_PROGRESS", clr: "red", bgclr: "red.100" },
               ];
 
-              return bgclr_clr.find((element) => {
-                return element.category === AppStatus;
-              });
+              return bgclr_clr.find((e) => e.category === AppStatus);
             };
 
             const phone =
@@ -194,7 +192,7 @@ export default function DonationList({ fetchData }) {
                   rounded={"full"}
                   fontSize="12px"
                   fontWeight={"semibold"}
-                  p="3px"
+                  p="1px"
                   w={"70px"}
                   borderWidth={0}
                   align={"center"}
@@ -211,7 +209,7 @@ export default function DonationList({ fetchData }) {
                   rounded={"full"}
                   fontSize="12px"
                   fontWeight={"semibold"}
-                  p="3px"
+                  p="1px"
                   w={"70px"}
                   borderWidth={0}
                   bgColor={permitType_bgclr_clr(application.permitType).bgclr}
@@ -224,7 +222,7 @@ export default function DonationList({ fetchData }) {
                   rounded={"full"}
                   fontSize="12px"
                   fontWeight={"semibold"}
-                  p="3px"
+                  p="1px"
                   w={"70px"}
                   borderWidth={0}
                   align={"center"}
