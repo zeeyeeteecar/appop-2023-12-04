@@ -237,7 +237,7 @@ export default function DonationList({ fetchData }) {
                 key={index}
                 h="50px"
                 spacing={2}
-                color=""
+                color="gray.500"
                 //bgColor="magenta.100"
                 _hover={{
                   background: "gray.50",
