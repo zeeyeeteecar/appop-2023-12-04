@@ -14,6 +14,7 @@ import {
   IconButton,
 } from "@chakra-ui/react";
 import GeneratePPTaxReceipt from "./GeneratePPTaxReceipt";
+import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
 
 export default function DonationList({ fetchData }) {
   const [applicationDetails, setApplicationDetails] = React.useState(null);
@@ -64,14 +65,17 @@ export default function DonationList({ fetchData }) {
           bgColor="green.50"
           color={"green"}
         >
+          <HStack w={"70px"}>
           <Text
-            w={"70px"}
+            
             borderWidth={0}
             fontWeight={"semibold"}
             align="center"
           >
             Status
           </Text>
+          
+          </HStack>
           <Text
             w={"70px"}
             borderWidth={0}
@@ -323,17 +327,33 @@ export default function DonationList({ fetchData }) {
                 <Text w={"80px"} borderWidth={0}>
                   {application.postalCode}
                 </Text>
-                <Text w={"90px"} borderWidth={0} align="end" paddingEnd={"30px"}>
+                <Text
+                  w={"90px"}
+                  borderWidth={0}
+                  align="end"
+                  paddingEnd={"30px"}
+                >
                   {application.processingFee}
                 </Text>
-                <Text w={"100px"} borderWidth={0} color={clr_donationAmount} align="end" paddingEnd={"30px"}>
+                <Text
+                  w={"100px"}
+                  borderWidth={0}
+                  color={clr_donationAmount}
+                  align="end"
+                  paddingEnd={"30px"}
+                >
                   {application.donationAmount}
                 </Text>
-                <Text w={"100px"} borderWidth={0}  align="end" paddingEnd={"30px"}>
+                <Text
+                  w={"100px"}
+                  borderWidth={0}
+                  align="end"
+                  paddingEnd={"30px"}
+                >
                   {parseFloat(application.processingFee) +
                     parseFloat(application.donationAmount)}
                 </Text>
-                <Box w={"100px"} h="40px" >
+                <Box w={"100px"} h="40px">
                   <GeneratePPTaxReceipt
                     application={application}
                     donationAmount={application.donationAmount}

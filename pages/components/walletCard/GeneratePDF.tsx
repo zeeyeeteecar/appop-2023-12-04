@@ -6,7 +6,7 @@ export default function GeneratePDF(application): any {
   //const doc = new jsPDF();
   const doc = new jsPDF("p", "mm", [500, 250]);
 
-  doc.text("Richmond Centre for Disaibility", 10, 30);
+  doc.text("Richmond Centre for Disability", 10, 30);
 
   doc.text("permit#:", 20, 30);
 
