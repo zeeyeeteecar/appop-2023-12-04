@@ -225,10 +225,11 @@ export default function DonationList({ fetchData }) {
                 spacing={2}
                 color={"gray.500"}
                 
+                
                 _hover={{
                   background: "gray.50",
                   color: "black",
-                  shadow:"lg",
+                  shadow:"md",
                   cursor:"pointer",
                 }}
               >
