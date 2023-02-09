@@ -74,7 +74,7 @@ export default function DonationList({ fetchData }) {
           >
             Status
           </Text>
-          
+          <ChevronDownIcon />
           </HStack>
           <Text
             w={"70px"}

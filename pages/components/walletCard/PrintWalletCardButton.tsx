@@ -30,7 +30,7 @@ export default function PrintButton({ application }: any) {
 
     doc.setFontSize(18);
     doc.setFont("", "bold");
-    doc.text("Richmond Centre for Disaibility", 0, 5);
+    doc.text("Richmond Centre for Disability", 2, 5);
 
     doc.setFontSize(13);
     doc.setFont("helvetica", "normal");
