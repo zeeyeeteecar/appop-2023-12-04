@@ -73,7 +73,7 @@ export default function DonationList({ fetchData }) {
             Status
           </Text>
           <Text
-            w={"80px"}
+            w={"70px"}
             borderWidth={0}
             fontWeight={"semibold"}
             align="center"
@@ -105,7 +105,7 @@ export default function DonationList({ fetchData }) {
           </Text>
 
           <Text
-            w={"150px"}
+            w={"120px"}
             borderWidth={0}
             fontWeight={"semibold"}
             align="center"
@@ -113,7 +113,7 @@ export default function DonationList({ fetchData }) {
             phone
           </Text>
           <Text
-            w={"230px"}
+            w={"200px"}
             borderWidth={0}
             fontWeight={"semibold"}
             align="center"
@@ -137,7 +137,7 @@ export default function DonationList({ fetchData }) {
             prov
           </Text>
           <Text
-            w={"100px"}
+            w={"80px"}
             borderWidth={0}
             fontWeight={"semibold"}
             align="center"
@@ -146,7 +146,7 @@ export default function DonationList({ fetchData }) {
           </Text>
           <HStack spacing={0}>
             <Text
-              w={"30px"}
+              w={"40px"}
               borderWidth={0}
               fontWeight={"semibold"}
               align="center"
@@ -308,7 +308,7 @@ export default function DonationList({ fetchData }) {
                 <Text w={"100px"} borderWidth={0}>
                   {application.lastName}
                 </Text>
-                <Text w={"170px"} borderWidth={0}>
+                <Text w={"120px"} borderWidth={0}>
                   {phone}
                 </Text>
                 <Text w={"200px"} borderWidth={0}>
@@ -320,20 +320,20 @@ export default function DonationList({ fetchData }) {
                 <Text w={"50px"} borderWidth={0}>
                   {application.province}
                 </Text>
-                <Text w={"100px"} borderWidth={0}>
+                <Text w={"80px"} borderWidth={0}>
                   {application.postalCode}
                 </Text>
-                <Text w={"80px"} borderWidth={0}>
+                <Text w={"90px"} borderWidth={0} align="end" paddingEnd={"30px"}>
                   {application.processingFee}
                 </Text>
-                <Text w={"80px"} borderWidth={0} color={clr_donationAmount}>
+                <Text w={"100px"} borderWidth={0} color={clr_donationAmount} align="end" paddingEnd={"30px"}>
                   {application.donationAmount}
                 </Text>
-                <Text w={"80px"} borderWidth={0}>
+                <Text w={"100px"} borderWidth={0}  align="end" paddingEnd={"30px"}>
                   {parseFloat(application.processingFee) +
                     parseFloat(application.donationAmount)}
                 </Text>
-                <Box w={"70px"} h="40px">
+                <Box w={"100px"} h="40px" >
                   <GeneratePPTaxReceipt
                     application={application}
                     donationAmount={application.donationAmount}
