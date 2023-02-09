@@ -265,20 +265,6 @@ export default function DonationList({ fetchData }) {
                   {application.applicationProcessing.status.substring(0, 5)}
                 </Text>
                 <Text
-                  rounded={"full"}
-                  fontSize="12px"
-                  fontWeight={"semibold"}
-                  p="1px"
-                  w={"70px"}
-                  borderWidth={0}
-                  bgColor={permitType_bgclr_clr(application.permitType).bgclr}
-                  color={permitType_bgclr_clr(application.permitType).clr}
-                  align={"center"}
-                >
-                  {application.permitType.substring(0, 4)}
-                </Text>
-
-                <Text
                   id={application.id}
                   rounded={"full"}
                   fontSize="12px"
@@ -297,14 +283,21 @@ export default function DonationList({ fetchData }) {
                 >
                   {application.type.substring(0, 3)}
                 </Text>
+
                 <Text
-                  w={"60px"}
+                  rounded={"full"}
+                  fontSize="14px"
+                  fontWeight={"semibold"}
+                  p="1px"
+                  w={"80px"}
                   borderWidth={0}
-                  align="end"
+                  bgColor={permitType_bgclr_clr(application.permitType).bgclr}
                   color={permitType_bgclr_clr(application.permitType).clr}
+                  align={"center"}
                 >
-                  {application.permit?application.permit.rcdPermitId:""}
+                  {application.permitType.substring(0, 1) + "-" + (application.permit?application.permit.rcdPermitId:"")}
                 </Text>
+
                 <Text w={"70px"} borderWidth={0} align="center">
                   {application.applicantId}
                 </Text>
