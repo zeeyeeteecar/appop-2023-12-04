@@ -16,21 +16,9 @@ import {
 import GeneratePPTaxReceipt from "./GeneratePPTaxReceipt";
 
 export default function DonationList({ fetchData }) {
-  // const [sumDonation, setSumDonation] = React.useState(0);
-  // const [sumFee, setSumFee] =  React.useState(0);
-  // const [sumTotal, setSumTotal] =  React.useState(0);
 
-  // const sum_Fee = fetchData.reduce((acc, obj) => {
-  //   return acc + parseFloat(obj.processingFee);
-  // }, 0);
+  const [applicationDetails,setApplicationDetails] = React.useState(null)
 
-  // const sum_donation = fetchData.reduce((acc, obj) => {
-  //   return acc + parseFloat(obj.donationAmount);
-  // }, 0);
-
-  // const sum_total = fetchData.reduce((acc, obj) => {
-  //   return acc + parseFloat(obj.processingFee) + parseFloat(obj.donationAmount);
-  // }, 0);
   let sum_fee: number = 0;
   let sum_donation: number = 0;
   let sum_total: number = 0;
@@ -41,6 +29,29 @@ export default function DonationList({ fetchData }) {
       sum_donation += parseFloat(application.donationAmount);
     });
   sum_total = sum_fee + sum_donation;
+
+  const  onClick_Comp_Temp = async (e) => {
+    //alert("applicationId: " + e.target.id);
+    const applicationId: string = e.target.id;
+    // setFetchData([]);
+    const body = {
+      applicationId: applicationId,
+    };
+    //console.log("body: ", body);
+
+    const data = await (
+      await fetch("/api/donationTaxReceipt/applicationInfo_new_renewal_replacement", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      })
+    ).json();
+
+    setApplicationDetails(data);
+
+  };
+
+  console.log(applicationDetails)
 
   return (
     <>
@@ -224,13 +235,11 @@ export default function DonationList({ fetchData }) {
                 h="50px"
                 spacing={2}
                 color={"gray.500"}
-                
-                
                 _hover={{
                   background: "gray.50",
                   color: "black",
-                  shadow:"md",
-                  cursor:"pointer",
+                  shadow: "md",
+                  cursor: "pointer",
                 }}
               >
                 <Text
@@ -263,7 +272,9 @@ export default function DonationList({ fetchData }) {
                 >
                   {application.permitType.substring(0, 4)}
                 </Text>
+                
                 <Text
+                  id={application.id}
                   rounded={"full"}
                   fontSize="12px"
                   fontWeight={"semibold"}
@@ -271,8 +282,13 @@ export default function DonationList({ fetchData }) {
                   w={"70px"}
                   borderWidth={0}
                   align={"center"}
+                  _hover={{
+                    background: "white",
+                    borderWidth: "1px",
+                  }}
                   bgColor={type_bgclr_clr(application.type).bgclr}
                   color={type_bgclr_clr(application.type).clr}
+                  onClick={(e) => onClick_Comp_Temp(e)}
                 >
                   {application.type.substring(0, 3)}
                 </Text>

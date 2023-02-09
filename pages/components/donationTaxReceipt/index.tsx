@@ -200,17 +200,17 @@ export default function Index_applicationInfo() {
                 onChange={(e) => setSearchUserLName(e.target.value)}
               />
               <Box>
-                <Button type="submit" 
-
-                colorScheme={"teal"}
-                variant={"outline"}
-
-                 w={"150px"} onClick={dataFetch}
-                
-                _hover={{
-                  background: "teal.500",
-                  color: "white",
-                }}>
+                <Button
+                  type="submit"
+                  colorScheme={"teal"}
+                  variant={"outline"}
+                  w={"150px"}
+                  onClick={dataFetch}
+                  _hover={{
+                    background: "teal.500",
+                    color: "white",
+                  }}
+                >
                   Search
                 </Button>
               </Box>
