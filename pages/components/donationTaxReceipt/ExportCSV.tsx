@@ -7,6 +7,7 @@ export default function ExportCSV({ fetchData }) {
   const csvData = [
     [
       "Status",
+      "Type",
       "UserID",
       "PP#",
       "FName",
@@ -26,6 +27,7 @@ export default function ExportCSV({ fetchData }) {
     fetchData.map((application, index) => {
       const csvDataEachLine = [];
       csvDataEachLine.push(application.applicationProcessing.status);
+      csvDataEachLine.push(application.type);
       csvDataEachLine.push(application.applicantId);
       csvDataEachLine.push(application.permit?application.permit.rcdPermitId:"");
       csvDataEachLine.push(application.firstName);
