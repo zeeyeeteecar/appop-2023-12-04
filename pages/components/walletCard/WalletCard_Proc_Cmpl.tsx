@@ -65,17 +65,17 @@ export default function WalletCard_Proc_Cmpl({ apiUrl }) {
                   <Text
                     fontSize={"2xl"}
                     fontWeight={"bold"}
-                    borderWidth={"1px"}
+                    borderWidth={"0px"}
                   >
                     Richmond Centre for Disability
                   </Text>
                 </Flex>
                 <VStack align={"left"}>
-                  <HStack borderWidth={"1px"}>
-                    <Text borderWidth={"1px"}>permit#: </Text>
+                  <HStack borderWidth={"0px"}>
+                    <Text borderWidth={"0px"}>permit#: </Text>
                     <Text
                       w={"100PX"}
-                      borderWidth={"1px"}
+                      borderWidth={"0px"}
                       fontWeight={"bold"}
                       align={"left"}
                     >
@@ -83,12 +83,12 @@ export default function WalletCard_Proc_Cmpl({ apiUrl }) {
                         ? application.permit.rcdPermitId
                         : " N/A"}
                     </Text>
-                    <Text w={"50PX"} borderWidth={"1px"} align={"left"}>
+                    <Text w={"50PX"} borderWidth={"0px"} align={"left"}>
                       Expiry:
                     </Text>
                     <Text
                       w={"100PX"}
-                      borderWidth={"1px"}
+                      borderWidth={"0px"}
                       fontWeight={"bold"}
                       align={"left"}
                     >
@@ -98,7 +98,7 @@ export default function WalletCard_Proc_Cmpl({ apiUrl }) {
                     </Text>
                   </HStack>
                   <HStack>
-                    <Text w={"50PX"} borderWidth={"1px"} align={"left"}>
+                    <Text w={"50PX"} borderWidth={"0px"} align={"left"}>
                       Name:
                     </Text>
                     <Text w={"300PX"} fontWeight={"bold"} align={"left"}>
