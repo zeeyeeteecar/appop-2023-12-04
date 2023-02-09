@@ -303,7 +303,7 @@ export default function DonationList({ fetchData }) {
                   align="end"
                   color={permitType_bgclr_clr(application.permitType).clr}
                 >
-                  {application.permit.rcdPermitId}
+                  {application.permit?application.permit.rcdPermitId:""}
                 </Text>
                 <Text w={"70px"} borderWidth={0} align="center">
                   {application.applicantId}
