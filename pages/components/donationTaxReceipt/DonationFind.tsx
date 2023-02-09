@@ -239,7 +239,7 @@ export default function DonationList({ fetchData }) {
                 _hover={{
                   background: "gray.50",
                   color: "black",
-                  shadow: "sm",
+                  shadow: "md",
                   cursor: "pointer",
                 }}
               >

@@ -218,27 +218,34 @@ export default function Index_applicationInfo() {
             </HStack>
 
             <HStack spacing={6}>
-              <Checkbox
+
+            <Checkbox
+                color={"blue"}
                 p={1}
                 size="lg"
                 colorScheme="blue"
-                defaultChecked
-                value={"IN_PROGRESS"}
-                onChange={handle_onChange_Processing}
-              >
-                In Processing
-              </Checkbox>
-              <Checkbox
-                p={1}
-                size="lg"
-                colorScheme="red"
                 defaultChecked
                 value={"COMPLETED"}
                 onChange={handle_onChange_Completed}
               >
                 Completed
               </Checkbox>
+
+
               <Checkbox
+                color={"red"}
+                p={1}
+                size="lg"
+                colorScheme="red"
+                defaultChecked
+                value={"IN_PROGRESS"}
+                onChange={handle_onChange_Processing}
+              >
+                In Processing
+              </Checkbox>
+              
+              <Checkbox
+                color="green"
                 p={1}
                 size="lg"
                 colorScheme="green"
@@ -254,6 +261,7 @@ export default function Index_applicationInfo() {
                 spacing={6}
               >
                 <Checkbox
+                  color="magenta"
                   defaultChecked
                   size="lg"
                   colorScheme="pink"
@@ -262,6 +270,7 @@ export default function Index_applicationInfo() {
                   Permanent
                 </Checkbox>
                 <Checkbox
+                  color="orange"
                   defaultChecked
                   size="lg"
                   colorScheme="orange"
@@ -272,14 +281,16 @@ export default function Index_applicationInfo() {
               </HStack>
               <HStack borderWidth={0} p={2} bgColor="gray.100" spacing={6}>
                 <Checkbox
+                  color="green"
                   defaultChecked
                   size="lg"
-                  colorScheme="cyan"
+                  colorScheme="green"
                   onChange={handle_onChange_NewApplication}
                 >
                   New
                 </Checkbox>
                 <Checkbox
+                  color="purple"
                   defaultChecked
                   size="lg"
                   colorScheme="purple"
@@ -288,6 +299,7 @@ export default function Index_applicationInfo() {
                   Renewal
                 </Checkbox>
                 <Checkbox
+                  color="messenger"
                   defaultChecked
                   size="lg"
                   colorScheme="messenger"
