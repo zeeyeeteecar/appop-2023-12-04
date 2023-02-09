@@ -131,7 +131,7 @@ export default function Index() {
             </Button>
           </DownloadTableExcel>
         </HStack>
-        <TableContainer overflowY={"auto"} ref={tableRef}>
+        <TableContainer overflowY={"auto"} ref={tableRef} width="1700px">
           <Table width={"100%"} colorScheme="gray" size="sm">
             <TableCaption>Monthly PP Renewal </TableCaption>
             <Thead h="40px" bgColor={"green.50"}>

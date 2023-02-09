@@ -73,7 +73,7 @@ export default function Index_applicationInfo() {
       searchRequestType_RENEWAL: searchRequestType_RENEWAL,
       searchRequestType_REPLACEMENT: searchRequestType_REPLACEMENT,
     };
-    console.log("body: ", body);
+    //console.log("body: ", body);
 
     const data = await (
       await fetch("/api/donationTaxReceipt/donationTaxReceipt_find", {

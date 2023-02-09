@@ -60,6 +60,9 @@ export default async function handle(req: any, res: any) {
       },
       applicant: { select: { dateOfBirth: true, id: true } },
       applicationProcessing: { select: { status: true } },
+      newApplication:{},
+      renewalApplication:{},
+      replacementApplication:{},
     },
     orderBy: {
       // applicationProcessing: {
