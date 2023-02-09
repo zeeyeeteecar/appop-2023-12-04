@@ -73,22 +73,20 @@ export default function DonationList({ fetchData }) {
             Status
           </Text>
           <Text
-            w={"70px"}
+            w={"80px"}
             borderWidth={0}
             fontWeight={"semibold"}
             align="center"
           >
             Type
           </Text>
+
           <Text
-            w={"70px"}
+            w={"80px"}
+            align="center"
             borderWidth={0}
             fontWeight={"semibold"}
-            align="center"
           >
-            Type
-          </Text>
-          <Text w={"60px"} align="center" borderWidth={0} fontWeight={"semibold"}>
             PP#
           </Text>
           <Text
@@ -197,12 +195,12 @@ export default function DonationList({ fetchData }) {
               const bgclr_clr = { bgclr: "", clr: "" };
 
               if (permitType === "PERMANENT") {
-                bgclr_clr.bgclr = "pink.100";
-                bgclr_clr.clr = "red";
+                bgclr_clr.bgclr = "red.50";
+                bgclr_clr.clr = "magenta";
               }
 
               if (permitType === "TEMPORARY") {
-                bgclr_clr.bgclr = "orange.100";
+                bgclr_clr.bgclr = "orange.50";
                 bgclr_clr.clr = "orange";
               }
               return bgclr_clr;
@@ -239,7 +237,8 @@ export default function DonationList({ fetchData }) {
                 key={index}
                 h="50px"
                 spacing={2}
-                color={"gray.500"}
+                color=""
+                //bgColor="magenta.100"
                 _hover={{
                   background: "gray.50",
                   color: "black",
@@ -295,7 +294,9 @@ export default function DonationList({ fetchData }) {
                   color={permitType_bgclr_clr(application.permitType).clr}
                   align={"center"}
                 >
-                  {application.permitType.substring(0, 1) + "-" + (application.permit?application.permit.rcdPermitId:"")}
+                  {application.permitType.substring(0, 1) +
+                    " " +
+                    (application.permit ? application.permit.rcdPermitId : "")}
                 </Text>
 
                 <Text w={"70px"} borderWidth={0} align="center">
