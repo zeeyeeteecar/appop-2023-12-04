@@ -217,46 +217,65 @@ export default function Index_applicationInfo() {
               <ExportCSV fetchData={fetchData} />
             </HStack>
 
-            <HStack spacing={6}>
-
-            <Checkbox
-                color={"blue"}
-                p={1}
-                size="lg"
-                colorScheme="blue"
-                defaultChecked
-                value={"COMPLETED"}
-                onChange={handle_onChange_Completed}
-              >
-                Completed
-              </Checkbox>
-
-
-              <Checkbox
-                color={"red"}
-                p={1}
-                size="lg"
-                colorScheme="red"
-                defaultChecked
-                value={"IN_PROGRESS"}
-                onChange={handle_onChange_Processing}
-              >
-                In Processing
-              </Checkbox>
-              
-              <Checkbox
-                color="green"
-                p={1}
-                size="lg"
-                colorScheme="green"
-                onChange={handle_onChange_DonationOnly}
-              >
-                Donation Only
-              </Checkbox>
+            <HStack h="50px" spacing={"20"} w="full" borderWidth={0}>
               <HStack
-                borderWidth={0}
-                p={2}
-                bgColor="gray.100"
+                borderWidth={1}
+                h="40px"
+                paddingX={"20px"}
+                paddingY={"5px"}
+                bgColor="gray.50"
+                spacing={6}
+              >
+                <Checkbox
+                  color={"blue"}
+                  p={1}
+                  size="lg"
+                  colorScheme="blue"
+                  defaultChecked
+                  value={"COMPLETED"}
+                  onChange={handle_onChange_Completed}
+                >
+                  Completed
+                </Checkbox>
+
+                <Checkbox
+                  color={"red"}
+                  p={1}
+                  size="lg"
+                  colorScheme="red"
+                  defaultChecked
+                  value={"IN_PROGRESS"}
+                  onChange={handle_onChange_Processing}
+                >
+                  In Processing
+                </Checkbox>
+              </HStack>
+
+              <HStack
+                borderWidth={1}
+                h="40px"
+                paddingX={"20px"}
+                paddingY={"5px"}
+                bgColor="gray.50"
+                margin={"20"}
+                spacing={6}
+              >
+                <Checkbox
+                  color="green"
+                  p={1}
+                  size="lg"
+                  colorScheme="green"
+                  onChange={handle_onChange_DonationOnly}
+                >
+                  Donation Only
+                </Checkbox>
+              </HStack>
+              <HStack
+                borderWidth={1}
+                h="40px"
+                paddingX={"20px"}
+                paddingY={"5px"}
+                bgColor="gray.50"
                 margin={"20"}
                 spacing={6}
               >
@@ -279,7 +298,15 @@ export default function Index_applicationInfo() {
                   Temporary
                 </Checkbox>
               </HStack>
-              <HStack borderWidth={0} p={2} bgColor="gray.100" spacing={6}>
+              <HStack
+                borderWidth={1}
+                h="40px"
+                paddingX={"20px"}
+                paddingY={"5px"}
+                bgColor="gray.50"
+                margin={"20"}
+                spacing={6}
+              >
                 <Checkbox
                   color="green"
                   defaultChecked
@@ -299,7 +326,7 @@ export default function Index_applicationInfo() {
                   Renewal
                 </Checkbox>
                 <Checkbox
-                  color="messenger"
+                  color="dodgerblue"
                   defaultChecked
                   size="lg"
                   colorScheme="messenger"

@@ -8,6 +8,7 @@ export default function ExportCSV({ fetchData }) {
     [
       "Status",
       "UserID",
+      "PP#",
       "FName",
       "LName",
       "phone",
@@ -26,6 +27,7 @@ export default function ExportCSV({ fetchData }) {
       const csvDataEachLine = [];
       csvDataEachLine.push(application.applicationProcessing.status);
       csvDataEachLine.push(application.applicantId);
+      csvDataEachLine.push(application.permit.rcdPermitId);
       csvDataEachLine.push(application.firstName);
       csvDataEachLine.push(application.lastName);
       csvDataEachLine.push(application.phone);

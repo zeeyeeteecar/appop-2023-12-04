@@ -16,8 +16,7 @@ import {
 import GeneratePPTaxReceipt from "./GeneratePPTaxReceipt";
 
 export default function DonationList({ fetchData }) {
-
-  const [applicationDetails,setApplicationDetails] = React.useState(null)
+  const [applicationDetails, setApplicationDetails] = React.useState(null);
 
   let sum_fee: number = 0;
   let sum_donation: number = 0;
@@ -30,7 +29,7 @@ export default function DonationList({ fetchData }) {
     });
   sum_total = sum_fee + sum_donation;
 
-  const  onClick_Comp_Temp = async (e) => {
+  const onClick_Comp_Temp = async (e) => {
     //alert("applicationId: " + e.target.id);
     const applicationId: string = e.target.id;
     // setFetchData([]);
@@ -40,18 +39,20 @@ export default function DonationList({ fetchData }) {
     //console.log("body: ", body);
 
     const data = await (
-      await fetch("/api/donationTaxReceipt/applicationInfo_new_renewal_replacement", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-      })
+      await fetch(
+        "/api/donationTaxReceipt/applicationInfo_new_renewal_replacement",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body),
+        }
+      )
     ).json();
 
     setApplicationDetails(data);
-
   };
 
-  console.log(applicationDetails)
+  console.log(applicationDetails);
 
   return (
     <>
@@ -87,8 +88,11 @@ export default function DonationList({ fetchData }) {
           >
             Type
           </Text>
+          <Text w={"60px"} align="center" borderWidth={0} fontWeight={"semibold"}>
+            PP#
+          </Text>
           <Text
-            w={"90px"}
+            w={"70px"}
             borderWidth={0}
             fontWeight={"semibold"}
             align="center"
@@ -101,6 +105,7 @@ export default function DonationList({ fetchData }) {
           <Text w={"100px"} borderWidth={0} fontWeight={"semibold"}>
             LName
           </Text>
+
           <Text
             w={"150px"}
             borderWidth={0}
@@ -235,7 +240,6 @@ export default function DonationList({ fetchData }) {
                 h="50px"
                 spacing={2}
                 color={"gray.500"}
-
                 _hover={{
                   background: "gray.50",
                   color: "black",
@@ -273,7 +277,7 @@ export default function DonationList({ fetchData }) {
                 >
                   {application.permitType.substring(0, 4)}
                 </Text>
-                
+
                 <Text
                   id={application.id}
                   rounded={"full"}
@@ -293,13 +297,21 @@ export default function DonationList({ fetchData }) {
                 >
                   {application.type.substring(0, 3)}
                 </Text>
-                <Text w={"90px"} borderWidth={0} align="center">
+                <Text
+                  w={"60px"}
+                  borderWidth={0}
+                  align="end"
+                  color={permitType_bgclr_clr(application.permitType).clr}
+                >
+                  {application.permit.rcdPermitId}
+                </Text>
+                <Text w={"70px"} borderWidth={0} align="center">
                   {application.applicantId}
                 </Text>
                 <Text w={"150px"} borderWidth={0}>
                   {application.firstName}
                 </Text>
-                <Text w={"130px"} borderWidth={0}>
+                <Text w={"100px"} borderWidth={0}>
                   {application.lastName}
                 </Text>
                 <Text w={"170px"} borderWidth={0}>
