@@ -192,7 +192,7 @@ export default function DonationList({ fetchData, setFetchData, handle_sort }) {
                 >
                   {application.applicationProcessing.status.substring(0, 5)}
                 </Text>
-                <OverLay_ApplicationDetail application={application} />
+                <OverLay_ApplicationDetail application={application} applicationType={application.type} />
                 <Text
                   rounded={"full"}
                   fontSize="14px"

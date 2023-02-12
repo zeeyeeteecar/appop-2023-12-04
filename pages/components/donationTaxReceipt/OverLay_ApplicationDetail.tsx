@@ -32,7 +32,7 @@ interface IApplication {
   };
 }
 
-export default function OverLay_showDetails({ application }: IApplication) {
+export default function OverLay_showDetails({ application ,applicationType}) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const type_bgclr_clr = (Apptype: string):any => {
@@ -94,21 +94,21 @@ export default function OverLay_showDetails({ application }: IApplication) {
         fontWeight={"semibold"}
         fontSize="12px"
         paddingX={"5px"}
-        bgColor={type_bgclr_clr(application.type).bgclr}
-        color={type_bgclr_clr(application.type).clr}
+        bgColor={type_bgclr_clr(applicationType).bgclr}
+        color={type_bgclr_clr(applicationType).clr}
         //onClick={(e) => onClick_Comp_Temp(e)}
         onClick={onOpen}
         _hover={{
           background: "white",
           borderWidth: "1px",
-          borderColor: type_bgclr_clr(application.type).clr + ".300",
+          borderColor: type_bgclr_clr(applicationType).clr + ".300",
         }}
       >
         <Text p="1px" w={"70px"} borderWidth={0} align={"center"}>
-          {application.type.substring(0, 3)}
+          {applicationType.substring(0, 3)}
         </Text>
         <ExternalLinkIcon
-          color={type_bgclr_clr(application.type).clr + ".300"}
+          color={type_bgclr_clr(applicationType).clr + ".300"}
           w="12px"
         />
       </HStack>
