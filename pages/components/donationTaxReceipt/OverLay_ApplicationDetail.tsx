@@ -32,21 +32,10 @@ interface IApplication {
   };
 }
 
-export default function OverLay_showDetails({ application, applicationType }) {
+export default function OverLay_showDetails({ application, applicationType,type_bgclr,type_clr }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const type_bgclr_clr = (Apptype: string): any => {
-    let bgclr_clr: {
-      category: string;
-      clr: string;
-      bgclr: string;
-    }[] = [
-      { category: "NEW", clr: "green", bgclr: "green.100" },
-      { category: "RENEWAL", clr: "purple", bgclr: "purple.100" },
-      { category: "REPLACEMENT", clr: "blue", bgclr: "blue.100" },
-    ];
-    return bgclr_clr.find((e) => e.category === Apptype);
-  };
+  
 
   const applicationDetailContent = () => {
     if (application.newApplication) {
@@ -98,21 +87,21 @@ export default function OverLay_showDetails({ application, applicationType }) {
         fontWeight={"semibold"}
         fontSize="12px"
         paddingX={"5px"}
-        bgColor={type_bgclr_clr(applicationType)["bgclr"]}
-        color={type_bgclr_clr(applicationType)["clr"]}
+        bgColor={type_bgclr}
+        color={type_clr}
         //onClick={(e) => onClick_Comp_Temp(e)}
         onClick={onOpen}
         _hover={{
           background: "white",
           borderWidth: "1px",
-          borderColor: type_bgclr_clr(applicationType)["clr"] + ".300",
+          borderColor: type_clr + ".300",
         }}
       >
         <Text p="1px" w={"70px"} borderWidth={0} align={"center"}>
           {applicationType.substring(0, 3)}
         </Text>
         <ExternalLinkIcon
-          color={type_bgclr_clr(applicationType)["clr"] + ".300"}
+          color={type_clr + ".300"}
           w="12px"
         />
       </HStack>

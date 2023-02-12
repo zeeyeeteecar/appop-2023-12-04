@@ -154,6 +154,19 @@ export default function DonationList({ fetchData, setFetchData, handle_sort }) {
               return bgclr_clr.find((e) => e.category === AppStatus);
             };
 
+            const type_bgclr_clr = (Apptype: string): any => {
+              let bgclr_clr: {
+                category: string;
+                clr: string;
+                bgclr: string;
+              }[] = [
+                { category: "NEW", clr: "green", bgclr: "green.100" },
+                { category: "RENEWAL", clr: "purple", bgclr: "purple.100" },
+                { category: "REPLACEMENT", clr: "blue", bgclr: "blue.100" },
+              ];
+              return bgclr_clr.find((e) => e.category === Apptype);
+            };
+
             const phone =
               application.phone.substring(0, 3) +
               "-" +
@@ -192,7 +205,7 @@ export default function DonationList({ fetchData, setFetchData, handle_sort }) {
                 >
                   {application.applicationProcessing.status.substring(0, 5)}
                 </Text>
-                <OverLay_ApplicationDetail application={application} applicationType={application.type} />
+                <OverLay_ApplicationDetail application={application} applicationType={application.type} type_bgclr = {type_bgclr_clr(application.type)["bgclr"]} type_clr={type_bgclr_clr(application.type)["clr"]}/>
                 <Text
                   rounded={"full"}
                   fontSize="14px"
