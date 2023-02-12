@@ -18,7 +18,7 @@ import {
 import { SingleDatepicker, RangeDatepicker } from "chakra-dayzed-datepicker";
 import ExportCSV from "./ExportCSV";
 
-import DonationList from "./DonationFind";
+import DonationList from "./DonationList";
 import SpinnerOverlay from "../common/SpinnerOverlay";
 
 import SideBar from "../common/SideBar";
@@ -86,7 +86,23 @@ export default function Index_applicationInfo() {
     setFetchData(data);
   };
 
-  //console.log(fetchData);
+  useEffect(() => {
+    dataFetch();
+  }, []);
+
+  const handle_sort = (e) => {
+    const fieldName = e.target.id;
+    console.log("e.target.id", e.target.id);
+    console.log(
+      fetchData.sort((a, b) => (a[fieldName] > b[fieldName] ? 1 : -1))
+    );
+    setFetchData(
+      fetchData.sort((a, b) => (a[fieldName] > b[fieldName] ? 1 : -1))
+    );
+    //fetchData.map((item, key) => console.log("item[title]", item[key]));
+    console.log("fetchData===fetchData", fetchData);
+  };
+  console.log("data_application, data_application", fetchData);
 
   function handle_onChange_Processing(e) {
     if (e.target.checked) {
@@ -339,7 +355,7 @@ export default function Index_applicationInfo() {
           </VStack>
         </HStack>
 
-        <DonationList fetchData={fetchData} />
+        <DonationList fetchData={fetchData} setFetchData={setFetchData} handle_sort={handle_sort}/>
       </VStack>
     </HStack>
   );

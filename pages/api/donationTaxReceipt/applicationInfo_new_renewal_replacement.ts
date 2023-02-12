@@ -16,22 +16,22 @@ export default async function handle(req: any, res: any) {
     where: {
       AND: [
         {
-          id:Number(applicationId),
+          id: Number(applicationId),
           OR: [
-            { renewalApplication: { applicationId:Number(applicationId)} },
-            { newApplication: { applicationId:Number(applicationId)} },
-            { replacementApplication: { applicationId:Number(applicationId)} },
-            
+            { renewalApplication: { applicationId: Number(applicationId) } },
+            { newApplication: { applicationId: Number(applicationId) } },
+            {
+              replacementApplication: { applicationId: Number(applicationId) },
+            },
           ],
         },
-      ]
-
+      ],
     },
 
     select: {
-      // id: true,
-      // status: true,
-      // applicationInvoice: true,
+      id: true,
+      //status: true,
+      //applicationInvoice: true,
       //application: true,
 
       firstName: true,
@@ -60,9 +60,10 @@ export default async function handle(req: any, res: any) {
       },
       applicant: { select: { dateOfBirth: true, id: true } },
       applicationProcessing: { select: { status: true } },
-      newApplication:{},
-      renewalApplication:{},
-      replacementApplication:{},
+      
+      newApplication: {},
+      renewalApplication: {},
+      replacementApplication: {},
     },
     orderBy: {
       // applicationProcessing: {

@@ -54,7 +54,8 @@ export default async function handle(req: any, res: any) {
       ],
       //type:{ in:[searchRequestType_New,"",""]},
 
-      applicantId: { equals: Number(searchUserNo) || undefined },
+      //applicantId: { equals: Number(searchUserNo) || undefined },
+      //applicantId:"3",
       firstName: { contains: searchUserFName.trim() || undefined },
       lastName: { contains: searchUserLName.trim() || undefined },
       createdAt: {
@@ -78,7 +79,7 @@ export default async function handle(req: any, res: any) {
       // status: true,
       // applicationInvoice: true,
       //application: true,
-      id:true,
+      id: true,
       firstName: true,
       middleName: true,
       lastName: true,
@@ -105,6 +106,9 @@ export default async function handle(req: any, res: any) {
       },
       applicant: { select: { dateOfBirth: true, id: true } },
       applicationProcessing: { select: { status: true } },
+      newApplication: {},
+      renewalApplication: {},
+      replacementApplication: {},
     },
     orderBy: {
       // applicationProcessing: {
@@ -115,6 +119,10 @@ export default async function handle(req: any, res: any) {
     //take:100,
   });
 
+  const result_1 = await result.filter((item) =>
+    item.applicantId.toString().includes(searchUserNo)
+  );
+
   await prisma.$disconnect();
-  res.json(result);
+  res.json(result_1);
 }

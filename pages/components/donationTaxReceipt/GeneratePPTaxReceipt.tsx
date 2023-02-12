@@ -1,6 +1,6 @@
 import React from "react";
 import { IconButton } from "@chakra-ui/react";
-import { ExternalLinkIcon } from "@chakra-ui/icons";
+import { ExternalLinkIcon ,DownloadIcon} from "@chakra-ui/icons";
 import { degrees, PDFDocument, rgb, StandardFonts } from "pdf-lib";
 
 export default function GeneratePPTaxReceipt({ application, donationAmount }) {
@@ -196,7 +196,7 @@ export default function GeneratePPTaxReceipt({ application, donationAmount }) {
           variant="outline"
           aria-label="edit application info"
           fontSize="20px"
-          icon={<ExternalLinkIcon />}
+          icon={<DownloadIcon />}
           _hover={{
             background: "gray.100",
             color: "black",

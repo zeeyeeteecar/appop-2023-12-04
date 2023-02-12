@@ -1,5 +1,13 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Text, Button, Tag, Center, VStack } from "@chakra-ui/react";
+import {
+  Text,
+  Button,
+  Tag,
+  Center,
+  VStack,
+  IconButton,
+} from "@chakra-ui/react";
+import { ExternalLinkIcon, DownloadIcon } from "@chakra-ui/icons";
 import { jsPDF } from "jspdf";
 
 export default function PrintButton({ application }: any) {
@@ -11,10 +19,14 @@ export default function PrintButton({ application }: any) {
       ? appl.permit.rcdPermitId.toString()
       : "N/A";
 
-      const middleName =
-            application.middleName === null ? "" : application.middleName;
+    const middleName =
+      application.middleName === null ? "" : application.middleName;
     const applicantName =
-      appl.firstName + " " + (application.middleName === null ? "" : application.middleName) + " " + appl.lastName;
+      appl.firstName +
+      " " +
+      (application.middleName === null ? "" : application.middleName) +
+      " " +
+      appl.lastName;
     const expiryDate = appl.permit
       ? application.permit.expiryDate.substring(0, 7)
       : "N/A";
@@ -98,24 +110,34 @@ export default function PrintButton({ application }: any) {
           size={"lg"}
           variant="solid"
           bgColor={bgclr}
-          w={"150px"}
+          w={"200px"}
           height={"40px"}
           rounded="3xl"
           alignContent={"center"}
           textAlign="center"
           color={fontclr}
+          borderWidth={0}
+          
         >
           <Text w={"100%"} align={"center"}>
             {permitType}
           </Text>
+          <IconButton
+            color="white"
+            borderWidth={0}
+            variant="outline"
+            aria-label="edit application info"
+            fontSize="20px"
+            icon={<DownloadIcon />}
+            _hover={{
+              background: "",
+              color: "green",
+            }}
+            onClick={() => GeneratePDF(application)}
+            isDisabled={btnDisabled}
+            
+          />
         </Tag>
-
-        <Button
-          onClick={() => GeneratePDF(application)}
-          isDisabled={btnDisabled}
-        >
-          Print Wallet Card
-        </Button>
       </VStack>
     </Center>
   );
