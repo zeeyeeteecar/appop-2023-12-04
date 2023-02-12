@@ -98,7 +98,7 @@ export default function OverLay_showDetails({ application, applicationType,type_
         }}
       >
         <Text p="1px" w={"70px"} borderWidth={0} align={"center"}>
-          {application_type.substring(0, 3)}
+          {application_type}
         </Text>
         <ExternalLinkIcon
           color={type_clr + ".300"}
