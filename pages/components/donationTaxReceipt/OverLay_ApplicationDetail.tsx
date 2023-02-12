@@ -23,11 +23,19 @@ import {
 } from "@chakra-ui/react";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 
-export default function OverLay_showDetails({ application }:any) {
-  const [applicationDetails, setApplicationDetails] = React.useState(null);
+interface IApplication {
+  application: {
+    type: string;
+    newApplication: any;
+    renewalApplication: any;
+    replacementApplication: any;
+  };
+}
+
+export default function OverLay_showDetails({ application }: IApplication) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const type_bgclr_clr = (Apptype) => {
+  const type_bgclr_clr = (Apptype: string) => {
     const bgclr_clr = [
       { category: "NEW", clr: "green", bgclr: "green.100" },
       { category: "RENEWAL", clr: "purple", bgclr: "purple.100" },
@@ -47,7 +55,6 @@ export default function OverLay_showDetails({ application }:any) {
       return application.replacementApplication;
     }
   };
-
 
   // const fetchData_ApplicationDetails = async (applicationId) => {
   //   //alert("applicationId: " + e.target.id);
@@ -81,7 +88,6 @@ export default function OverLay_showDetails({ application }:any) {
   return (
     <>
       <HStack
-       
         w="70px"
         borderWidth={1}
         rounded={"full"}
@@ -98,13 +104,7 @@ export default function OverLay_showDetails({ application }:any) {
           borderColor: type_bgclr_clr(application.type).clr + ".300",
         }}
       >
-        <Text
-        
-          p="1px"
-          w={"70px"}
-          borderWidth={0}
-          align={"center"}
-        >
+        <Text p="1px" w={"70px"} borderWidth={0} align={"center"}>
           {application.type.substring(0, 3)}
         </Text>
         <ExternalLinkIcon
