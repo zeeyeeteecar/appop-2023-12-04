@@ -35,7 +35,7 @@ interface IApplication {
 export default function OverLay_showDetails({ application, applicationType,type_bgclr,type_clr }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  
+  const application_type:string = applicationType
 
   const applicationDetailContent = () => {
     if (application.newApplication) {
@@ -98,7 +98,7 @@ export default function OverLay_showDetails({ application, applicationType,type_
         }}
       >
         <Text p="1px" w={"70px"} borderWidth={0} align={"center"}>
-          {applicationType.substring(0, 3)}
+          {application_type.substring(0, 3)}
         </Text>
         <ExternalLinkIcon
           color={type_clr + ".300"}
