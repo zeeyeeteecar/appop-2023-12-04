@@ -32,11 +32,15 @@ interface IApplication {
   };
 }
 
-export default function OverLay_showDetails({ application ,applicationType}) {
+export default function OverLay_showDetails({ application, applicationType }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const type_bgclr_clr = (Apptype: string):any => {
-    const bgclr_clr = [
+  const type_bgclr_clr = (Apptype: string): any => {
+    let bgclr_clr: {
+      category: string;
+      clr: string;
+      bgclr: string;
+    }[] = [
       { category: "NEW", clr: "green", bgclr: "green.100" },
       { category: "RENEWAL", clr: "purple", bgclr: "purple.100" },
       { category: "REPLACEMENT", clr: "blue", bgclr: "blue.100" },
