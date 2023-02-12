@@ -35,7 +35,7 @@ interface IApplication {
 export default function OverLay_showDetails({ application }: IApplication) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const type_bgclr_clr = (Apptype: string) => {
+  const type_bgclr_clr = (Apptype: string):any => {
     const bgclr_clr = [
       { category: "NEW", clr: "green", bgclr: "green.100" },
       { category: "RENEWAL", clr: "purple", bgclr: "purple.100" },
