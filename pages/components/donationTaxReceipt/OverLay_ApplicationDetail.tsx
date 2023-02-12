@@ -23,7 +23,7 @@ import {
 } from "@chakra-ui/react";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 
-export default function OverLay_showDetails({ application }) {
+export default function OverLay_showDetails({ application }:any) {
   const [applicationDetails, setApplicationDetails] = React.useState(null);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
