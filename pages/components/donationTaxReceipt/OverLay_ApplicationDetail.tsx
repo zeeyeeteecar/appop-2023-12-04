@@ -81,7 +81,7 @@ export default function OverLay_showDetails({ application }) {
   return (
     <>
       <HStack
-        id={application.id.tostring()}
+       
         w="70px"
         borderWidth={1}
         rounded={"full"}
@@ -99,7 +99,7 @@ export default function OverLay_showDetails({ application }) {
         }}
       >
         <Text
-          id={application.id.tostring()}
+        
           p="1px"
           w={"70px"}
           borderWidth={0}
