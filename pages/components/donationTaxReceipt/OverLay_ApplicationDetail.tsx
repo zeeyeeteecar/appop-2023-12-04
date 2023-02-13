@@ -23,22 +23,29 @@ import {
 } from "@chakra-ui/react";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 
-interface IApplication {
-  application: {
-    type: string;
-    newApplication: any;
-    renewalApplication: any;
-    replacementApplication: any;
-  };
-}
+// interface IApplication {
+//   application: {
+//     type: string;
+//     newApplication: any;
+//     renewalApplication: any;
+//     replacementApplication: any;
+//   };
+// }
 
-export default function OverLay_showDetails({ application }: IApplication) {
+export default function OverLay_showDetails({ application }: any) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const applicationType = async () => application.type;
+  async function async_application() {
+    const result = await Promise.resolve(application.type);
+    const applicationType: string = result;
+    return applicationType
+  }
+  
+  console.log("async_application()",async_application());
+
 
   const type_bgclr_clr = async (Apptype: string) => {
-    const bgclr_clr: { category: string; clr: string; bgclr: string }[] = [
+    const bgclr_clr: { category: string; clr: string; bgclr: string }[]= [
       { category: "NEW", clr: "green", bgclr: "green.100" },
       { category: "RENEWAL", clr: "purple", bgclr: "purple.100" },
       { category: "REPLACEMENT", clr: "blue", bgclr: "blue.100" },
@@ -60,33 +67,34 @@ export default function OverLay_showDetails({ application }: IApplication) {
 
   return (
     <>
-      {/* <HStack
+      <HStack
         w="70px"
         borderWidth={1}
         rounded={"full"}
         fontWeight={"semibold"}
         fontSize="12px"
         paddingX={"5px"}
-        bgColor={type_bgclr_clr(applicationType).bgclr}
-        color={type_bgclr_clr(applicationType).clr}
+        bgColor={type_bgclr_clr("NEW")['bgclr']}
+        color={type_bgclr_clr("NEW")['clr']}
         //onClick={(e) => onClick_Comp_Temp(e)}
         onClick={onOpen}
         _hover={{
           background: "white",
           borderWidth: "1px",
-          borderColor: type_bgclr_clr(applicationType).clr + ".300",
+          borderColor: type_bgclr_clr("NEW")['clr'] + ".300",
         }}
       >
         <Text p="1px" w={"70px"} borderWidth={0} align={"center"}>
-          {applicationType.substring(0, 3)}
+          {//async_application().substring(0, 3)
+          }
         </Text>
         <ExternalLinkIcon
-          color={type_bgclr_clr(applicationType).clr + ".300"}
+          color={type_bgclr_clr("NEW")['clr'] + ".300"}
           w="12px"
         />
-       </HStack> */}
+      </HStack>
 
-      {/* <Modal
+      <Modal
         isCentered
         onClose={onClose}
         isOpen={isOpen}
@@ -110,7 +118,7 @@ export default function OverLay_showDetails({ application }: IApplication) {
             <Button variant="ghost">Secondary Action</Button>
           </ModalFooter>
         </ModalContent>
-       </Modal> */}
+      </Modal>
     </>
   );
 }

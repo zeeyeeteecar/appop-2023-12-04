@@ -295,7 +295,7 @@ export default function DonationList({ fetchData, setFetchData, handle_sort }) {
                 <Box w={"100px"} h="40px">
                   <GeneratePPTaxReceipt
                     application={application}
-                    donationAmount={application.donationAmount}
+                    
                   />
                 </Box>
               </HStack>
