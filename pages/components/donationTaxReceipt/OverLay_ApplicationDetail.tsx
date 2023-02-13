@@ -1,4 +1,3 @@
-
 import React from "react";
 import {
   Center,
@@ -33,36 +32,35 @@ interface IApplication {
   };
 }
 
-export default function OverLay_showDetails({ application }:IApplication) {
+export default function OverLay_showDetails({ application }: IApplication) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  async function applicationType() { return application.type+""}
+  const applicationType = async () => application.type;
 
-  // const type_bgclr_clr = (Apptype: string):any => {
+  const type_bgclr_clr = async (Apptype: string) => {
+    const bgclr_clr: { category: string; clr: string; bgclr: string }[] = [
+      { category: "NEW", clr: "green", bgclr: "green.100" },
+      { category: "RENEWAL", clr: "purple", bgclr: "purple.100" },
+      { category: "REPLACEMENT", clr: "blue", bgclr: "blue.100" },
+    ];
+    return bgclr_clr.find((e) => e.category === Apptype);
+  };
 
-  //   const bgclr_clr :{category:string, clr:string,bgclr:string }[] = [
-  //     { category: "NEW", clr: "green", bgclr: "green.100" },
-  //     { category: "RENEWAL", clr: "purple", bgclr: "purple.100" },
-  //     { category: "REPLACEMENT", clr: "blue", bgclr: "blue.100" },
-  //   ];
-  //   return bgclr_clr.find((e) => e.category === Apptype);
-  // };
-
-  // const applicationDetailContent = () => {
-  //   if (application.newApplication) {
-  //     return application.newApplication;
-  //   }
-  //   if (application.renewalApplication) {
-  //     return application.renewalApplication;
-  //   }
-  //   if (application.replacementApplication) {
-  //     return application.replacementApplication;
-  //   }
-  // };
+  const applicationDetailContent = async () => {
+    if (application.newApplication) {
+      return application.newApplication;
+    }
+    if (application.renewalApplication) {
+      return application.renewalApplication;
+    }
+    if (application.replacementApplication) {
+      return application.replacementApplication;
+    }
+  };
 
   return (
     <>
-       {/* <HStack
+      {/* <HStack
         w="70px"
         borderWidth={1}
         rounded={"full"}
@@ -88,7 +86,7 @@ export default function OverLay_showDetails({ application }:IApplication) {
         />
        </HStack> */}
 
-       {/* <Modal
+      {/* <Modal
         isCentered
         onClose={onClose}
         isOpen={isOpen}
