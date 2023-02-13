@@ -102,7 +102,7 @@ export default function Index_applicationInfo() {
     //fetchData.map((item, key) => console.log("item[title]", item[key]));
     console.log("fetchData===fetchData", fetchData);
   };
-  console.log("data_application, data_application", fetchData);
+  //console.log("data_application, data_application", fetchData);
 
   function handle_onChange_Processing(e) {
     if (e.target.checked) {

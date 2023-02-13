@@ -32,13 +32,22 @@ import { ExternalLinkIcon } from "@chakra-ui/icons";
 //   };
 // }
 
-export default function OverLay_showDetails({ application }: any) {
+export default function OverLay_showDetails({ application }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const async_applicationType = async () => await application.type;
-  const applicationType = async_applicationType + "";
+  async function async_applicationType() {
+    const result =  application.type;
 
+    const greeting: string = result;
 
+    return greeting;
+  }
+
+  const applicationType = async () => await application.type;
+
+  //const applicationType: string = async_applicationType() + "";
+
+  console.log("applicationType==", applicationType.toString());
   const type_bgclr_clr = async (Apptype: string) => {
     const bgclr_clr: { category: string; clr: string; bgclr: string }[] = [
       { category: "NEW", clr: "green", bgclr: "green.100" },
@@ -69,23 +78,21 @@ export default function OverLay_showDetails({ application }: any) {
         fontWeight={"semibold"}
         fontSize="12px"
         paddingX={"5px"}
-        bgColor={type_bgclr_clr(applicationType)["bgclr"]}
-        color={type_bgclr_clr(applicationType)["clr"]}
+        bgColor={type_bgclr_clr(applicationType.toString())["bgclr"]}
+        color={type_bgclr_clr(applicationType.toString())["clr"]}
         //onClick={(e) => onClick_Comp_Temp(e)}
         onClick={onOpen}
         _hover={{
           background: "white",
           borderWidth: "1px",
-          borderColor: type_bgclr_clr(applicationType)["clr"] + ".300",
+          borderColor: type_bgclr_clr(applicationType.toString())["clr"] + ".300",
         }}
       >
         <Text p="1px" w={"70px"} borderWidth={0} align={"center"}>
-          {
-            //async_application().substring(0, 3)
-          }
+          {applicationType.toString().substring(0, 3)}
         </Text>
         <ExternalLinkIcon
-          color={type_bgclr_clr(applicationType)["clr"] + ".300"}
+          color={type_bgclr_clr(applicationType.toString())["clr"] + ".300"}
           w="12px"
         />
       </HStack>

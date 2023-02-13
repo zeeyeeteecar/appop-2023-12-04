@@ -22,7 +22,7 @@ import {
 } from "@chakra-ui/react";
 import GeneratePPTaxReceipt from "./GeneratePPTaxReceipt";
 import { ArrowUpDownIcon, ExternalLinkIcon } from "@chakra-ui/icons";
-import OverLay_ApplicationDetail from "./OverLay_ApplicationDetail";
+//import OverLay_ApplicationDetail from "./OverLay_ApplicationDetail";
 import { AnyAaaaRecord } from "dns";
 
 export default function DonationList({ fetchData, setFetchData, handle_sort }) {
@@ -224,7 +224,7 @@ export default function DonationList({ fetchData, setFetchData, handle_sort }) {
                   {application.applicationProcessing.status.substring(0, 5)}
                 </Text>
 
-                <OverLay_ApplicationDetail application={application} />
+                <OverLay_showDetails_1 application={application} />
 
                 <Text
                   rounded={"full"}
@@ -293,10 +293,7 @@ export default function DonationList({ fetchData, setFetchData, handle_sort }) {
                     parseFloat(application.donationAmount)}
                 </Text>
                 <Box w={"100px"} h="40px">
-                  <GeneratePPTaxReceipt
-                    application={application}
-                    
-                  />
+                  <GeneratePPTaxReceipt application={application}  donationAmount={application.donationAmount}/>
                 </Box>
               </HStack>
             );
@@ -373,7 +370,13 @@ function OverLay_showDetails_1({ application }) {
               <Box w="1000px" h="500px">
                 {Object.getOwnPropertyNames(applicationDetailContent()).map(
                   (item) => {
-                    return <><Text>{item + ":" + applicationDetailContent()[item]}</Text></>;
+                    return (
+                      <>
+                        <Text>
+                          {item + ":" + applicationDetailContent()[item]}
+                        </Text>
+                      </>
+                    );
                   }
                 )}
               </Box>
