@@ -33,10 +33,10 @@ interface IApplication {
   };
 }
 
-export default function OverLay_showDetails({ application }) {
+export default function OverLay_showDetails({ application }:IApplication) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const applicationType:string = application.type
+  const applicationType:string = application.type+""
 
   const type_bgclr_clr = (Apptype: string):any => {
 
