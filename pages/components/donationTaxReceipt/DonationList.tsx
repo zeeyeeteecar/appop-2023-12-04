@@ -16,6 +16,7 @@ import {
 import GeneratePPTaxReceipt from "./GeneratePPTaxReceipt";
 import { ArrowUpDownIcon } from "@chakra-ui/icons";
 import OverLay_ApplicationDetail from "./OverLay_ApplicationDetail";
+import { AnyAaaaRecord } from "dns";
 
 export default function DonationList({ fetchData, setFetchData, handle_sort }) {
   
@@ -125,7 +126,7 @@ export default function DonationList({ fetchData, setFetchData, handle_sort }) {
         overflowY={"auto"}
       >
         {fetchData &&
-          fetchData.map((application, index) => {
+          fetchData.map((application:any, index:number) => {
             const clr_donationAmount =
               application.donationAmount == 0 ? "gray.200" : "black";
             const permitType_bgclr_clr = (permitType) => {
