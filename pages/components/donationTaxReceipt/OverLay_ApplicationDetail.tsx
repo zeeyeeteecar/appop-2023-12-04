@@ -35,7 +35,7 @@ import { ExternalLinkIcon } from "@chakra-ui/icons";
 export default function OverLay_showDetails({ application }: any) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  async function async_application() {
+  const async_application =async function application_1() {
     const result = await Promise.resolve(application.type);
     const applicationType: string = result;
     return applicationType
