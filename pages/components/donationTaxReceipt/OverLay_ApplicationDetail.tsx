@@ -38,31 +38,31 @@ export default function OverLay_showDetails({ application }:IApplication) {
 
   const applicationType:string = application.type+""
 
-  const type_bgclr_clr = (Apptype: string):any => {
+  // const type_bgclr_clr = (Apptype: string):any => {
 
-    const bgclr_clr :{category:string, clr:string,bgclr:string }[] = [
-      { category: "NEW", clr: "green", bgclr: "green.100" },
-      { category: "RENEWAL", clr: "purple", bgclr: "purple.100" },
-      { category: "REPLACEMENT", clr: "blue", bgclr: "blue.100" },
-    ];
-    return bgclr_clr.find((e) => e.category === Apptype);
-  };
+  //   const bgclr_clr :{category:string, clr:string,bgclr:string }[] = [
+  //     { category: "NEW", clr: "green", bgclr: "green.100" },
+  //     { category: "RENEWAL", clr: "purple", bgclr: "purple.100" },
+  //     { category: "REPLACEMENT", clr: "blue", bgclr: "blue.100" },
+  //   ];
+  //   return bgclr_clr.find((e) => e.category === Apptype);
+  // };
 
-  const applicationDetailContent = () => {
-    if (application.newApplication) {
-      return application.newApplication;
-    }
-    if (application.renewalApplication) {
-      return application.renewalApplication;
-    }
-    if (application.replacementApplication) {
-      return application.replacementApplication;
-    }
-  };
+  // const applicationDetailContent = () => {
+  //   if (application.newApplication) {
+  //     return application.newApplication;
+  //   }
+  //   if (application.renewalApplication) {
+  //     return application.renewalApplication;
+  //   }
+  //   if (application.replacementApplication) {
+  //     return application.replacementApplication;
+  //   }
+  // };
 
   return (
     <>
-       <HStack
+       {/* <HStack
         w="70px"
         borderWidth={1}
         rounded={"full"}
@@ -86,7 +86,7 @@ export default function OverLay_showDetails({ application }:IApplication) {
           color={type_bgclr_clr(applicationType).clr + ".300"}
           w="12px"
         />
-       </HStack>
+       </HStack> */}
 
        {/* <Modal
         isCentered
