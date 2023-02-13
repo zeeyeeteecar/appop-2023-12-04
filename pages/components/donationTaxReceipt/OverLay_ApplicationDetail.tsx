@@ -35,17 +35,12 @@ import { ExternalLinkIcon } from "@chakra-ui/icons";
 export default function OverLay_showDetails({ application }: any) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const async_application =async function application_1() {
-    const result = await Promise.resolve(application.type);
-    const applicationType: string = result;
-    return applicationType
-  }
-  
-  console.log("async_application()",async_application());
+  const async_applicationType = async () => await application.type;
+  const applicationType = async_applicationType + "";
 
 
   const type_bgclr_clr = async (Apptype: string) => {
-    const bgclr_clr: { category: string; clr: string; bgclr: string }[]= [
+    const bgclr_clr: { category: string; clr: string; bgclr: string }[] = [
       { category: "NEW", clr: "green", bgclr: "green.100" },
       { category: "RENEWAL", clr: "purple", bgclr: "purple.100" },
       { category: "REPLACEMENT", clr: "blue", bgclr: "blue.100" },
@@ -74,22 +69,23 @@ export default function OverLay_showDetails({ application }: any) {
         fontWeight={"semibold"}
         fontSize="12px"
         paddingX={"5px"}
-        bgColor={type_bgclr_clr("NEW")['bgclr']}
-        color={type_bgclr_clr("NEW")['clr']}
+        bgColor={type_bgclr_clr(applicationType)["bgclr"]}
+        color={type_bgclr_clr(applicationType)["clr"]}
         //onClick={(e) => onClick_Comp_Temp(e)}
         onClick={onOpen}
         _hover={{
           background: "white",
           borderWidth: "1px",
-          borderColor: type_bgclr_clr("NEW")['clr'] + ".300",
+          borderColor: type_bgclr_clr(applicationType)["clr"] + ".300",
         }}
       >
         <Text p="1px" w={"70px"} borderWidth={0} align={"center"}>
-          {//async_application().substring(0, 3)
+          {
+            //async_application().substring(0, 3)
           }
         </Text>
         <ExternalLinkIcon
-          color={type_bgclr_clr("NEW")['clr'] + ".300"}
+          color={type_bgclr_clr(applicationType)["clr"] + ".300"}
           w="12px"
         />
       </HStack>
