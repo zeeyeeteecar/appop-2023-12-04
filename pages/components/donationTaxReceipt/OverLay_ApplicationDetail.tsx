@@ -32,10 +32,17 @@ interface IApplication {
   };
 }
 
-export default function OverLay_showDetails({ application, applicationType,type_bgclr,type_clr }) {
+export default function OverLay_showDetails({ application ,applicationType}) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const application_type:string = applicationType
+  const type_bgclr_clr = (Apptype: string):any => {
+    const bgclr_clr = [
+      { category: "NEW", clr: "green", bgclr: "green.100" },
+      { category: "RENEWAL", clr: "purple", bgclr: "purple.100" },
+      { category: "REPLACEMENT", clr: "blue", bgclr: "blue.100" },
+    ];
+    return bgclr_clr.find((e) => e.category === Apptype);
+  };
 
   const applicationDetailContent = () => {
     if (application.newApplication) {
@@ -49,34 +56,7 @@ export default function OverLay_showDetails({ application, applicationType,type_
     }
   };
 
-  // const fetchData_ApplicationDetails = async (applicationId) => {
-  //   //alert("applicationId: " + e.target.id);
-
-  //   // setFetchData([]);
-  //   const body = {
-  //     applicationId: applicationId,
-  //   };
-  //   console.log("body: ", body);
-
-  //   const data = await (
-  //     await fetch(
-  //       "/api/donationTaxReceipt/applicationInfo_new_renewal_replacement",
-  //       {
-  //         method: "POST",
-  //         headers: { "Content-Type": "application/json" },
-  //         body: JSON.stringify(body),
-  //       }
-  //     )
-  //   ).json();
-
-  //   setApplicationDetails(data);
-  // };
-
-  // console.log(applicationDetails);
-
-  // React.useEffect(() => {
-  //   fetchData_ApplicationDetails(application.id);
-  // }, []);
+ 
 
   return (
     <>
@@ -87,21 +67,21 @@ export default function OverLay_showDetails({ application, applicationType,type_
         fontWeight={"semibold"}
         fontSize="12px"
         paddingX={"5px"}
-        bgColor={type_bgclr}
-        color={type_clr}
+        bgColor={type_bgclr_clr(applicationType).bgclr}
+        color={type_bgclr_clr(applicationType).clr}
         //onClick={(e) => onClick_Comp_Temp(e)}
         onClick={onOpen}
         _hover={{
           background: "white",
           borderWidth: "1px",
-          borderColor: type_clr + ".300",
+          borderColor: type_bgclr_clr(application.type).clr + ".300",
         }}
       >
         <Text p="1px" w={"70px"} borderWidth={0} align={"center"}>
-          {application_type}
+          {application.type.substring(0, 3)}
         </Text>
         <ExternalLinkIcon
-          color={type_clr + ".300"}
+          color={type_bgclr_clr(application.type).clr + ".300"}
           w="12px"
         />
       </HStack>

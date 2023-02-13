@@ -11,15 +11,22 @@ import {
   Checkbox,
   CheckboxGroup,
   Button,
-  IconButton,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
 } from "@chakra-ui/react";
 import GeneratePPTaxReceipt from "./GeneratePPTaxReceipt";
-import { ArrowUpDownIcon } from "@chakra-ui/icons";
-import OverLay_ApplicationDetail from "./OverLay_ApplicationDetail";
+import { ArrowUpDownIcon, ExternalLinkIcon } from "@chakra-ui/icons";
+//import OverLay_ApplicationDetail from "./OverLay_ApplicationDetail";
 import { AnyAaaaRecord } from "dns";
 
 export default function DonationList({ fetchData, setFetchData, handle_sort }) {
-  
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   let sum_fee: number = 0;
   let sum_donation: number = 0;
@@ -126,7 +133,7 @@ export default function DonationList({ fetchData, setFetchData, handle_sort }) {
         overflowY={"auto"}
       >
         {fetchData &&
-          fetchData.map((application:any, index:number) => {
+          fetchData.map((application: any, index: number) => {
             const clr_donationAmount =
               application.donationAmount == 0 ? "gray.200" : "black";
             const permitType_bgclr_clr = (permitType) => {
@@ -143,8 +150,6 @@ export default function DonationList({ fetchData, setFetchData, handle_sort }) {
               }
               return bgclr_clr;
             };
-
-
 
             const bgclr_Status = (AppStatus) => {
               const bgclr_clr = [
@@ -166,6 +171,18 @@ export default function DonationList({ fetchData, setFetchData, handle_sort }) {
                 { category: "REPLACEMENT", clr: "blue", bgclr: "blue.100" },
               ];
               return bgclr_clr.find((e) => e.category === Apptype);
+            };
+
+            const applicationDetailContent = () => {
+              if (application.newApplication) {
+                return application.newApplication;
+              }
+              if (application.renewalApplication) {
+                return application.renewalApplication;
+              }
+              if (application.replacementApplication) {
+                return application.replacementApplication;
+              }
             };
 
             const phone =
@@ -206,7 +223,9 @@ export default function DonationList({ fetchData, setFetchData, handle_sort }) {
                 >
                   {application.applicationProcessing.status.substring(0, 5)}
                 </Text>
-                <OverLay_ApplicationDetail application={application} applicationType={application.type} type_bgclr = {type_bgclr_clr(application.type)["bgclr"]} type_clr={type_bgclr_clr(application.type)["clr"]}/>
+
+                <OverLay_showDetails application={application} />
+
                 <Text
                   rounded={"full"}
                   fontSize="14px"
@@ -283,6 +302,87 @@ export default function DonationList({ fetchData, setFetchData, handle_sort }) {
             );
           })}
       </VStack>
+    </>
+  );
+}
+
+function OverLay_showDetails({ application }) {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const type_bgclr_clr = (Apptype: string): any => {
+    const bgclr_clr = [
+      { category: "NEW", clr: "green", bgclr: "green.100" },
+      { category: "RENEWAL", clr: "purple", bgclr: "purple.100" },
+      { category: "REPLACEMENT", clr: "blue", bgclr: "blue.100" },
+    ];
+    return bgclr_clr.find((e) => e.category === Apptype);
+  };
+
+  const applicationDetailContent = () => {
+    if (application.newApplication) {
+      return application.newApplication;
+    }
+    if (application.renewalApplication) {
+      return application.renewalApplication;
+    }
+    if (application.replacementApplication) {
+      return application.replacementApplication;
+    }
+  };
+
+  return (
+    <>
+      <HStack
+        w="70px"
+        borderWidth={1}
+        rounded={"full"}
+        fontWeight={"semibold"}
+        fontSize="12px"
+        paddingX={"5px"}
+        bgColor={type_bgclr_clr(application.type).bgclr}
+        color={type_bgclr_clr(application.type).clr}
+        //onClick={(e) => onClick_Comp_Temp(e)}
+        onClick={onOpen}
+        _hover={{
+          background: "white",
+          borderWidth: "1px",
+          borderColor: type_bgclr_clr(application.type).clr + ".300",
+        }}
+      >
+        <Text p="1px" w={"70px"} borderWidth={0} align={"center"}>
+          {application.type.substring(0, 3)}
+        </Text>
+        <ExternalLinkIcon
+          color={type_bgclr_clr(application.type).clr + ".300"}
+          w="12px"
+        />
+      </HStack>
+
+      <Modal
+        isCentered
+        onClose={onClose}
+        isOpen={isOpen}
+        motionPreset="slideInBottom"
+      >
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Modal Title</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <HStack w="1000px" h="500px">
+              <Box w="1000px" h="500px">
+                {JSON.stringify(applicationDetailContent())}
+              </Box>
+            </HStack>
+          </ModalBody>
+          <ModalFooter>
+            <Button colorScheme="blue" mr={3} onClick={onClose}>
+              Close
+            </Button>
+            <Button variant="ghost">Secondary Action</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </>
   );
 }
