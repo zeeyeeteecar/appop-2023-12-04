@@ -22,7 +22,7 @@ import {
 } from "@chakra-ui/react";
 import GeneratePPTaxReceipt from "./GeneratePPTaxReceipt";
 import { ArrowUpDownIcon, ExternalLinkIcon } from "@chakra-ui/icons";
-//import OverLay_ApplicationDetail from "./OverLay_ApplicationDetail";
+import OverLay_ApplicationDetail from "./OverLay_ApplicationDetail";
 import { AnyAaaaRecord } from "dns";
 
 export default function DonationList({ fetchData, setFetchData, handle_sort }) {
@@ -224,7 +224,7 @@ export default function DonationList({ fetchData, setFetchData, handle_sort }) {
                   {application.applicationProcessing.status.substring(0, 5)}
                 </Text>
 
-                <OverLay_showDetails application={application} />
+                <OverLay_ApplicationDetail application={application} />
 
                 <Text
                   rounded={"full"}
@@ -306,11 +306,11 @@ export default function DonationList({ fetchData, setFetchData, handle_sort }) {
   );
 }
 
-function OverLay_showDetails({ application }) {
+function OverLay_showDetails_1({ application }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const type_bgclr_clr = (Apptype: string): any => {
-    const bgclr_clr  = [
+    const bgclr_clr = [
       { category: "NEW", clr: "green", bgclr: "green.100" },
       { category: "RENEWAL", clr: "purple", bgclr: "purple.100" },
       { category: "REPLACEMENT", clr: "blue", bgclr: "blue.100" },
@@ -371,7 +371,11 @@ function OverLay_showDetails({ application }) {
           <ModalBody>
             <HStack w="1000px" h="500px">
               <Box w="1000px" h="500px">
-                {JSON.stringify(applicationDetailContent())}
+                {Object.getOwnPropertyNames(applicationDetailContent()).map(
+                  (item) => {
+                    return <><Text>{item + ":" + applicationDetailContent()[item]}</Text></>;
+                  }
+                )}
               </Box>
             </HStack>
           </ModalBody>
