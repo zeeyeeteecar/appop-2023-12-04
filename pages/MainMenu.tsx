@@ -10,30 +10,6 @@ import {
 import { EditIcon } from "@chakra-ui/icons";
 
 
-const BtnMain = (url, title) => {
-  const router = useRouter();
-  return (
-    <>
-      <Button
-        onClick={() => router.push(url)}
-        fontSize="20px"
-        rounded={"full"}
-        w="300px"
-        h="60px"
-        bgColor="blackAlpha.300"
-        color="white"
-        border={"1px"}
-        borderColor={"gray.600"}
-        _hover={{
-          background: "gray.600",
-          color: "white",
-        }}
-      >
-        {title}
-      </Button>
-    </>
-  );
-};
 
 
 export default function Index() {
@@ -63,8 +39,35 @@ export default function Index() {
         {BtnMain("/components/doctorInfo", "Doctor Info")}
         {BtnMain("/components/walletCard", "Wallet Card")}
         {BtnMain("/components/donationTaxReceipt", "Donation Tax Receipt")}
-        {BtnMain("#", "More")}
+        {BtnMain("/components/donationTaxReceipt", "More")}
       </VStack>
     </Box>
   );
 }
+
+
+
+const BtnMain = (url, title) => {
+  const router = useRouter();
+  return (
+    <>
+      <Button
+        onClick={() => router.push(url)}
+        fontSize="20px"
+        rounded={"full"}
+        w="300px"
+        h="60px"
+        bgColor="blackAlpha.300"
+        color="white"
+        border={"1px"}
+        borderColor={"gray.600"}
+        _hover={{
+          background: "gray.600",
+          color: "white",
+        }}
+      >
+        {title}
+      </Button>
+    </>
+  );
+};

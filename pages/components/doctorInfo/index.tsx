@@ -7,12 +7,13 @@ import {
   IconButton,
   Box,
 } from "@chakra-ui/react";
-import { ExternalLinkIcon } from "@chakra-ui/icons";
+
 
 import Doctor_Search from "./doctor_search";
 import SpinnerOverlay from "../common/SpinnerOverlay";
 import ListCount from "../common/ListCount"
 import SideBar from "../common/SideBar";
+import Doctor_Row from "./Doctor_Row"
 
 export default function Index_DoctorInfo() {
   const [searchMspNo, setSearchMspNo] = useState("");
@@ -57,6 +58,8 @@ export default function Index_DoctorInfo() {
           item.phone.toLowerCase().includes(searchPhone);
   });
 
+  const count_Doctor = fetchData.length;
+
   return (
     <HStack borderWidth={"0px"} h="100vh" w="100%" spacing={0} overflow={"true"}>
       <SpinnerOverlay fetchData={fetchData} setFetchData={setFetchData} />
@@ -66,7 +69,7 @@ export default function Index_DoctorInfo() {
           <Box w={"400px"}>
             <Text fontSize={30}>Doctor Info</Text>
           </Box>
-          <ListCount count={fetchData.length} />
+          <ListCount count={count_Doctor} />
           <Doctor_Search
             setSearchMspNo={setSearchMspNo}
             setSearchFName={setSearchFName}
@@ -83,45 +86,7 @@ export default function Index_DoctorInfo() {
           h="100vh"
           overflowY={"auto"}
         >
-          {doctors &&
-            doctors.map((doctor, index) => {
-              return (
-                <>
-                  <HStack
-                    key={index}
-                    spacing={3}
-                    padding={"3px"}
-                    _hover={{
-                      background: "gray.100",
-                      color: "black",
-                    }}
-                  >
-                    <Text w={"60px"}>{doctor.mspNumber}</Text>
-                    <Text w={"150px"}>{doctor.firstName}</Text>
-                    <Text w={"150px"}>{doctor.lastName}</Text>
-                    <Text w={"150px"}>{doctor.phone}</Text>
-                    <Text w={"50px"}>{doctor.addressLine2}</Text>
-                    <Text w={"200px"}>{doctor.addressLine1}</Text>
-                    <Text w={"150px"}>{doctor.city}</Text>
-                    <Text w={"150px"}>{doctor.province}</Text>
-                    <Text w={"150px"}>{doctor.postalCode}</Text>
-                    <Text w={"150px"}>{doctor.status}</Text>
-                    <IconButton
-                      color="gray.100"
-                      borderWidth={0}
-                      variant="outline"
-                      aria-label="edit doctor info"
-                      fontSize="20px"
-                      icon={<ExternalLinkIcon />}
-                      _hover={{
-                        background: "gray.100",
-                        color: "black",
-                      }}
-                    />
-                  </HStack>
-                </>
-              );
-            })}
+          <Doctor_Row doctors={doctors} />
         </VStack>
       </VStack>
     </HStack>

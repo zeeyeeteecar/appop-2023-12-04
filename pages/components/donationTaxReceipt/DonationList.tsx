@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import {
   Center,
   VStack,
@@ -23,7 +23,6 @@ import {
 import GeneratePPTaxReceipt from "./GeneratePPTaxReceipt";
 import { ArrowUpDownIcon, ExternalLinkIcon } from "@chakra-ui/icons";
 //import OverLay_ApplicationDetail from "./OverLay_ApplicationDetail";
-import { AnyAaaaRecord } from "dns";
 
 export default function DonationList({ fetchData, setFetchData, handle_sort }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -173,18 +172,6 @@ export default function DonationList({ fetchData, setFetchData, handle_sort }) {
               return bgclr_clr.find((e) => e.category === Apptype);
             };
 
-            const applicationDetailContent = () => {
-              if (application.newApplication) {
-                return application.newApplication;
-              }
-              if (application.renewalApplication) {
-                return application.renewalApplication;
-              }
-              if (application.replacementApplication) {
-                return application.replacementApplication;
-              }
-            };
-
             const phone =
               application.phone.substring(0, 3) +
               "-" +
@@ -202,7 +189,7 @@ export default function DonationList({ fetchData, setFetchData, handle_sort }) {
                 _hover={{
                   background: "gray.50",
                   color: "black",
-                  shadow: "md",
+                  //shadow: "md",
                   cursor: "pointer",
                 }}
               >
@@ -224,7 +211,7 @@ export default function DonationList({ fetchData, setFetchData, handle_sort }) {
                   {application.applicationProcessing.status.substring(0, 5)}
                 </Text>
 
-                <OverLay_showDetails_1 application={application} />
+                <OverLay_ApplicationDetail_1 application={application} />
 
                 <Text
                   rounded={"full"}
@@ -293,7 +280,10 @@ export default function DonationList({ fetchData, setFetchData, handle_sort }) {
                     parseFloat(application.donationAmount)}
                 </Text>
                 <Box w={"100px"} h="40px">
-                  <GeneratePPTaxReceipt application={application}  donationAmount={application.donationAmount}/>
+                  <GeneratePPTaxReceipt
+                    application={application}
+                    donationAmount={application.donationAmount}
+                  />
                 </Box>
               </HStack>
             );
@@ -303,8 +293,21 @@ export default function DonationList({ fetchData, setFetchData, handle_sort }) {
   );
 }
 
-function OverLay_showDetails_1({ application }) {
+///===========================================================================/////
+
+function loadComponent(name: string) {
+  const Component = React.lazy(
+    () => import(`./OverLay_ApplicationDetail_${name}.tsx`)
+  );
+  console.log(`./OverLay_ApplicationDetail_${name}.tsx`);
+  return Component;
+}
+
+///===========================================================================/////
+
+function OverLay_ApplicationDetail_1({ application }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  //const [newRenewalReplace, setNewRenewalReplace] = React.useState();
 
   const type_bgclr_clr = (Apptype: string): any => {
     const bgclr_clr = [
@@ -315,17 +318,30 @@ function OverLay_showDetails_1({ application }) {
     return bgclr_clr.find((e) => e.category === Apptype);
   };
 
-  const applicationDetailContent = () => {
+  const new_renewal_replacement = (): {
+    componentName: string;
+    applicationContent: any;
+  } => {
+    let result: { componentName: string; applicationContent: any } = {
+      componentName: "",
+      applicationContent: null,
+    };
+
     if (application.newApplication) {
-      return application.newApplication;
+      result.componentName = "New";
+      result.applicationContent = application.newApplication;
     }
     if (application.renewalApplication) {
-      return application.renewalApplication;
+      result.componentName = "Renewal";
+      result.applicationContent = application.renewalApplication;
     }
     if (application.replacementApplication) {
-      return application.replacementApplication;
+      result.componentName = "Replacement";
+      result.applicationContent = application.replacementApplication;
     }
+    return result;
   };
+  const Component = loadComponent(new_renewal_replacement().componentName);
 
   return (
     <>
@@ -355,38 +371,35 @@ function OverLay_showDetails_1({ application }) {
         />
       </HStack>
 
-      <Modal
+      <Modal 
         isCentered
         onClose={onClose}
         isOpen={isOpen}
         motionPreset="slideInBottom"
+        
       >
         <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <HStack w="1000px" h="500px">
-              <Box w="1000px" h="500px">
-                {Object.getOwnPropertyNames(applicationDetailContent()).map(
-                  (item) => {
-                    return (
-                      <>
-                        <Text>
-                          {item + ":" + applicationDetailContent()[item]}
-                        </Text>
-                      </>
-                    );
+        <ModalContent borderWidth={0} maxW="1000px" maxH="700px" >
+          <ModalHeader borderWidth={0}>
+            Modal Title
+          </ModalHeader>
+          <ModalCloseButton  />
+          <ModalBody >
+            <Box>
+              <Suspense fallback={<div>Loading...</div>}>
+                <Component
+                  applicationContent={
+                    new_renewal_replacement().applicationContent
                   }
-                )}
-              </Box>
-            </HStack>
+                />
+              </Suspense>
+            </Box>
           </ModalBody>
           <ModalFooter>
             <Button colorScheme="blue" mr={3} onClick={onClose}>
               Close
             </Button>
-            <Button variant="ghost">Secondary Action</Button>
+            
           </ModalFooter>
         </ModalContent>
       </Modal>

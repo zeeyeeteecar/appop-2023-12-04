@@ -28,13 +28,12 @@ import {
   AiOutlineHeart,
   AiOutlineWallet,
   AiOutlineRedEnvelope,
+  AiOutlineSearch,
 } from "react-icons/ai";
 import { BsFolder2, BsCalendarCheck } from "react-icons/bs";
 import { FiMenu } from "react-icons/fi";
 import { useRouter } from "next/router";
 import { RiFlashlightFill } from "react-icons/ri";
-
-
 
 export default function Index() {
   const BtnMain = (url) => {
@@ -46,7 +45,13 @@ export default function Index() {
   const { isOpen, onClose, onOpen } = useDisclosure();
 
   return (
-    <Box width={"200px"} h="full" borderWidth={"0px"} shadow={"lg"} marginRight="30px">
+    <Box
+      width={"200px"}
+      h="full"
+      borderWidth={"0px"}
+      shadow={"lg"}
+      marginRight="30px"
+    >
       <SidebarContent display={{ base: "none", md: "unset" }} />
       <Drawer isOpen={isOpen} onClose={onClose} placement="left">
         <DrawerOverlay />
@@ -70,21 +75,14 @@ const SidebarContent = ({ ...props }: BoxProps) => (
     //overflowY="auto"
     bg={useColorModeValue("white", "gray.800")}
     borderColor={"green.100"}
-    
-    //borderRightWidth="1px"
 
-   
+    //borderRightWidth="1px"
   >
-    <VStack h="full" w="full" alignItems="flex-start" justify="space-between" >
+    <VStack h="full" w="full" alignItems="flex-start" justify="space-between">
       <Box w="full">
         <Flex px="4" py="5" align="center">
           <Icon as={RiFlashlightFill} h={8} w={8} color="green.600" />
-          <Text
-            fontSize="2xl"
-            ml="2"
-            color="green.600"
-            fontWeight="semibold"
-          >
+          <Text fontSize="2xl" ml="2" color="green.600" fontWeight="semibold">
             APPOP
           </Text>
         </Flex>
@@ -109,6 +107,9 @@ const SidebarContent = ({ ...props }: BoxProps) => (
             url={"/components/donationTaxReceipt"}
           >
             Donation
+          </NavItem>
+          <NavItem icon={AiOutlineSearch} url={"/components/search"}>
+            Search
           </NavItem>
         </Flex>
       </Box>
@@ -163,7 +164,7 @@ const NavItem = (props: any) => {
         transition=".15s ease"
         color={"gray.500"}
         _hover={{
-          shadow:"lg",  
+          shadow: "lg",
           bgColor: useColorModeValue("green.50", "green.100"),
           //bg: useColorModeValue("gray.100", "gray.900"),
           color: "green.700",
