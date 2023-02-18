@@ -30,7 +30,6 @@ export default function Doctor_Row(props) {
     <>
       {doctors &&
         doctors.map((doctor: any, index: number) => {
-          const phone: string = doctor.phone;
           return (
             <>
               <HStack
@@ -77,7 +76,7 @@ export default function Doctor_Row(props) {
                 >
                   {doctor.status}
                 </Text>
-                <Text w={"150px"}>{FormatPhone(phone)}</Text>
+                <Text w={"150px"}>{FormatPhone(doctor.phone)}</Text>
 
                 <SimpleGrid columns={1} spacing={2} width={"300px"}>
                   <Text w={"full"}>
