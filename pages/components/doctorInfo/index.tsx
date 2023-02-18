@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react";
 
 
-import Doctor_Search from "./doctor_search";
+import Doctor_Search from "./Doctor_Search";
 import SpinnerOverlay from "../common/SpinnerOverlay";
 import ListCount from "../common/ListCount"
 import SideBar from "../common/SideBar";
@@ -61,12 +61,12 @@ export default function Index_DoctorInfo() {
   const count_Doctor = fetchData.length;
 
   return (
-    <HStack borderWidth={"0px"} h="100vh" w="100%" spacing={0} overflow={"true"}>
+    <HStack borderWidth={"0px"} h="100vh" w="100%"  overflow={"true"}>
       <SpinnerOverlay fetchData={fetchData} setFetchData={setFetchData} />
       <SideBar />
-      <VStack width={"100%"} height="100vh" borderWidth={0} p={"10px"} spacing={3}>
-        <HStack borderWidth={"0px"} direction="row" w="100%" spacing={5}>
-          <Box w={"400px"}>
+      <VStack width={"100%"} height="100vh" borderWidth={0} p={"0px"} >
+        <HStack borderWidth={"0px"} direction="row" w="100%" spacing={0}>
+          <Box  borderWidth={0} w={"300px"} alignItems={"center"} alignContent={"center"} textAlign="center" >
             <Text fontSize={30}>Doctor Info</Text>
           </Box>
           <ListCount count={count_Doctor} />
@@ -80,6 +80,8 @@ export default function Index_DoctorInfo() {
 
         <VStack
           borderWidth={"0px"}
+          spacing={0}
+          margin={"20px"}
           //direction="row"
           align="stretch"
           w="full"

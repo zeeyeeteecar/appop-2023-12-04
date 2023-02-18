@@ -31,7 +31,9 @@ export default async function handle(req: any, res: any) {
       {
         mspNumber: "asc",
       },
+
     ],
+    take: 20,
     // include: {
     //   permits: true,
     // },
