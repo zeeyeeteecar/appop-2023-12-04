@@ -25,7 +25,7 @@ export default function OverLay_ApplicationDetail_New({newApplication,applicatio
   return (
     <div>OverLay_ApplicationDetail_New
         <Box w="full" height="500px" overflowY={"auto"}>
-                {Object.getOwnPropertyNames(applicationContent).map(
+                {applicationContent && Object.getOwnPropertyNames(applicationContent).map(
                   (item) => {
                     return (
                       <>

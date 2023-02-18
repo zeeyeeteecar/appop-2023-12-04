@@ -25,7 +25,7 @@ export default function OverLay_ApplicationDetail_Renewal({newApplication,applic
   return (
     <div>OverLay_ApplicationDetail_Renew
         <Box w="full" height="full" overflowY={"auto"}>
-                {Object.getOwnPropertyNames(applicationContent).map(
+                {applicationContent && Object.getOwnPropertyNames(applicationContent).map(
                   (item) => {
                     return (
                       <>

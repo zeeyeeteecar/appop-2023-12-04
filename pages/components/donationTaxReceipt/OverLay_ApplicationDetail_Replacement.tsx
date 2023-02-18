@@ -24,7 +24,7 @@ import {
 export default function OverLay_ApplicationDetail_Replace({newApplication,applicationContent}) {
   return (
     <Box w="full" height="full" overflowY={"auto"}>
-                {Object.getOwnPropertyNames(applicationContent).map(
+                {applicationContent && Object.getOwnPropertyNames(applicationContent).map(
                   (item) => {
                     return (
                       <>
