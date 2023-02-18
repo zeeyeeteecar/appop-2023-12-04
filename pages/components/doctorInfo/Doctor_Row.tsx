@@ -14,7 +14,6 @@ import {
   SimpleGrid,
 } from "@chakra-ui/react";
 import { ExternalLinkIcon, DeleteIcon } from "@chakra-ui/icons";
-import FormatPhone from "../common/FormatPhone";
 
 export default function Doctor_Row(props) {
   const { doctors } = props;
@@ -30,8 +29,8 @@ export default function Doctor_Row(props) {
   return (
     <>
       {doctors &&
-        doctors.map((doctor:any, index:number) => {
-          const phone:string = doctor.phone
+        doctors.map((doctor: any, index: number) => {
+          const phone: string = doctor.phone;
           return (
             <>
               <HStack
@@ -78,9 +77,7 @@ export default function Doctor_Row(props) {
                 >
                   {doctor.status}
                 </Text>
-                <Text w={"150px"}>
-                  <FormatPhone phoneNo={phone} />
-                </Text>
+                <Text w={"150px"}>{FormatPhone(phone)}</Text>
 
                 <SimpleGrid columns={1} spacing={2} width={"300px"}>
                   <Text w={"full"}>
@@ -129,4 +126,14 @@ const randomAvatarLink = () => {
     "https://raw.githubusercontent.com/Ashwinvalento/cartoon-avatar/master/lib/images/female/";
   const randomNumber = Math.floor(Math.random() * 100) + 1;
   return url + randomNumber.toString() + ".png";
+};
+
+const FormatPhone = (phoneNo): string => {
+  const result: string =
+    phoneNo.substring(0, 3) +
+    "-" +
+    phoneNo.substring(3, 6) +
+    "-" +
+    phoneNo.substring(6);
+  return result;
 };
