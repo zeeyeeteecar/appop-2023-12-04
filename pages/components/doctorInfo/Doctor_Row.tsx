@@ -26,6 +26,23 @@ export default function Doctor_Row(props) {
     return bgclr_clr.find((e) => e.PhysicianStatus === PhysicianStatus);
   };
 
+  const randomAvatarLink = () => {
+    const url =
+      "https://raw.githubusercontent.com/Ashwinvalento/cartoon-avatar/master/lib/images/female/";
+    const randomNumber = Math.floor(Math.random() * 100) + 1;
+    return url + randomNumber.toString() + ".png";
+  };
+
+  const FormatPhone = (phoneNo): string => {
+    const result: string =
+      phoneNo.substring(0, 3) +
+      "-" +
+      phoneNo.substring(3, 6) +
+      "-" +
+      phoneNo.substring(6);
+    return result;
+  };
+
   return (
     <>
       {doctors &&
@@ -119,20 +136,3 @@ export default function Doctor_Row(props) {
     </>
   );
 }
-
-const randomAvatarLink = () => {
-  const url =
-    "https://raw.githubusercontent.com/Ashwinvalento/cartoon-avatar/master/lib/images/female/";
-  const randomNumber = Math.floor(Math.random() * 100) + 1;
-  return url + randomNumber.toString() + ".png";
-};
-
-const FormatPhone = (phoneNo): string => {
-  const result: string =
-    phoneNo.substring(0, 3) +
-    "-" +
-    phoneNo.substring(3, 6) +
-    "-" +
-    phoneNo.substring(6);
-  return result;
-};
