@@ -52,20 +52,20 @@ export default function Index_DoctorInfo() {
       searchLName.toLowerCase() === "" &&
       searchPhone.toLowerCase() === ""
       ? item
-      : item.mspNumber.toLowerCase().includes(searchMspNo) &&
-          item.firstName.toLowerCase().includes(searchFName) &&
-          item.lastName.toLowerCase().includes(searchLName) &&
-          item.phone.toLowerCase().includes(searchPhone);
+      : item.mspNumber.toLowerCase().includes(searchMspNo.toLowerCase()) &&
+          item.firstName.toLowerCase().includes(searchFName.toLowerCase()) &&
+          item.lastName.toLowerCase().includes(searchLName.toLowerCase()) &&
+          item.phone.toLowerCase().includes(searchPhone.toLowerCase());
   });
 
-  const count_Doctor = fetchData.length;
+  const count_Doctor = doctors.length;
 
   return (
     <HStack borderWidth={"0px"} h="100vh" w="100%"  overflow={"true"}>
       <SpinnerOverlay fetchData={fetchData} setFetchData={setFetchData} />
       <SideBar />
       <VStack width={"100%"} height="100vh" borderWidth={0} p={"0px"} >
-        <HStack borderWidth={"0px"} direction="row" w="100%" spacing={0}>
+        <HStack borderWidth={"0px"} direction="row" w="100%" spacing={5}>
           <Box  borderWidth={0} w={"300px"} alignItems={"center"} alignContent={"center"} textAlign="center" >
             <Text fontSize={30}>Doctor Info</Text>
           </Box>

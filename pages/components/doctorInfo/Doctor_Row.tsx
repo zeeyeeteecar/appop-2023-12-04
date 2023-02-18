@@ -89,7 +89,7 @@ export default function Doctor_Row(props) {
                   align="center"
                   padding={"3px"}
                   fontSize={"13px"}
-                  fontWeight="bold"
+                  fontWeight={"semibold"}
                 >
                   {doctor.status}
                 </Text>

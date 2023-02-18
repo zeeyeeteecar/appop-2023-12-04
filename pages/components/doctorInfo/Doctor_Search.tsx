@@ -27,20 +27,24 @@ export default function Doctor_Search({
   setSearchPhone,
 }: any) {
   return (
-    <>
-      <Input w={"200px"}
+    <HStack spacing={5}>
+      <Input
+        w={"150px"}
         placeholder="MSP #"
         onChange={(e) => setSearchMspNo(e.target.value)}
       />
-      <Input w={"200px"}
+      <Input
+        w={"150px"}
         placeholder="F Name"
         onChange={(e) => setSearchFName(e.target.value)}
       />
-      <Input w={"200px"}
+      <Input
+        w={"150px"}
         placeholder="L Name"
         onChange={(e) => setSearchLName(e.target.value)}
-      /> 
-      <Input w={"200px"}
+      />
+      <Input
+        w={"150px"}
         placeholder="phone"
         onChange={(e) => setSearchPhone(e.target.value)}
       />
@@ -53,6 +57,6 @@ export default function Doctor_Search({
           Search Dr Info
         </Button>
       </Box>
-    </>
+    </HStack>
   );
 }

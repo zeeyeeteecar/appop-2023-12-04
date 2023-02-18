@@ -33,7 +33,7 @@ export default async function handle(req: any, res: any) {
       },
 
     ],
-    take: 20,
+    //take: 20,
     // include: {
     //   permits: true,
     // },
