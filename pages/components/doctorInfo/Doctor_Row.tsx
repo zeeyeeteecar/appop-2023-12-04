@@ -95,7 +95,7 @@ export default function Doctor_Row(props) {
                   color="gray.200"
                   borderWidth={0}
                   variant="outline"
-                  aria-label="edit doctor info"
+                  aria-label=" edit doctor info "
                   fontSize="20px"
                   icon={<ExternalLinkIcon />}
                   _hover={{
