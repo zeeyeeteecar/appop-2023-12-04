@@ -1,7 +1,12 @@
 import React from "react";
 
-export default function FormatPhone({ phoneNo }) {
-  const result =
+interface FullName {
+  phoneNo: string;
+
+}
+
+export default function FormatPhone({ phoneNo }:FullName) {
+  const result:string =
     phoneNo.substring(0, 3) +
     "-" +
     phoneNo.substring(3, 6) +
