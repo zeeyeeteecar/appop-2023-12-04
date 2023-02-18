@@ -30,7 +30,7 @@ export default function Doctor_Row(props) {
   return (
     <>
       {doctors &&
-        doctors.map((doctor, index) => {
+        doctors.map((doctor:any, index:number) => {
           const phone:string = doctor.phone
           return (
             <>
