@@ -12,7 +12,8 @@ export default function OverLay_ApplicationDetail_New({
       OverLay_ApplicationDetail_New
       ---{applicationJSON['id']
       }---
-      {<li>{applicationJSON.id}</li>
+      {<li>{//applicationJSON.id
+      }</li>
       }
       <Box w="full" height="500px" overflowY={"auto"}>
         {applicationContent &&
