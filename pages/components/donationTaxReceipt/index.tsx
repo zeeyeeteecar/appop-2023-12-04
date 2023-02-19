@@ -18,7 +18,7 @@ import {
 import { SingleDatepicker, RangeDatepicker } from "chakra-dayzed-datepicker";
 import ExportCSV from "./ExportCSV";
 
-import DonationList from "./DonationList";
+import Donation_Row from "./Donation_Row";
 import SpinnerOverlay from "../common/SpinnerOverlay";
 
 import SideBar from "../common/SideBar";
@@ -355,7 +355,7 @@ export default function Index_applicationInfo() {
           </VStack>
         </HStack>
 
-        <DonationList fetchData={fetchData} setFetchData={setFetchData} handle_sort={handle_sort}/>
+        <Donation_Row fetchData={fetchData} setFetchData={setFetchData} handle_sort={handle_sort}/>
       </VStack>
     </HStack>
   );

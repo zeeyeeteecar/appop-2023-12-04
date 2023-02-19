@@ -1,42 +1,24 @@
-import React from 'react'
-import {
-    Center,
-    VStack,
-    HStack,
-    Text,
-    Input,
-    Box,
-    Radio,
-    RadioGroup,
-    Checkbox,
-    CheckboxGroup,
-    Button,
-    Modal,
-    ModalOverlay,
-    ModalContent,
-    ModalHeader,
-    ModalFooter,
-    ModalBody,
-    ModalCloseButton,
-    useDisclosure,
-  } from "@chakra-ui/react";
+import React from "react";
+import { Text, Input, Box } from "@chakra-ui/react";
 
-export default function OverLay_ApplicationDetail_New({newApplication,applicationContent}) {
+export default function OverLay_ApplicationDetail_New({
+  application,
+  applicationContent,
+}) {
   return (
-    <div>OverLay_ApplicationDetail_New
-        <Box w="full" height="500px" overflowY={"auto"}>
-                {applicationContent && Object.getOwnPropertyNames(applicationContent).map(
-                  (item) => {
-                    return (
-                      <>
-                        <Text>
-                          {item + "==" + applicationContent[item]}
-                        </Text>
-                      </>
-                    );
-                  }
-                )}
-              </Box>
+    <div>
+      OverLay_ApplicationDetail_New
+      {JSON.stringify(application)}4444
+      <Box w="full" height="500px" overflowY={"auto"}>
+        {applicationContent &&
+          Object.getOwnPropertyNames(applicationContent).map((item) => {
+            return (
+              <>
+                <Text>{item + "==" + applicationContent[item]}</Text>
+              </>
+            );
+          })}
+      </Box>
     </div>
-  )
+  );
 }
