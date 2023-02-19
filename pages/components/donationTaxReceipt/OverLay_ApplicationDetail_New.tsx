@@ -5,12 +5,14 @@ export default function OverLay_ApplicationDetail_New({
   application,
   applicationContent,
 }) {
+
+  const applicationJSON= application?application:null;
   return (
     <div>
       OverLay_ApplicationDetail_New
-      {//JSON.stringify(application)
-      }
-      {<li>{application?application.id:"N/A"}</li>
+      ---{applicationJSON['id']
+      }---
+      {<li>{applicationJSON.id}</li>
       }
       <Box w="full" height="500px" overflowY={"auto"}>
         {applicationContent &&
