@@ -5,16 +5,15 @@ export default function OverLay_ApplicationDetail_New({
   application,
   applicationContent,
 }) {
+ 
 
-  const applicationJSON= application?application:null;
   return (
     <div>
       OverLay_ApplicationDetail_New
-      ---{applicationJSON['id']
-      }---
-      {<li>{//applicationJSON.id
-      }</li>
-      }
+
+      <li>{application && application.id}</li>
+      <li>{application && application.firstName}</li>
+      <li>{application && application.lastName}</li>
       <Box w="full" height="500px" overflowY={"auto"}>
         {applicationContent &&
           Object.getOwnPropertyNames(applicationContent).map((item) => {
