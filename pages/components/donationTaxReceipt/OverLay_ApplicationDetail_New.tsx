@@ -8,7 +8,10 @@ export default function OverLay_ApplicationDetail_New({
   return (
     <div>
       OverLay_ApplicationDetail_New
-      {JSON.stringify(application)}4444
+      <li>{application.id}</li>
+      <li>{application.firstName}</li>
+      <li>{application.lastName}</li>
+      <li>{application.phone}</li>
       <Box w="full" height="500px" overflowY={"auto"}>
         {applicationContent &&
           Object.getOwnPropertyNames(applicationContent).map((item) => {
