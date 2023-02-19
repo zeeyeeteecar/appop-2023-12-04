@@ -8,7 +8,7 @@ export default function OverLay_ApplicationDetail_New({
   return (
     <div>
       OverLay_ApplicationDetail_New
-      <li>{application.id}</li>
+      <li>{application.id?application.id:"N/A"}</li>
       <li>{application.firstName}</li>
       <li>{application.lastName}</li>
       <li>{application.phone}</li>
