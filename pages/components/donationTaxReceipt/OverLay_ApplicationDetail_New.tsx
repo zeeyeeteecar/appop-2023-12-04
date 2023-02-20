@@ -15,7 +15,7 @@ export default function OverLay_ApplicationDetail_New(props) {
   return (
     <div>
       OverLay_ApplicationDetail_New
-      <li>{applicationJSON["firstName"]}==</li>
+      <li>{applicationJSON}==</li>
       <li>{application && application.firstName}</li>
       <li>{application && application.lastName}</li>
       <li>{newApplication.applicationId}</li>
