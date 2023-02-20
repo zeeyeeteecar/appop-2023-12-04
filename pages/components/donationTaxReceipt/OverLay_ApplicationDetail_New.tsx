@@ -17,8 +17,7 @@ export default function OverLay_ApplicationDetail_New(props) {
       OverLay_ApplicationDetail_New
       <li>{applicationJSON}==</li>
       <li>{application && application.firstName}</li>
-      <li>{application && application.lastName}</li>
-      <li>{newApplication.applicationId}</li>
+      <li>{application && application.newApplication.applicationId}</li>
       <Box w="full" height="500px" overflowY={"auto"} borderWidth={2}>
         {applicationContent &&
           Object.getOwnPropertyNames(applicationContent).map((item) => {
