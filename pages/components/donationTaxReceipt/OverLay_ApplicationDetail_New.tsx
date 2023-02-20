@@ -1,20 +1,25 @@
 import React from "react";
 import { Text, Input, Box } from "@chakra-ui/react";
 
-export default function OverLay_ApplicationDetail_New({
-  application,
-  applicationContent,
-}) {
- 
+export default function OverLay_ApplicationDetail_New(props) {
+  // {
+  //   application,
+  //   applicationContent,
+  // }
+  const { application, applicationContent } = props;
+
+  const applicationJSON = JSON.stringify(application);
+  const application_1 = application && application;
+  const newApplication = application && application.newApplication;
 
   return (
     <div>
       OverLay_ApplicationDetail_New
-
-      <li>{application && application.id}</li>
+      <li>{applicationJSON["firstName"]}==</li>
       <li>{application && application.firstName}</li>
       <li>{application && application.lastName}</li>
-      <Box w="full" height="500px" overflowY={"auto"}>
+      <li>{newApplication.applicationId}</li>
+      <Box w="full" height="500px" overflowY={"auto"} borderWidth={2}>
         {applicationContent &&
           Object.getOwnPropertyNames(applicationContent).map((item) => {
             return (
