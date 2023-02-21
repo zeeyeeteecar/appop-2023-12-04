@@ -387,9 +387,10 @@ function OverLay_ApplicationDetail_1({ application }) {
           <ModalBody >
             <Box>
               <Suspense fallback={<div>Loading...</div>}>
-                <Component application={application}
-                  applicationContent={
-                    new_renewal_replacement().applicationContent
+                <Component 
+                application={application}
+                permit={application.permit}
+                  applicationContent={new_renewal_replacement().applicationContent
                   }
                 />
               </Suspense>

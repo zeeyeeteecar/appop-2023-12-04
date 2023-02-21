@@ -102,7 +102,7 @@ export default async function handle(req: any, res: any) {
       createdAt: true,
 
       permit: {
-        select: { rcdPermitId: true, expiryDate: true },
+        select: { rcdPermitId: true, expiryDate: true, active:true },
       },
       applicant: { select: { dateOfBirth: true, id: true } },
       applicationProcessing: { select: { status: true } },
