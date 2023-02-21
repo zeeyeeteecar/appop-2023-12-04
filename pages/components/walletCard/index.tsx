@@ -14,6 +14,10 @@ import WalletCard_Proc_Cmpl from "./WalletCard_Proc_Cmpl";
 import SideBar from "../common/SideBar";
 
 export default function index() {
+
+  const tabInfo = {
+    tabTitle
+  }
   return (
     <HStack width={"100%"} h="100vh" borderWidth={0} bgColor="">
       <SideBar />
@@ -28,9 +32,10 @@ export default function index() {
           <TabList>
             <Tab>Completed</Tab>
             <Tab>In Processing</Tab>
+            <Tab>By Selection</Tab>
           </TabList>
           <TabPanels>
-            <TabPanel>
+            <TabPanel textAlign={"center"}>
               <WalletCard_Proc_Cmpl
                 apiUrl={"/api/walletCard/waletCard_Completed_find"}
               />
@@ -40,6 +45,12 @@ export default function index() {
                 apiUrl={"/api/walletCard/walletCard_Processing_find"}
               />
             </TabPanel>
+            <TabPanel textAlign={"center"}>
+              <WalletCard_Proc_Cmpl
+                apiUrl={"/api/walletCard/walletCard_Processing_find"}
+              />
+            </TabPanel>
+            
           </TabPanels>
         </Tabs>
       </VStack>
