@@ -16,7 +16,7 @@ import SideBar from "../common/SideBar";
 export default function index() {
 
   const tabInfo = {
-    tabTitle
+    
   }
   return (
     <HStack width={"100%"} h="100vh" borderWidth={0} bgColor="">
