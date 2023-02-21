@@ -16,7 +16,7 @@ export default function OverLay_ApplicationDetail_New(props) {
     applicationJSON_array: string[],
     itemTitle: string
   ) => {
-    return applicationJSON_array.map((x, key) => {
+    return applicationJSON_array && applicationJSON_array.map((x, key) => {
       const itemName = x.split(":")[0];
       const itemValue = x.split(":")[1];
 
