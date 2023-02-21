@@ -381,7 +381,7 @@ function OverLay_ApplicationDetail_1({ application }) {
         <ModalOverlay />
         <ModalContent borderWidth={0} maxW="1000px" maxH="700px" >
           <ModalHeader borderWidth={0}>
-            Modal Title
+            {new_renewal_replacement().componentName}
           </ModalHeader>
           <ModalCloseButton  />
           <ModalBody >
@@ -389,6 +389,7 @@ function OverLay_ApplicationDetail_1({ application }) {
               <Suspense fallback={<div>Loading...</div>}>
                 <Component 
                 application={application}
+                applicant={application.applicant}
                 permit={application.permit}
                   applicationContent={new_renewal_replacement().applicationContent
                   }
