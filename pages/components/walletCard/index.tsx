@@ -14,10 +14,20 @@ import WalletCard_Proc_Cmpl from "./WalletCard_Proc_Cmpl";
 import SideBar from "../common/SideBar";
 
 export default function index() {
-
-  const tabInfo = {
-    
-  }
+  const tabInfo = [
+    {
+      tabTitle: "Completed",
+      tabUrl: "/api/walletCard/waletCard_Completed_find",
+    },
+    {
+      tabTitle: "In Processing",
+      tabUrl: "/api/walletCard/walletCard_Processing_find",
+    },
+    {
+      tabTitle: "By Selection",
+      tabUrl: "/api/walletCard/walletCard_Processing_find",
+    },
+  ];
   return (
     <HStack width={"100%"} h="100vh" borderWidth={0} bgColor="">
       <SideBar />
@@ -27,30 +37,28 @@ export default function index() {
           colorScheme="red"
           width={"100%"}
           borderWidth={0}
+          
           h={"100%"}
         >
-          <TabList>
-            <Tab>Completed</Tab>
-            <Tab>In Processing</Tab>
-            <Tab>By Selection</Tab>
+          <TabList fontWeight={"bold"}>
+            {tabInfo.map((item) => {
+              return (
+                <>
+                  <Tab>{item.tabTitle}</Tab>
+                </>
+              );
+            })}
           </TabList>
-          <TabPanels>
-            <TabPanel textAlign={"center"}>
-              <WalletCard_Proc_Cmpl
-                apiUrl={"/api/walletCard/waletCard_Completed_find"}
-              />
-            </TabPanel>
-            <TabPanel textAlign={"center"}>
-              <WalletCard_Proc_Cmpl
-                apiUrl={"/api/walletCard/walletCard_Processing_find"}
-              />
-            </TabPanel>
-            <TabPanel textAlign={"center"}>
-              <WalletCard_Proc_Cmpl
-                apiUrl={"/api/walletCard/walletCard_Processing_find"}
-              />
-            </TabPanel>
-            
+          <TabPanels >
+            {tabInfo.map((item, key) => {
+              return (
+                <>
+                  <TabPanel key={key} textAlign={"center"}>
+                    <WalletCard_Proc_Cmpl apiUrl={item.tabUrl} />
+                  </TabPanel>
+                </>
+              );
+            })}
           </TabPanels>
         </Tabs>
       </VStack>

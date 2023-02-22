@@ -22,6 +22,7 @@ import {
 } from "@chakra-ui/react";
 import GeneratePPTaxReceipt from "./GeneratePPTaxReceipt";
 import { ArrowUpDownIcon, ExternalLinkIcon } from "@chakra-ui/icons";
+
 //import OverLay_ApplicationDetail from "./OverLay_ApplicationDetail";
 
 export default function DonationList({ fetchData, setFetchData, handle_sort }) {
@@ -299,7 +300,7 @@ function loadComponent(name: string) {
   const Component = React.lazy(
     () => import(`./OverLay_ApplicationDetail_${name}.tsx`)
   );
-  console.log(`./OverLay_ApplicationDetail_${name}.tsx`);
+  //console.log(`./OverLay_ApplicationDetail_${name}.tsx`);
   return Component;
 }
 
@@ -371,38 +372,33 @@ function OverLay_ApplicationDetail_1({ application }) {
         />
       </HStack>
 
-      <Modal 
+      <Modal
         isCentered
         onClose={onClose}
         isOpen={isOpen}
         motionPreset="slideInBottom"
-        
       >
         <ModalOverlay />
-        <ModalContent borderWidth={0} maxW="1000px" maxH="700px" >
+        <ModalContent borderWidth={0} maxW="1200px" maxH="750px" >
           <ModalHeader borderWidth={0}>
             {new_renewal_replacement().componentName}
           </ModalHeader>
-          <ModalCloseButton  />
-          <ModalBody >
+          <ModalCloseButton />
+          <ModalBody>
             <Box>
               <Suspense fallback={<div>Loading...</div>}>
-                <Component 
-                application={application}
-                applicant={application.applicant}
-                permit={application.permit}
-                  applicationContent={new_renewal_replacement().applicationContent
+                <Component
+                  application={application}
+                  applicant={application.applicant}
+                  MedicalInformation={application.applicant.MedicalInformation}
+                  permit={application.permit}
+                  applicationContent={
+                    new_renewal_replacement().applicationContent
                   }
                 />
               </Suspense>
             </Box>
           </ModalBody>
-          <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
-              Close
-            </Button>
-            
-          </ModalFooter>
         </ModalContent>
       </Modal>
     </>

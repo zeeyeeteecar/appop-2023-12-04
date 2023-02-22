@@ -19,6 +19,7 @@
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@prisma/client": "^4.9.0",
+    "@react-google-maps/api": "^2.18.1",
     "chakra-dayzed-datepicker": "^0.2.6",
     "date-fns": "^2.29.3",
     "dayzed": "^3.2.3",

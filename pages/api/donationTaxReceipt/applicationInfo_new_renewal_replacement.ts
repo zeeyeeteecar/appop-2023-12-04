@@ -58,9 +58,20 @@ export default async function handle(req: any, res: any) {
       permit: {
         select: { rcdPermitId: true, expiryDate: true },
       },
-      applicant: { select: { dateOfBirth: true, id: true } },
+
+      applicant: {
+        select: {
+          dateOfBirth: true,
+          id: true,
+          gender: true,
+          medicalInformation: {
+            select: { disability: true, patientCondition: true },
+          },
+        },
+      },
+
       applicationProcessing: { select: { status: true } },
-      
+
       newApplication: {},
       renewalApplication: {},
       replacementApplication: {},

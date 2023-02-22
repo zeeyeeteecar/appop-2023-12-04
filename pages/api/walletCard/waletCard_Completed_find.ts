@@ -52,7 +52,7 @@ export default async function handle(req: any, res: any) {
       applicant: { select: { dateOfBirth: true,id:true } },
     },
     orderBy:{id:"desc"},
-    take:200,
+    take:30,
 
   });
 

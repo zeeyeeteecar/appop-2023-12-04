@@ -17,7 +17,7 @@ import {
 export default function SpinnerOverlay({ fetchData, setFetchData }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const fetchData_ArrayOrNot = Array.isArray(fetchData)?fetchData[0]:fetchData
+  const fetchData_ArrayOrNot = (Array.isArray(fetchData))?fetchData[0]:fetchData
 
   const spinnerOverlay = () => {
     return (
