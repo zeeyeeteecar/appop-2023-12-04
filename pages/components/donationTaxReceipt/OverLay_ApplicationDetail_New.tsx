@@ -319,10 +319,7 @@ export default function OverLay_ApplicationDetail_New(props) {
 
               <Text fontWeight={"bold"}>Shipping Address</Text>
               <Text>
-                {application &&
-                application.shippingAddressSameAsHomeAddress
-                  ? application.addressLine1
-                  : application.shippingAddressLine1?application.shippingAddressLine1:""}
+                {}
               </Text>
               <Text>
                 {application && application.shippingAddressSameAsHomeAddress
@@ -380,9 +377,11 @@ export default function OverLay_ApplicationDetail_New(props) {
                           <Box w="100px"># {item.rcdPermitId}</Box>
                           <Box
                             textAlign={"center"}
-                            w="100px"
                             rounded={"full"}
                             bgColor="yellow.200"
+                            w={"100px"}
+                            h={"20px"}
+                            fontSize={"14px"}
                           >
                             {item.expiryDate.substring(0, 10)}
                           </Box>
@@ -392,7 +391,10 @@ export default function OverLay_ApplicationDetail_New(props) {
                             color={"green"}
                             bgColor="green.100"
                             w={"100px"}
+                            h={"20px"}
+                            fontSize={"15px"}
                             textAlign={"center"}
+                            verticalAlign={"top"}
                           >
                             {permit && permit.active ? "Active" : "Inactive"}
                           </Box>
