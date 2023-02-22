@@ -319,10 +319,10 @@ export default function OverLay_ApplicationDetail_New(props) {
 
               <Text fontWeight={"bold"}>Shipping Address</Text>
               <Text>
-                {application.shippingAddressLine1 &&
+                {application &&
                 application.shippingAddressSameAsHomeAddress
                   ? application.addressLine1
-                  : application.shippingAddressLine1}
+                  : application.shippingAddressLine1?application.shippingAddressLine1:""}
               </Text>
               <Text>
                 {application && application.shippingAddressSameAsHomeAddress
