@@ -216,7 +216,13 @@ export default function OverLay_ApplicationDetail_New(props) {
               </Text>
 
               <Text>
-                Phone: {applicationContent && applicationContent.physicianPhone.slice(0,3) +"-" +applicationContent.physicianPhone.slice(3,6) +"-" +applicationContent.physicianPhone.slice(6)}{" "}
+                Phone:{" "}
+                {applicationContent &&
+                  applicationContent.physicianPhone.slice(0, 3) +
+                    "-" +
+                    applicationContent.physicianPhone.slice(3, 6) +
+                    "-" +
+                    applicationContent.physicianPhone.slice(6)}{" "}
               </Text>
 
               <Text>
@@ -313,7 +319,8 @@ export default function OverLay_ApplicationDetail_New(props) {
 
               <Text fontWeight={"bold"}>Shipping Address</Text>
               <Text>
-                {application && application.shippingAddressSameAsHomeAddress
+                {application.shippingAddressLine1 &&
+                application.shippingAddressSameAsHomeAddress
                   ? application.addressLine1
                   : application.shippingAddressLine1}
               </Text>
@@ -380,7 +387,7 @@ export default function OverLay_ApplicationDetail_New(props) {
                             {item.expiryDate.substring(0, 10)}
                           </Box>
                           <Box
-marginLeft={"20px"}
+                            marginLeft={"20px"}
                             rounded={"full"}
                             color={"green"}
                             bgColor="green.100"
@@ -389,7 +396,6 @@ marginLeft={"20px"}
                           >
                             {permit && permit.active ? "Active" : "Inactive"}
                           </Box>
-
                         </Flex>
                       </>
                     );
