@@ -325,8 +325,8 @@ export default function OverLay_ApplicationDetail_New(props) {
               </Text>
               <Text>
                 {application && application.shippingAddressSameAsHomeAddress
-                  ? application && application.city
-                  : application && application.shippingCity}{" "}
+                  ? (application && application.city)
+                  : (application && application.shippingCity)}{" "}
                 {application && application.shippingAddressSameAsHomeAddress
                   ? application && application.province
                   : application && application.shippingProvince}{" "}
