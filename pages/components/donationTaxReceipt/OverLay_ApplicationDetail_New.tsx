@@ -319,24 +319,24 @@ export default function OverLay_ApplicationDetail_New(props) {
 
               <Text fontWeight={"bold"}>Shipping Address</Text>
               <Text>
-                {application && application.shippingAddressSameAsHomeAddress?
-                 application.addressLine1:(application && application.shippingAddressLine1 )
-                }
+                {application && application.shippingAddressSameAsHomeAddress
+                  ? application && application.addressLine1
+                  : application && application.shippingAddressLine1}
               </Text>
               <Text>
                 {application && application.shippingAddressSameAsHomeAddress
-                  ? application.city
-                  : application.shippingCity}{" "}
+                  ? application && application.city
+                  : application && application.shippingCity}{" "}
                 {application && application.shippingAddressSameAsHomeAddress
-                  ? application.province
-                  : application.shippingProvince}{" "}
+                  ? application && application.province
+                  : application && application.shippingProvince}{" "}
                 {application && application.shippingAddressSameAsHomeAddress
-                  ? application.country
-                  : application.shippingCountry}
+                  ? application && application.country
+                  : application && application.shippingCountry}
                 {", "}
                 {application && application.shippingAddressSameAsHomeAddress
-                  ? application.postalCode
-                  : application.shippingPostalCode}{" "}
+                  ? application && application.postalCode
+                  : application && application.shippingPostalCode}{" "}
               </Text>
 
               <Center height="20px" w={"90%"}>
@@ -346,23 +346,23 @@ export default function OverLay_ApplicationDetail_New(props) {
               <Text fontWeight={"bold"}>Billing Address</Text>
               <Text>
                 {application && application.billingAddressSameAsHomeAddress
-                  ? application.addressLine1
-                  : application.billingAddressLine1}
+                  ? application && application.addressLine1
+                  : application && application.billingAddressLine1}
               </Text>
               <Text>
                 {application && application.billingAddressSameAsHomeAddress
-                  ? application.city
-                  : application.billingCity}{" "}
+                  ? application && application.city
+                  : application && application.billingCity}{" "}
                 {application && application.billingAddressSameAsHomeAddress
-                  ? application.province
-                  : application.billingProvince}{" "}
+                  ? application && application.province
+                  : application && application.billingProvince}{" "}
                 {application && application.billingAddressSameAsHomeAddress
-                  ? application.country
-                  : application.billingCountry}
+                  ? application && application.country
+                  : application && application.billingCountry}
                 {", "}
                 {application && application.billingAddressSameAsHomeAddress
-                  ? application.postalCode
-                  : application.billingPostalCode}{" "}
+                  ? application && application.postalCode
+                  : application && application.billingPostalCode}{" "}
               </Text>
 
               <Center height="20px" w={"90%"}>
@@ -375,32 +375,34 @@ export default function OverLay_ApplicationDetail_New(props) {
                   application.applicant.permits.map((item) => {
                     return (
                       <>
-                        <Flex>
-                          <Box w="100px"># {item.rcdPermitId}</Box>
-                          <Box
-                            textAlign={"center"}
+                        <HStack>
+                          <Text w="100px"># {item.rcdPermitId}</Text>
+                          <Text
                             rounded={"full"}
+                            color={"brown"}
                             bgColor="yellow.200"
                             w={"100px"}
-                            h={"20px"}
-                            fontSize={"14px"}
+                            h={"18px"}
+                            fontSize={12}
+                            fontWeight={"bold"}
+                            textAlign={"center"}
                           >
                             {item.expiryDate.substring(0, 10)}
-                          </Box>
-                          <Box
-                            marginLeft={"20px"}
+                          </Text>
+                          <Text
                             rounded={"full"}
                             color={"green"}
                             bgColor="green.100"
-                            w={"100px"}
-                            h={"20px"}
-                            fontSize={"15px"}
+                            w={"70px"}
+                            h={"18px"}
+                            fontSize={12}
+                            fontWeight={"bold"}
                             textAlign={"center"}
-                            verticalAlign={"top"}
+                            marginLeft={"20px"}
                           >
-                            {permit && permit.active ? "Active" : "Inactive"}
-                          </Box>
-                        </Flex>
+                            {permit && permit.active ? "ACTIVE" : "Inactive"}
+                          </Text>
+                        </HStack>
                       </>
                     );
                   })}
