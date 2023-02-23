@@ -1,16 +1,12 @@
 import React, { Suspense } from "react";
 import {
   Center,
+  Avatar,
   VStack,
   HStack,
   Text,
   Input,
   Box,
-  Radio,
-  RadioGroup,
-  Checkbox,
-  CheckboxGroup,
-  Button,
   Modal,
   ModalOverlay,
   ModalContent,
@@ -43,7 +39,7 @@ export default function DonationList({ fetchData, setFetchData, handle_sort }) {
     { title: "Status", fieldName: "applicationProcessing.status", w: "80px" },
     { title: "Type", fieldName: "type", w: "80px" },
     { title: "PP#", fieldName: "permit.rcdPermitId", w: "80px" },
-    // { title: "User #", fieldName: "id", w: "80px" },
+    { title: "Avatar", fieldName: "id", w: "60px" },
     // { title: "F Name", fieldName: "firstName", w: "150px" },
     { title: "User Name", fieldName: "lastName", w: "200px" },
     { title: "phone", fieldName: "phone", w: "150px" },
@@ -69,7 +65,7 @@ export default function DonationList({ fetchData, setFetchData, handle_sort }) {
               <>
                 <HStack w={item.w} spacing={3} borderWidth={0}>
                   <Box borderWidth={0}>
-                    <ArrowUpDownIcon
+                    {/* <ArrowUpDownIcon
                       id={item.fieldName}
                       color={"gray.300"}
                       w="12px"
@@ -79,7 +75,7 @@ export default function DonationList({ fetchData, setFetchData, handle_sort }) {
                         color: "black",
                         cursor: "pointer",
                       }}
-                    />
+                    /> */}
                   </Box>
                   <Text borderWidth={0} fontWeight={"semibold"} align="center">
                     {item.title}
@@ -232,7 +228,12 @@ export default function DonationList({ fetchData, setFetchData, handle_sort }) {
                     (application.permit ? application.permit.rcdPermitId : "")}
                 </Text>
 
-                
+                <Box  borderWidth={0} minWidth={"70px"} margin={"30px"}>
+                <Avatar
+                  name={application.firstName + " " + application.lastName}
+                  src={randomAvatarLink()}
+                />
+                </Box>
                 <Box  borderWidth={0} minWidth={"200px"} margin={"30px"}>
                   <Text  borderWidth={0} fontWeight={"semibold"}>
                     {application.firstName} {application.lastName}
@@ -406,3 +407,11 @@ function OverLay_ApplicationDetail_1({ application }) {
     </>
   );
 }
+
+
+const randomAvatarLink = () => {
+  const url =
+    "https://api.dicebear.com/5.x/adventurer/svg?seed=";
+  const randomNumber = Math.floor(Math.random() * 100) + 1;
+  return url + randomNumber.toString() ;
+};

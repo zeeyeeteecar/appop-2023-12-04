@@ -48,25 +48,7 @@ export default function OverLay_ApplicationDetail_New(props) {
     (application && application.postalCode);
 
   const applicationJSON = JSON.stringify(application);
-  // const applicationJSON_array =
-  //   applicationJSON && applicationJSON.replace(/{|}|"/g, ``).split(",");
 
-  // const applicationItem = (
-  //   applicationJSON_array: string[],
-  //   itemTitle: string
-  // ) => {
-  //   return applicationJSON_array && applicationJSON_array.map((x, key) => {
-  //     const itemName = x.split(":")[0];
-  //     const itemValue = x.split(":")[1];
-
-  //     if (itemTitle === itemName) {
-  //       return itemValue;
-  //     }
-  //   });
-  // };
-
-  // const application_1 = application && application;
-  // const newApplication = application && application.newApplication;
 
   return (
     <VStack maxW="100%" h="600px" borderWidth={0}>
