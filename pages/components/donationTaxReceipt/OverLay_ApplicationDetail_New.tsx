@@ -77,8 +77,9 @@ export default function OverLay_ApplicationDetail_New(props) {
             <Center height="20px" w={"80%"}>
               
             </Center>
-            <Text fontWeight={"light"}> Current APP #:</Text>
+            
             <HStack w="100%" m={0} borderWidth={0}>
+            <Text fontWeight={"light"}> Current APP #:</Text>
               <Text> {permit && permit.rcdPermitId} </Text>
               <Text
                 rounded={"full"}

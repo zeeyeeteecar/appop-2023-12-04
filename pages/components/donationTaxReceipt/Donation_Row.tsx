@@ -189,7 +189,7 @@ export default function DonationList({ fetchData, setFetchData, handle_sort }) {
                 _hover={{
                   background: "gray.50",
                   color: "black",
-                  cursor:"pointer",
+                  cursor: "pointer",
                 }}
               >
                 <Text
@@ -228,17 +228,17 @@ export default function DonationList({ fetchData, setFetchData, handle_sort }) {
                     (application.permit ? application.permit.rcdPermitId : "")}
                 </Text>
 
-                <Box  borderWidth={0} minWidth={"70px"} margin={"30px"}>
-                <Avatar
-                  name={application.firstName + " " + application.lastName}
-                  src={randomAvatarLink()}
-                />
+                <Box borderWidth={0} minWidth={"70px"} margin={"30px"}>
+                  <Avatar
+                    name={application.firstName + " " + application.lastName}
+                    src={randomAvatarLink()}
+                  />
                 </Box>
-                <Box  borderWidth={0} minWidth={"200px"} margin={"30px"}>
-                  <Text  borderWidth={0} fontWeight={"semibold"}>
+                <Box borderWidth={0} minWidth={"200px"} margin={"30px"}>
+                  <Text borderWidth={0} fontWeight={"semibold"}>
                     {application.firstName} {application.lastName}
                   </Text>
-                  <Text  borderWidth={0} color={"green.300"}>
+                  <Text borderWidth={0} color={"green.300"}>
                     user # {application.applicantId}
                   </Text>
                 </Box>
@@ -250,10 +250,8 @@ export default function DonationList({ fetchData, setFetchData, handle_sort }) {
                     {application.addressLine1}
                   </Text>
                   <Text borderWidth={0}>
-                    {application.city}{" "}
-
-                    {application.province}{" , "}
-
+                    {application.city} {application.province}
+                    {" , "}
                     {application.postalCode}
                   </Text>
                 </Box>
@@ -408,10 +406,16 @@ function OverLay_ApplicationDetail_1({ application }) {
   );
 }
 
+const randomAvatarLink_1 = () => {
+  const url = "https://api.dicebear.com/5.x/adventurer/svg?seed=";
+
+  const randomNumber = Math.floor(Math.random() * 100) + 1;
+  return url + randomNumber.toString();
+};
 
 const randomAvatarLink = () => {
-  const url =
-    "https://api.dicebear.com/5.x/adventurer/svg?seed=";
+  const url = "https://avatars.dicebear.com/api/croodles/";
+
   const randomNumber = Math.floor(Math.random() * 100) + 1;
-  return url + randomNumber.toString() ;
+  return url + randomNumber.toString() + ".svg";
 };
