@@ -40,17 +40,17 @@ export default function DonationList({ fetchData, setFetchData, handle_sort }) {
   sum_total = sum_fee + sum_donation;
 
   const rowTitle = [
-    { title: "Status", fieldName: "applicationProcessing.status", w: "70px" },
-    { title: "Type", fieldName: "type", w: "70px" },
+    { title: "Status", fieldName: "applicationProcessing.status", w: "80px" },
+    { title: "Type", fieldName: "type", w: "80px" },
     { title: "PP#", fieldName: "permit.rcdPermitId", w: "80px" },
-    { title: "User #", fieldName: "id", w: "80px" },
-    { title: "F Name", fieldName: "firstName", w: "150px" },
-    { title: "L Name", fieldName: "lastName", w: "110px" },
-    { title: "phone", fieldName: "phone", w: "120px" },
-    { title: "address", fieldName: "addressLine1", w: "220px" },
-    { title: "city", fieldName: "city", w: "100px" },
-    { title: "prov", fieldName: "province", w: "50px" },
-    { title: "postal", fieldName: "postalCode", w: "80px" },
+    // { title: "User #", fieldName: "id", w: "80px" },
+    // { title: "F Name", fieldName: "firstName", w: "150px" },
+    { title: "User Name", fieldName: "lastName", w: "200px" },
+    { title: "phone", fieldName: "phone", w: "150px" },
+    { title: "address", fieldName: "addressLine1", w: "250px" },
+    // { title: "city", fieldName: "city", w: "100px" },
+    // { title: "prov", fieldName: "province", w: "50px" },
+    // { title: "postal", fieldName: "postalCode", w: "80px" },
   ];
 
   return (
@@ -67,7 +67,7 @@ export default function DonationList({ fetchData, setFetchData, handle_sort }) {
           {rowTitle.map((item, key) => {
             return (
               <>
-                <HStack w={item.w} spacing={1} borderWidth={0}>
+                <HStack w={item.w} spacing={3} borderWidth={0}>
                   <Box borderWidth={0}>
                     <ArrowUpDownIcon
                       id={item.fieldName}
@@ -183,15 +183,17 @@ export default function DonationList({ fetchData, setFetchData, handle_sort }) {
             return (
               <HStack
                 key={index}
-                h="50px"
+                minHeight={"70px"}
                 spacing={2}
+                paddingLeft={"20px"}
+                borderWidth={0}
+                borderBottomWidth={1}
+                borderBottomColor="gray.100"
                 color="gray.500"
-                //bgColor="magenta.100"
                 _hover={{
                   background: "gray.50",
                   color: "black",
-                  //shadow: "md",
-                  cursor: "pointer",
+                  cursor:"pointer",
                 }}
               >
                 <Text
@@ -230,30 +232,30 @@ export default function DonationList({ fetchData, setFetchData, handle_sort }) {
                     (application.permit ? application.permit.rcdPermitId : "")}
                 </Text>
 
-                <Text w={"80px"} borderWidth={0} align="center">
-                  {application.applicantId}
-                </Text>
+                
+                <Box  borderWidth={0} minWidth={"200px"} margin={"30px"}>
+                  <Text  borderWidth={0} fontWeight={"semibold"}>
+                    {application.firstName} {application.lastName}
+                  </Text>
+                  <Text  borderWidth={0} color={"green.300"}>
+                    user # {application.applicantId}
+                  </Text>
+                </Box>
                 <Text w={"150px"} borderWidth={0}>
-                  {application.firstName}
-                </Text>
-                <Text w={"110px"} borderWidth={0}>
-                  {application.lastName}
-                </Text>
-                <Text w={"120px"} borderWidth={0}>
                   {phone}
                 </Text>
-                <Text w={"220px"} borderWidth={0}>
-                  {application.addressLine1}
-                </Text>
-                <Text w={"100px"} borderWidth={0}>
-                  {application.city}
-                </Text>
-                <Text w={"50px"} borderWidth={0} align="center">
-                  {application.province}
-                </Text>
-                <Text w={"80px"} borderWidth={0} align="center">
-                  {application.postalCode}
-                </Text>
+                <Box>
+                  <Text w={"250px"} borderWidth={0}>
+                    {application.addressLine1}
+                  </Text>
+                  <Text borderWidth={0}>
+                    {application.city}{" "}
+
+                    {application.province}{" , "}
+
+                    {application.postalCode}
+                  </Text>
+                </Box>
                 <Text
                   w={"90px"}
                   borderWidth={0}
@@ -348,7 +350,7 @@ function OverLay_ApplicationDetail_1({ application }) {
     <>
       <HStack
         w="70px"
-        borderWidth={1}
+        borderWidth={0}
         rounded={"full"}
         fontWeight={"semibold"}
         fontSize="12px"
@@ -379,7 +381,7 @@ function OverLay_ApplicationDetail_1({ application }) {
         motionPreset="slideInBottom"
       >
         <ModalOverlay />
-        <ModalContent borderWidth={0} maxW="1200px" maxH="750px" >
+        <ModalContent borderWidth={0} maxW="1200px" maxH="750px">
           <ModalHeader borderWidth={0}>
             {new_renewal_replacement().componentName}
           </ModalHeader>

@@ -65,7 +65,7 @@ export default function Index_DoctorInfo() {
       <SpinnerOverlay fetchData={fetchData} setFetchData={setFetchData} />
       <SideBar />
       <VStack width={"100%"} height="100vh" borderWidth={0} p={"0px"} >
-        <HStack borderWidth={"0px"} direction="row" w="100%" spacing={5}>
+        <HStack borderWidth={"0px"} direction="row" w="100%" spacing={0}>
           <Box  borderWidth={0} w={"300px"} alignItems={"center"} alignContent={"center"} textAlign="center" >
             <Text fontSize={30}>Doctor Info</Text>
           </Box>
@@ -81,7 +81,7 @@ export default function Index_DoctorInfo() {
         <VStack
           borderWidth={"0px"}
           spacing={0}
-          margin={"20px"}
+          margin={"0px"}
           //direction="row"
           align="stretch"
           w="full"

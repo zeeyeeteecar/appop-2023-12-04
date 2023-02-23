@@ -91,8 +91,21 @@ export default function OverLay_ApplicationDetail_New(props) {
               <Text> {application && application.applicantId}</Text>
             </Flex>
             <HStack w="100%" m={0} borderWidth={0}>
-              <Text fontWeight={"light"}> Most recent APP #:</Text>
+              <Text fontWeight={"light"}> Current APP #:</Text>
               <Text> {permit && permit.rcdPermitId} </Text>
+              <Text
+              rounded={"full"}
+              color={"green"}
+              bgColor="green.100"
+              w={"100px"}
+              h={"18px"}
+              fontSize={12}
+              fontWeight={"bold"}
+              textAlign={"center"}>
+                {application && application.permit.expiryDate.substring(0, 10)}
+              </Text>
+             
+              
               <Text
                 rounded={"full"}
                 color={"green"}
@@ -107,11 +120,47 @@ export default function OverLay_ApplicationDetail_New(props) {
               </Text>
             </HStack>
             <HStack w="100%">
-              <Text fontWeight={"light"}>expiryDate: </Text>
-              <Text>
-                {application && application.permit.expiryDate.substring(0, 10)}
-              </Text>
+              
+              
             </HStack>
+            <Text fontWeight={"light"}> All APP #:</Text>
+            <Text>
+                {application &&
+                  application.applicant.permits.map((item) => {
+                    return (
+                      <>
+                        <HStack>
+                          <Text w="100px"># {item.rcdPermitId}</Text>
+                          <Text
+                            rounded={"full"}
+                            color={"brown"}
+                            bgColor="yellow.200"
+                            w={"100px"}
+                            h={"18px"}
+                            fontSize={12}
+                            fontWeight={"bold"}
+                            textAlign={"center"}
+                          >
+                            {item.expiryDate.substring(0, 10)}
+                          </Text>
+                          <Text
+                            rounded={"full"}
+                            color={"green"}
+                            bgColor="green.100"
+                            w={"70px"}
+                            h={"18px"}
+                            fontSize={12}
+                            fontWeight={"bold"}
+                            textAlign={"center"}
+                            marginLeft={"20px"}
+                          >
+                            {permit && permit.active ? "ACTIVE" : "Inactive"}
+                          </Text>
+                        </HStack>
+                      </>
+                    );
+                  })}
+              </Text>
           </Box>
           <Center height="20px" w={"80%"}>
             <Divider />
@@ -370,43 +419,7 @@ export default function OverLay_ApplicationDetail_New(props) {
               </Center>
 
               <Text fontWeight={"bold"}>PP History</Text>
-              <Text>
-                {application &&
-                  application.applicant.permits.map((item) => {
-                    return (
-                      <>
-                        <HStack>
-                          <Text w="100px"># {item.rcdPermitId}</Text>
-                          <Text
-                            rounded={"full"}
-                            color={"brown"}
-                            bgColor="yellow.200"
-                            w={"100px"}
-                            h={"18px"}
-                            fontSize={12}
-                            fontWeight={"bold"}
-                            textAlign={"center"}
-                          >
-                            {item.expiryDate.substring(0, 10)}
-                          </Text>
-                          <Text
-                            rounded={"full"}
-                            color={"green"}
-                            bgColor="green.100"
-                            w={"70px"}
-                            h={"18px"}
-                            fontSize={12}
-                            fontWeight={"bold"}
-                            textAlign={"center"}
-                            marginLeft={"20px"}
-                          >
-                            {permit && permit.active ? "ACTIVE" : "Inactive"}
-                          </Text>
-                        </HStack>
-                      </>
-                    );
-                  })}
-              </Text>
+              
             </Box>
           </VStack>
           {/* <Box w="full" height="500px" overflowY={"auto"} borderWidth={2}>
