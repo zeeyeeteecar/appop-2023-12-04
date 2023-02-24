@@ -249,17 +249,17 @@ export default function DonationList({ fetchData, setFetchData, handle_sort }) {
                   </Text>
                 </Box>
                 **************************** Phone ********************
-                <Text w={"150px"} borderWidth={0}>
+                <Text w={"130px"} borderWidth={0}>
                   {phone}
                 </Text>
                 **************************** Address 1 ********************
                 <HStack>
                   <Box>
                     <Text w={"200px"} borderWidth={0}>
-                      {application.addressLine1}
+                      {application.addressLine1}  
                     </Text>
                     <Text borderWidth={0}>
-                      {application.city} {application.province}
+                    {application.city}  {application.province}
                       {" , "}
                       {application.postalCode}
                     </Text>

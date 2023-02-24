@@ -88,7 +88,7 @@ export default function Test({ applicationId }:FullName) {
         }}
       >
         <Text p="1px" w={"70px"} borderWidth={0} align={"center"}>
-          {applicationId.toString()}
+          {applicationId}
         </Text>
 
         <ExternalLinkIcon
