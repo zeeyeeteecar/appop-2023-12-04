@@ -1,6 +1,8 @@
 import React, { Suspense } from "react";
+import Link from "next/link";
 import {
   Center,
+  Button,
   Avatar,
   VStack,
   HStack,
@@ -17,13 +19,17 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import GeneratePPTaxReceipt from "./GeneratePPTaxReceipt";
-import { ArrowUpDownIcon, ExternalLinkIcon } from "@chakra-ui/icons";
+import {
+  ArrowUpDownIcon,
+  ExternalLinkIcon,
+  SettingsIcon,
+} from "@chakra-ui/icons";
+import { MdOutlineLocationOn } from "react-icons/md";
+import Test from "./Test";
 
 //import OverLay_ApplicationDetail from "./OverLay_ApplicationDetail";
 
 export default function DonationList({ fetchData, setFetchData, handle_sort }) {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-
   let sum_fee: number = 0;
   let sum_donation: number = 0;
   let sum_total: number = 0;
@@ -209,9 +215,7 @@ export default function DonationList({ fetchData, setFetchData, handle_sort }) {
                 >
                   {application.applicationProcessing.status.substring(0, 5)}
                 </Text>
-
                 <OverLay_ApplicationDetail_1 application={application} />
-
                 <Text
                   rounded={"full"}
                   fontSize="14px"
@@ -227,13 +231,15 @@ export default function DonationList({ fetchData, setFetchData, handle_sort }) {
                     " " +
                     (application.permit ? application.permit.rcdPermitId : "")}
                 </Text>
-
+                **************************** Avatar ********************
                 <Box borderWidth={0} minWidth={"70px"} margin={"30px"}>
                   <Avatar
                     name={application.firstName + " " + application.lastName}
                     src={randomAvatarLink()}
                   />
                 </Box>
+                **************************** F Name, L name, user ID
+                ********************
                 <Box borderWidth={0} minWidth={"200px"} margin={"30px"}>
                   <Text borderWidth={0} fontWeight={"semibold"}>
                     {application.firstName} {application.lastName}
@@ -242,19 +248,51 @@ export default function DonationList({ fetchData, setFetchData, handle_sort }) {
                     user # {application.applicantId}
                   </Text>
                 </Box>
+                **************************** Phone ********************
                 <Text w={"150px"} borderWidth={0}>
                   {phone}
                 </Text>
-                <Box>
-                  <Text w={"250px"} borderWidth={0}>
-                    {application.addressLine1}
-                  </Text>
-                  <Text borderWidth={0}>
-                    {application.city} {application.province}
-                    {" , "}
-                    {application.postalCode}
-                  </Text>
-                </Box>
+                **************************** Address 1 ********************
+                <HStack>
+                  <Box>
+                    <Text w={"200px"} borderWidth={0}>
+                      {application.addressLine1}
+                    </Text>
+                    <Text borderWidth={0}>
+                      {application.city} {application.province}
+                      {" , "}
+                      {application.postalCode}
+                    </Text>
+                    <Text w={"50px"} fontSize="12px" borderWidth={0} color="green.300">
+                      {application.addressLine2}
+                    </Text>
+                  </Box>
+                  <Link
+                    href={
+                      "https://maps.google.com/?q=" +
+                      application.addressLine1 +
+                      " " +
+                      application.city +
+                      " " +
+                      application.province +
+                      " " +
+                      application.postalCode
+                    }
+                    target={"_blank"}
+                  >
+                    <Box
+                      borderWidth={0}
+                      color="lightgray"
+                      _hover={{
+                        color: "red",
+                        cursor: "pointer",
+                      }}
+                    >
+                      <MdOutlineLocationOn fontSize={"25px"} />
+                    </Box>
+                  </Link>
+                </HStack>
+                **************************** Fee, Donation, Total***********
                 <Text
                   w={"90px"}
                   borderWidth={0}
@@ -287,6 +325,7 @@ export default function DonationList({ fetchData, setFetchData, handle_sort }) {
                     donationAmount={application.donationAmount}
                   />
                 </Box>
+                <Test applicationId={application.id} />
               </HStack>
             );
           })}
@@ -368,7 +407,7 @@ function OverLay_ApplicationDetail_1({ application }) {
           {application.type.substring(0, 3)}
         </Text>
         <ExternalLinkIcon
-          color={type_bgclr_clr(application.type).clr + ".300"}
+          color={type_bgclr_clr(application.type).clr + ".500"}
           w="12px"
         />
       </HStack>
@@ -387,7 +426,7 @@ function OverLay_ApplicationDetail_1({ application }) {
           <ModalCloseButton />
           <ModalBody>
             <Box>
-              <Suspense fallback={<div>Loading...</div>}>
+              <React.Suspense fallback={<div>Loading...</div>}>
                 <Component
                   application={application}
                   applicant={application.applicant}
@@ -397,7 +436,7 @@ function OverLay_ApplicationDetail_1({ application }) {
                     new_renewal_replacement().applicationContent
                   }
                 />
-              </Suspense>
+              </React.Suspense>
             </Box>
           </ModalBody>
         </ModalContent>

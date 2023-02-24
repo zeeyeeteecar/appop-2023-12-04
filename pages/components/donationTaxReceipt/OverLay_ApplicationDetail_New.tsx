@@ -19,6 +19,7 @@ import {
   MdAccessibility,
   MdFavoriteBorder,
   MdDragIndicator,
+  MdOutlineLocationOn,
 } from "react-icons/md";
 import GoogleMaps from "./GoogleMaps";
 

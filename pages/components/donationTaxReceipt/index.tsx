@@ -100,9 +100,9 @@ export default function Index_applicationInfo() {
       fetchData.sort((a, b) => (a[fieldName] > b[fieldName] ? 1 : -1))
     );
     //fetchData.map((item, key) => console.log("item[title]", item[key]));
-    console.log("fetchData===fetchData", fetchData);
+    //console.log("fetchData===fetchData", fetchData);
   };
-  console.log("fetchData", fetchData);
+  //console.log("fetchData", fetchData);
 
   function handle_onChange_Processing(e) {
     if (e.target.checked) {
