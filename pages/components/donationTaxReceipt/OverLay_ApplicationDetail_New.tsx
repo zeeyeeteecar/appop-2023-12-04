@@ -82,7 +82,7 @@ export default function OverLay_ApplicationDetail_New(props) {
 
             <HStack w="100%" m={0} borderWidth={0}>
               <Text fontWeight={"light"}> Current APP #:</Text>
-              <Text> {application.permit && application.permit.rcdPermitId} </Text>
+              <Text> {application && application.permit.rcdPermitId} </Text>
               <Text
                 rounded={"full"}
                 color={"green"}
@@ -93,7 +93,7 @@ export default function OverLay_ApplicationDetail_New(props) {
                 fontWeight={"bold"}
                 textAlign={"center"}
               >
-                {application.permit && application.permit.expiryDate.substring(0, 10)}
+                {application && application.permit.expiryDate.substring(0, 10)}
               </Text>
 
               <Text
@@ -106,7 +106,7 @@ export default function OverLay_ApplicationDetail_New(props) {
                 fontWeight={"bold"}
                 textAlign={"center"}
               >
-                {application.permit && application.permit.active
+                {application && application.permit.active
                   ? "ACTIVE"
                   : "Inactive"}
               </Text>
@@ -114,7 +114,7 @@ export default function OverLay_ApplicationDetail_New(props) {
             <HStack w="100%"></HStack>
             <Text fontWeight={"light"}> All APPs #:</Text>
             <Text>
-              {application.applicant &&
+              {application &&
                 application.applicant.permits.map((item) => {
                   return (
                     <>
@@ -167,14 +167,14 @@ export default function OverLay_ApplicationDetail_New(props) {
               <Text fontWeight={"light"}>DoB: </Text>
               <Text>
                 {" "}
-                {application.applicant &&
+                {application &&
                   application.applicant.dateOfBirth.substring(0, 10)}
               </Text>
             </HStack>
 
             <HStack w="100%">
               <Text fontWeight={"light"}>Gender: </Text>
-              <Text>{application.applicant && application.applicant.gender}</Text>{" "}
+              <Text>{application&& application.applicant.gender}</Text>{" "}
             </HStack>
           </Box>
           <Center height="20px" w={"80%"}>
@@ -190,7 +190,7 @@ export default function OverLay_ApplicationDetail_New(props) {
             <Flex w="100%" borderWidth={0}>
               <Text fontWeight={"light"}>Tel: </Text>
               <Text>
-                {application.applicant &&
+                {application &&
                   application.applicant.dateOfBirth.substring(0, 10)}
               </Text>
             </Flex>
@@ -290,14 +290,14 @@ export default function OverLay_ApplicationDetail_New(props) {
               <Text>
                 Disability:{" "}
                 <li>
-                  {application.applicant &&
+                  {application &&
                     application.applicant.medicalInformation.disability}{" "}
                 </li>
               </Text>
               <Text>
                 Certification Date:{" "}
                 <li>
-                  {application.applicant &&
+                  {application &&
                     application.applicant.medicalInformation.disabilityCertificationDate.substring(
                       0,
                       10
@@ -306,7 +306,7 @@ export default function OverLay_ApplicationDetail_New(props) {
               </Text>
               <Text>
                 Condition:{" "}
-                {application.applicant &&
+                {application &&
                   application.applicant.medicalInformation.patientCondition.map(
                     (item) => {
                       return (
