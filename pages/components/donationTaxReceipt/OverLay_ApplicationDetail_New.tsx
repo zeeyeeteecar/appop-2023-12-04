@@ -32,7 +32,7 @@ export default function OverLay_ApplicationDetail_New(props) {
 
   const { application } = props;
 
-  const applicationContent = application.newApplication
+  const applicationContent = (application && application.newApplication)
     ? application.newApplication
     : application.renewalApplication
     ? application.renewalApplication
