@@ -231,13 +231,13 @@ export default function DonationList({ fetchData, setFetchData, handle_sort }) {
                     " " +
                     (application.permit ? application.permit.rcdPermitId : "")}
                 </Text>
-                **************************** Avatar ********************
-                <Box borderWidth={0} minWidth={"70px"} margin={"30px"}>
-                  <Avatar
+                *************************** Avatar ********************
+                <Center borderWidth={0} w="60px">
+                  <Avatar w={"30px"} height={"40px"}
                     name={application.firstName + " " + application.lastName}
                     src={randomAvatarLink()}
                   />
-                </Box>
+                </Center>
                 **************************** F Name, L name, user ID
                 ********************
                 <Box borderWidth={0} minWidth={"200px"} margin={"30px"}>

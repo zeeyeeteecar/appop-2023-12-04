@@ -16,6 +16,7 @@ import {
   ModalBody,
   ModalCloseButton,
   useDisclosure,
+  Spinner,
 } from "@chakra-ui/react";
 import {
   ArrowUpDownIcon,
@@ -23,23 +24,23 @@ import {
   SettingsIcon,
 } from "@chakra-ui/icons";
 
+import Test_OverLay_ApplicationDetail from "./Test_OverLay_ApplicationDetail";
+import OverLay_ApplicationDetail_New from "./OverLay_ApplicationDetail_New"
 interface FullName {
   applicationId: string;
-
 }
 
-export default function Test({ applicationId }:FullName) {
+export default function Test({ applicationId }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const [application_data, setApplication_data] = React.useState();
 
   function handle_ClickTest() {
-    
     //console.log("e.target.value==", applicationID);
 
     const fun_FetchApplicationDetail = async () => {
-      console.log("applicationId==", applicationId);
-      setApplication_data(null);
+      //console.log("applicationId==", applicationId);
+      //setApplication_data(null);
       const body = {
         applicationId: applicationId,
       };
@@ -64,7 +65,7 @@ export default function Test({ applicationId }:FullName) {
   function handle_onOpen(e) {
     onOpen();
     console.log("open:==", e);
-    handle_ClickTest()
+    handle_ClickTest();
   }
 
   return (
@@ -74,7 +75,6 @@ export default function Test({ applicationId }:FullName) {
         h="25px"
         borderWidth={0}
         rounded={"full"}
-        
         paddingX={"5px"}
         //bgColor={type_bgclr_clr(application && application.type).bgclr}
         //color={type_bgclr_clr(application && application.type).clr}
@@ -113,8 +113,34 @@ export default function Test({ applicationId }:FullName) {
           </ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <React.Suspense fallback={<div>Loading...</div>}>
-              <Box>****{application_data?JSON.stringify(application_data):"Loading ..."}</Box>
+            <React.Suspense
+              fallback={
+                <div>
+                  <Spinner color="red.500" />
+                </div>
+              }
+            >
+              <Box>
+                {application_data ? (
+                  //JSON.stringify(application_data)
+                   <Test_OverLay_ApplicationDetail 
+                   application_data={application_data[0]}
+                   />
+                  //  <OverLay_ApplicationDetail_New
+                  //  application_data={application_data[0]}
+                  //  />
+                ) : (
+                  <Center w="100%" h="100px">
+                    <Spinner
+                      thickness="4px"
+                      speed="0.65s"
+                      emptyColor="gray.200"
+                      color="blue.500"
+                      size="xl"
+                    />
+                  </Center>
+                )}
+              </Box>
             </React.Suspense>
           </ModalBody>
         </ModalContent>

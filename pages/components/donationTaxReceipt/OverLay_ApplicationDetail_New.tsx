@@ -23,19 +23,20 @@ import {
 } from "react-icons/md";
 import GoogleMaps from "./GoogleMaps";
 
+
 export default function OverLay_ApplicationDetail_New(props) {
   // {
   //   application,
   //   applicationContent,
   // }
 
-  const {
-    application,
-    applicant,
-    MedicalInformation,
-    permit,
-    applicationContent,
-  } = props;
+  const { application } = props;
+
+  const applicationContent = application.newApplication
+    ? application.newApplication
+    : application.renewalApplication
+    ? application.renewalApplication
+    : application.replacementApplication;
 
   const address: string =
     (application && application.addressLine1) +
@@ -48,8 +49,7 @@ export default function OverLay_ApplicationDetail_New(props) {
     ", " +
     (application && application.postalCode);
 
-  const applicationJSON = JSON.stringify(application);
-
+  //const applicationJSON = JSON.stringify(application);
 
   return (
     <VStack maxW="100%" h="600px" borderWidth={0}>
@@ -72,16 +72,17 @@ export default function OverLay_ApplicationDetail_New(props) {
               </Flex>
               <Flex w="100%" borderWidth={0} margin={0}>
                 <Text fontWeight={"light"}>User ID:</Text>
-                <Text fontWeight={"light"}> {application && application.applicantId}</Text>
+                <Text fontWeight={"light"}>
+                  {" "}
+                  {application && application.applicantId}
+                </Text>
               </Flex>
             </Box>
-            <Center height="20px" w={"80%"}>
-              
-            </Center>
-            
+            <Center height="20px" w={"80%"}></Center>
+
             <HStack w="100%" m={0} borderWidth={0}>
-            <Text fontWeight={"light"}> Current APP #:</Text>
-              <Text> {permit && permit.rcdPermitId} </Text>
+              <Text fontWeight={"light"}> Current APP #:</Text>
+              <Text> {application.permit && application.permit.rcdPermitId} </Text>
               <Text
                 rounded={"full"}
                 color={"green"}
@@ -92,7 +93,7 @@ export default function OverLay_ApplicationDetail_New(props) {
                 fontWeight={"bold"}
                 textAlign={"center"}
               >
-                {application && application.permit.expiryDate.substring(0, 10)}
+                {application.permit && application.permit.expiryDate.substring(0, 10)}
               </Text>
 
               <Text
@@ -105,13 +106,15 @@ export default function OverLay_ApplicationDetail_New(props) {
                 fontWeight={"bold"}
                 textAlign={"center"}
               >
-                {permit && permit.active ? "ACTIVE" : "Inactive"}
+                {application.permit && application.permit.active
+                  ? "ACTIVE"
+                  : "Inactive"}
               </Text>
             </HStack>
             <HStack w="100%"></HStack>
             <Text fontWeight={"light"}> All APPs #:</Text>
             <Text>
-              {application &&
+              {application.applicant &&
                 application.applicant.permits.map((item) => {
                   return (
                     <>
@@ -140,7 +143,9 @@ export default function OverLay_ApplicationDetail_New(props) {
                           textAlign={"center"}
                           marginLeft={"20px"}
                         >
-                          {permit && permit.active ? "ACTIVE" : "Inactive"}
+                          {application && application.permit.active
+                            ? "ACTIVE"
+                            : "Inactive"}
                         </Text>
                       </HStack>
                     </>
@@ -162,14 +167,14 @@ export default function OverLay_ApplicationDetail_New(props) {
               <Text fontWeight={"light"}>DoB: </Text>
               <Text>
                 {" "}
-                {application &&
+                {application.applicant &&
                   application.applicant.dateOfBirth.substring(0, 10)}
               </Text>
             </HStack>
 
             <HStack w="100%">
               <Text fontWeight={"light"}>Gender: </Text>
-              <Text>{application && application.applicant.gender}</Text>{" "}
+              <Text>{application.applicant && application.applicant.gender}</Text>{" "}
             </HStack>
           </Box>
           <Center height="20px" w={"80%"}>
@@ -185,7 +190,7 @@ export default function OverLay_ApplicationDetail_New(props) {
             <Flex w="100%" borderWidth={0}>
               <Text fontWeight={"light"}>Tel: </Text>
               <Text>
-                {application &&
+                {application.applicant &&
                   application.applicant.dateOfBirth.substring(0, 10)}
               </Text>
             </Flex>
@@ -285,14 +290,14 @@ export default function OverLay_ApplicationDetail_New(props) {
               <Text>
                 Disability:{" "}
                 <li>
-                  {application &&
+                  {application.applicant &&
                     application.applicant.medicalInformation.disability}{" "}
                 </li>
               </Text>
               <Text>
                 Certification Date:{" "}
                 <li>
-                  {application &&
+                  {application.applicant &&
                     application.applicant.medicalInformation.disabilityCertificationDate.substring(
                       0,
                       10
@@ -301,7 +306,7 @@ export default function OverLay_ApplicationDetail_New(props) {
               </Text>
               <Text>
                 Condition:{" "}
-                {application &&
+                {application.applicant &&
                   application.applicant.medicalInformation.patientCondition.map(
                     (item) => {
                       return (
@@ -415,16 +420,6 @@ export default function OverLay_ApplicationDetail_New(props) {
                 );
               })}
           </Box> */}
-        </VStack>
-
-        <VStack
-          hidden
-          borderWidth={3}
-          w="500px"
-          height={"500px"}
-          overflowX="auto"
-        >
-          <Text w={"100%"}>{applicationJSON}</Text>
         </VStack>
       </Flex>
     </VStack>
