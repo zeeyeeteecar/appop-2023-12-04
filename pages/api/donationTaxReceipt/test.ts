@@ -11,7 +11,7 @@ export default async function handle(req: any, res: any) {
 
   //const DonationOnly: boolean = searchDonationOnly;
 
-  const result = await prisma.application.findMany({
+  const result = await prisma.application.findUnique({
     //==========applicationProcessing=========
     where: {
       id: Number(applicationId),
@@ -93,12 +93,7 @@ export default async function handle(req: any, res: any) {
       renewalApplication: {},
       replacementApplication: {},
     },
-    orderBy: {
-      // applicationProcessing: {
-      //   status: "desc",
-      // },
-      applicantId: "desc",
-    },
+    
     //take:100,
   });
 
