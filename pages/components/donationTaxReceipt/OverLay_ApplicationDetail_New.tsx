@@ -33,9 +33,9 @@ export default function OverLay_ApplicationDetail_New(props) {
   const { application } = props;
 
   const applicationContent = (application && application.newApplication)
-    ? application.newApplication
+    ? (application && application.newApplication)
     : application.renewalApplication
-    ? application.renewalApplication
+    ? (application && application.renewalApplication)
     : application.replacementApplication;
 
   const address: string =
