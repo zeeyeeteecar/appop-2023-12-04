@@ -35,7 +35,7 @@ import { ExternalLinkIcon } from "@chakra-ui/icons";
 export default function OverLay_showDetails({ application_data }) {
   return (
     <>
-      <li>{application_data.id}</li>
+      <li>{application_data&&application_data.id}</li>
       <li>{JSON.stringify(application_data)}</li>
     </>
   );
