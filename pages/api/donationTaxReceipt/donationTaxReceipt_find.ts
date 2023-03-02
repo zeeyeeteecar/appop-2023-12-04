@@ -159,8 +159,9 @@ export default async function handle(req: any, res: any) {
     //take:100,
   });
 
-  const result_1 = await result.filter((item) =>
-    item.applicantId.toString().includes(searchUserNo)
+  const result_1 = await result.filter(
+    (item) =>
+      item.applicantId && item.applicantId.toString().includes(searchUserNo)
   );
 
   await prisma.$disconnect();

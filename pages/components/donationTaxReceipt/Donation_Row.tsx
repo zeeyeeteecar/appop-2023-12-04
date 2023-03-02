@@ -233,7 +233,9 @@ export default function DonationList({ fetchData, setFetchData, handle_sort }) {
                 </Text>
                 *************************** Avatar ********************
                 <Center borderWidth={0} w="60px">
-                  <Avatar w={"30px"} height={"40px"}
+                  <Avatar
+                    w={"30px"}
+                    height={"40px"}
                     name={application.firstName + " " + application.lastName}
                     src={randomAvatarLink()}
                   />
@@ -256,14 +258,19 @@ export default function DonationList({ fetchData, setFetchData, handle_sort }) {
                 <HStack>
                   <Box>
                     <Text w={"200px"} borderWidth={0}>
-                      {application.addressLine1}  
+                      {application.addressLine1}
                     </Text>
                     <Text borderWidth={0}>
-                    {application.city}  {application.province}
+                      {application.city} {application.province}
                       {" , "}
                       {application.postalCode}
                     </Text>
-                    <Text w={"50px"} fontSize="12px" borderWidth={0} color="green.300">
+                    <Text
+                      w={"50px"}
+                      fontSize="12px"
+                      borderWidth={0}
+                      color="green.300"
+                    >
                       {application.addressLine2}
                     </Text>
                   </Box>
@@ -325,7 +332,7 @@ export default function DonationList({ fetchData, setFetchData, handle_sort }) {
                     donationAmount={application.donationAmount}
                   />
                 </Box>
-                <Test applicationId={application.id} />
+                {/* <Test applicationId={application.id} /> */}
               </HStack>
             );
           })}
