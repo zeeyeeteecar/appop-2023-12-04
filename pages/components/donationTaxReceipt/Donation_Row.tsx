@@ -332,7 +332,7 @@ export default function DonationList({ fetchData, setFetchData, handle_sort }) {
                     donationAmount={application.donationAmount}
                   />
                 </Box>
-                {/* <Test applicationId={application.id} /> */}
+                <Test applicationId={application.id} />
               </HStack>
             );
           })}
