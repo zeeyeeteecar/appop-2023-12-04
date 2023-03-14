@@ -11,6 +11,8 @@ import {
 } from "@chakra-ui/react";
 
 import WalletCard_Proc_Cmpl from "./WalletCard_Proc_Cmpl";
+import WalletCard_Search from "./WalletCard_Search"
+
 import SideBar from "../common/SideBar";
 
 export default function index() {
@@ -23,10 +25,6 @@ export default function index() {
       tabTitle: "In Processing",
       tabUrl: "/api/walletCard/walletCard_Processing_find",
     },
-    {
-      tabTitle: "By Selection",
-      tabUrl: "/api/walletCard/walletCard_Processing_find",
-    },
   ];
   return (
     <HStack width={"100%"} h="100vh" borderWidth={0} bgColor="">
@@ -37,19 +35,20 @@ export default function index() {
           colorScheme="red"
           width={"100%"}
           borderWidth={0}
-          
           h={"100%"}
         >
           <TabList fontWeight={"bold"}>
             {tabInfo.map((item) => {
               return (
                 <>
-                  <Tab>{item.tabTitle}</Tab>
+                  <Tab fontWeight={"semibold"}>{item.tabTitle}</Tab>
                 </>
               );
             })}
+            <Tab fontWeight={"semibold"}>Search</Tab>
           </TabList>
-          <TabPanels >
+
+          <TabPanels>
             {tabInfo.map((item, key) => {
               return (
                 <>
@@ -59,6 +58,9 @@ export default function index() {
                 </>
               );
             })}
+             <TabPanel textAlign={"center"}>
+                    <WalletCard_Search />
+                  </TabPanel>
           </TabPanels>
         </Tabs>
       </VStack>

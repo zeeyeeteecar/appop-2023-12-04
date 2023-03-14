@@ -65,6 +65,7 @@ export default async function handle(req: any, res: any) {
           rcdPermitId: true,
           expiryDate: true,
           active: true,
+          type:true,
         },
       },
       applicant: {

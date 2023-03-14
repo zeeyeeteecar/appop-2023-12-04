@@ -17,7 +17,7 @@ export default function GoogleMaps() {
     <>
       <Popover placement="top-start">
         <PopoverTrigger>
-          <Button>Click me</Button>
+          <Button h={"20px"}>Click me</Button>
         </PopoverTrigger>
         <PopoverContent shadow={"2xl"}>
           <PopoverHeader fontWeight="semibold">Popover placement</PopoverHeader>
