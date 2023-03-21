@@ -142,6 +142,7 @@ export default function Index() {
                 <Th>DoB</Th>
                 <Th>Age</Th>
                 <Th w="150px">address</Th>
+                <Th w="50px"></Th>
                 <Th w="80px">city</Th>
                 <Th w="40px">prov</Th>
                 <Th>post</Th>
@@ -216,6 +217,7 @@ export default function Index() {
                         {getAge(applicant.dateOfBirth, latestPermitExpiryDate)}
                       </Td>
                       <Td>{applicant.addressLine1}</Td>
+                      <Td color={"green.200"}>{applicant.addressLine2}</Td>
                       <Td>{applicant.city}</Td>
                       <Td>{applicant.province}</Td>
                       <Td>{applicant.postalCode}</Td>
