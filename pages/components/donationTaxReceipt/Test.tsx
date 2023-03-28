@@ -122,10 +122,7 @@ export default function Test({ applicationId }) {
             >
               <Box>
                 {application_data ? (
-                  //JSON.stringify(application_data)
-                  //<Test_OverLay_ApplicationDetail
-                  //application_data={application_data}
-                  ///>
+
                   <OverLay_ApplicationDetail_New
                   application={application_data}
                   />

@@ -142,6 +142,7 @@ export default function Index() {
                 <Th>DoB</Th>
                 <Th>Age</Th>
                 <Th w="150px">address</Th>
+                <Th w="50px">add2</Th>
                 <Th w="50px"></Th>
                 <Th w="80px">city</Th>
                 <Th w="40px">prov</Th>
