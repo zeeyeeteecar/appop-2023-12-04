@@ -165,7 +165,7 @@ export default function Index() {
                 <Th>Area</Th>
                 <Th>phone</Th>
                 <Th>email</Th>
-                <Th>PP History Record</Th>
+                {/* <Th>PP History Record</Th> */}
               </Tr>
             </Thead>
             <Tbody>
