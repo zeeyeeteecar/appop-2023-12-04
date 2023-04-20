@@ -116,6 +116,7 @@ export default async function handle(req: any, res: any) {
       notes: true,
       applicantId: true,
       createdAt: true,
+      updatedAt:true,
 
       permit: {
         select: {

@@ -387,6 +387,9 @@ export default function OverLay_ApplicationDetail_New(props) {
               <Center height="20px" w={"90%"}>
                 <Divider />
               </Center>
+              <Center height="20px" w={"90%"}>
+                <Divider />
+              </Center>
             </Box>
           </VStack>
           {/* <Box w="full" height="500px" overflowY={"auto"} borderWidth={2}>
@@ -511,11 +514,6 @@ function Doctor_disability_assessment_Info({
   );
 }
 
-
-
-
-
-
 function Reason_for_replacement({ application, applicationContent }) {
   return (
     <VStack borderWidth={0} w="400px" p={0}>
@@ -545,9 +543,9 @@ function Reason_for_replacement({ application, applicationContent }) {
           </HStack>
           <Text width={"fit-content"} borderWidth={0} marginLeft={6}>
             Disability:{" "}
-            <li>ddd
-              {applicationContent &&
-                applicationContent.reason}{" "}
+            <li>
+              ddd
+              {applicationContent && applicationContent.reason}{" "}
             </li>
           </Text>
           <Text width={"fit-content"} borderWidth={0} marginLeft={6}>
