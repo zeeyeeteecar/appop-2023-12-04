@@ -122,8 +122,9 @@ export default function Test({ applicationId }) {
             >
               <Box>
                 {application_data ? (
+
                   <OverLay_ApplicationDetail_New
-                    application={application_data}
+                  application={application_data}
                   />
                 ) : (
                   <Center w="100%" h="100px">

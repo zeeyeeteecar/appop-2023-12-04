@@ -387,6 +387,26 @@ export default function OverLay_ApplicationDetail_New(props) {
               <Center height="20px" w={"90%"}>
                 <Divider />
               </Center>
+              <Flex>
+                <Text fontWeight={"bold"} w="100px">
+                  {" "}
+                  Created At:
+                </Text>
+                <Text>
+                  {application && application.createdAt}{" "}
+                </Text>
+              </Flex>
+              <Flex>
+                <Text fontWeight={"bold"} w="100px">
+                  {" "}
+                  Updated At:
+                </Text>
+                <Text>
+                  {application && application.updatedAt
+                    ? application.updatedAt
+                    : ""}{" "}
+                </Text>
+              </Flex>
               <Center height="20px" w={"90%"}>
                 <Divider />
               </Center>

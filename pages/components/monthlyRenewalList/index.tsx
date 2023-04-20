@@ -76,10 +76,22 @@ export default function Index() {
   };
 
   return (
-    <HStack borderWidth={"0px"} h="100vh" w="100%" spacing={0} overflow={"true"}>
+    <HStack
+      borderWidth={"0px"}
+      h="100vh"
+      w="100%"
+      spacing={0}
+      overflow={"true"}
+    >
       <SpinnerOverlay fetchData={fetchData} setFetchData={setFetchData} />
       <SideBar />
-      <VStack width={"100%"} height="100vh" borderWidth={0} p={"10px"} spacing={3}>
+      <VStack
+        width={"100%"}
+        height="100vh"
+        borderWidth={0}
+        p={"10px"}
+        spacing={3}
+      >
         <HStack borderWidth="100%">
           <Flex borderWidth={"0px"} w="250px" h={"full"}>
             <ListCount count={fetchData.length} />
@@ -138,6 +150,7 @@ export default function Index() {
               <Tr color="green.300">
                 <Th w="20px">User ID</Th>
                 <Th>F name</Th>
+                <Th>M name</Th>
                 <Th>L name</Th>
                 <Th>DoB</Th>
                 <Th>Age</Th>
@@ -212,6 +225,7 @@ export default function Index() {
                     >
                       <Td>{applicant.id}</Td>
                       <Td>{applicant.firstName}</Td>
+                      <Td>{applicant.middleName}</Td>
                       <Td>{applicant.lastName}</Td>
                       <Td>{formatDate(applicant.dateOfBirth)}</Td>
                       <Td>

@@ -36,16 +36,21 @@ export default function Index_applicationInfo() {
   const [searchProcessing, setSearchProcessing] = useState("IN_PROGRESS");
   const [searchCompleted, setSearchCompleted] = useState("COMPLETED");
   const [searchDonationOnly, setSearchDonationOnly] = useState<boolean>(false);
-  const [searchPermitType_Permanent, setSearchPermitType_Permanent] =
-    useState("PERMANENT");
-  const [searchPermitType_Temporary, setSearchPermitType_Temporary] =
-    useState("TEMPORARY");
+  const [searchPermitType_Permanent, setSearchPermitType_Permanent] = useState(
+    "PERMANENT"
+  );
+  const [searchPermitType_Temporary, setSearchPermitType_Temporary] = useState(
+    "TEMPORARY"
+  );
   const [searchRequestType_New, setSearchRequestType_New] = useState("NEW");
-  const [searchRequestType_RENEWAL, setSearchRequestType_RENEWAL] =
-    useState("RENEWAL");
+  const [searchRequestType_RENEWAL, setSearchRequestType_RENEWAL] = useState(
+    "RENEWAL"
+  );
 
-  const [searchRequestType_REPLACEMENT, setSearchRequestType_REPLACEMENT] =
-    useState("REPLACEMENT");
+  const [
+    searchRequestType_REPLACEMENT,
+    setSearchRequestType_REPLACEMENT,
+  ] = useState("REPLACEMENT");
 
   const [searchDateStart, setSearchDateStart] = useState(
     new Date(currentYear + "-" + currentMonth + "-" + nextMonthDay1)
@@ -355,7 +360,11 @@ export default function Index_applicationInfo() {
           </VStack>
         </HStack>
 
-        <Donation_Row fetchData={fetchData} setFetchData={setFetchData} handle_sort={handle_sort}/>
+        <Donation_Row
+          fetchData={fetchData}
+          setFetchData={setFetchData}
+          handle_sort={handle_sort}
+        />
       </VStack>
     </HStack>
   );

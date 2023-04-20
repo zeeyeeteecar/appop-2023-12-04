@@ -332,7 +332,7 @@ export default function DonationList({ fetchData, setFetchData, handle_sort }) {
                     donationAmount={application.donationAmount}
                   />
                 </Box>
-                <Test applicationId={application.idd} />
+                <Test applicationId={application.id} />
               </HStack>
             );
           })}
@@ -344,8 +344,8 @@ export default function DonationList({ fetchData, setFetchData, handle_sort }) {
 ///===========================================================================/////
 
 function loadComponent(name: string) {
-  const Component = React.lazy(() =>
-    import(`./OverLay_ApplicationDetail_${name}.tsx`)
+  const Component = React.lazy(
+    () => import(`./OverLay_ApplicationDetail_${name}.tsx`)
   );
   //console.log(`./OverLay_ApplicationDetail_${name}.tsx`);
   return Component;
