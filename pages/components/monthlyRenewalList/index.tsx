@@ -244,7 +244,7 @@ export default function Index() {
                       <Td>{phone}</Td>
                       <Td>{applicant.email}</Td>
 
-                      {sortedPermits.map((permit, index) => {
+                      {/* {sortedPermits.map((permit, index) => {
                         return (
                           <>
                             <Td w={"100px"}>
@@ -257,7 +257,7 @@ export default function Index() {
                             </Td>
                           </>
                         );
-                      })}
+                      })} */}
                     </Tr>
                   );
                 })}
