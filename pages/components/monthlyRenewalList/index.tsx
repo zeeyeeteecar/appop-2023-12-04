@@ -150,7 +150,7 @@ export default function Index() {
               <Tr color="green.300">
                 <Th w="20px">User ID</Th>
                 <Th>F name</Th>
-                <Th>M name</Th>
+                <Th w="50px">M name</Th>
                 <Th>L name</Th>
                 <Th>DoB</Th>
                 <Th>Age</Th>
