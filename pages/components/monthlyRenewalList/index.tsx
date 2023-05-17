@@ -67,6 +67,8 @@ export default function Index() {
     const expiryDate = new Date(dateFormatNeeded).getUTCDate();
     //console.log("expiryYear", expiryYear);
     return expiryYear + "-" + expiryMonth + "-" + expiryDate;
+
+    
   };
 
   const handle_Search = async () => {
@@ -155,7 +157,6 @@ export default function Index() {
                 <Th>DoB</Th>
                 <Th>Age</Th>
                 <Th w="150px">address</Th>
-                <Th w="50px">add2</Th>
                 <Th w="50px"></Th>
                 <Th w="80px">city</Th>
                 <Th w="40px">prov</Th>
@@ -186,6 +187,8 @@ export default function Index() {
                     applicant.phone.substring(3, 3 + 3) +
                     "-" +
                     applicant.phone.substring(3 + 3, 3 + 3 + 4);
+
+                   const addressUnitNo = applicant.addressLine2?("# " + applicant.addressLine2 + " - " ) : ""
 
                   const bgclr =
                     dateStart <= new Date(latestPermitExpiryDate) &&
@@ -231,8 +234,8 @@ export default function Index() {
                       <Td>
                         {getAge(applicant.dateOfBirth, latestPermitExpiryDate)}
                       </Td>
-                      <Td>{applicant.addressLine1}</Td>
-                      <Td color={"red.300"}>{applicant.addressLine2}</Td>
+                      <Td>{addressUnitNo}{applicant.addressLine1}</Td>
+                      
                       <Td>{applicant.city}</Td>
                       <Td>{applicant.province}</Td>
                       <Td>{applicant.postalCode}</Td>

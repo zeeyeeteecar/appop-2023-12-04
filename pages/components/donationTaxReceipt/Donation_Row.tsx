@@ -182,6 +182,8 @@ export default function DonationList({ fetchData, setFetchData, handle_sort }) {
               "-" +
               application.phone.substring(6);
 
+            const addressUnitNo = application.addressLine2?("# " + application.addressLine2 + " - " ) : ""
+
             return (
               <HStack
                 key={index}
@@ -257,21 +259,16 @@ export default function DonationList({ fetchData, setFetchData, handle_sort }) {
                 **************************** Address 1 ********************
                 <HStack>
                   <Box>
+
+                     
+
                     <Text w={"200px"} borderWidth={0}>
-                      {application.addressLine1}
+                    {addressUnitNo} {application.addressLine1}
                     </Text>
                     <Text borderWidth={0}>
                       {application.city} {application.province}
                       {" , "}
                       {application.postalCode}
-                    </Text>
-                    <Text
-                      w={"50px"}
-                      fontSize="12px"
-                      borderWidth={0}
-                      color="green.300"
-                    >
-                      {application.addressLine2}
                     </Text>
                   </Box>
                   <Link
@@ -344,8 +341,8 @@ export default function DonationList({ fetchData, setFetchData, handle_sort }) {
 ///===========================================================================/////
 
 function loadComponent(name: string) {
-  const Component = React.lazy(
-    () => import(`./OverLay_ApplicationDetail_${name}.tsx`)
+  const Component = React.lazy(() =>
+    import(`./OverLay_ApplicationDetail_${name}.tsx`)
   );
   //console.log(`./OverLay_ApplicationDetail_${name}.tsx`);
   return Component;
