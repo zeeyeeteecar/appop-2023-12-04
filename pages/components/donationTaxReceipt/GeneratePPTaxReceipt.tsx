@@ -49,7 +49,9 @@ export default function GeneratePPTaxReceipt({ application, donationAmount }) {
       (application.middleName ? application.middleName : "") +
       " " +
       application.lastName;
-    const donorAddress = application.addressLine1;
+
+    const addressUnitNo = application.addressLine2?("# " + application.addressLine2 + " - " ) : ""
+    const donorAddress =addressUnitNo + application.addressLine1;
     const donorCityProvPostal =
       application.city +
       " " +
