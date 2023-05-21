@@ -101,16 +101,16 @@ export default function Index() {
       firstDonorPage.drawText(i.toString(), {
         x: 18,
         y: height - 60,
-        size: 20,
+        size: 22,
         font: helveticaFont,
         color: rgb(1, 0, 0),
         //rotate: degrees(-45),
       });
 
       firstDonorPage.drawText((i + 1).toString(), {
-        x: 416,
+        x: 415,
         y: height - 60,
-        size: 20,
+        size: 22,
         font: helveticaFont,
         color: rgb(1, 0, 0),
         //rotate: degrees(-45),
@@ -119,16 +119,16 @@ export default function Index() {
       firstDonorPage.drawText((i + 2).toString(), {
         x: 18,
         y: height - 335,
-        size: 20,
+        size: 22,
         font: helveticaFont,
         color: rgb(1, 0, 0),
         //rotate: degrees(-45),
       });
 
       firstDonorPage.drawText((i + 3).toString(), {
-        x: 416,
+        x: 415,
         y: height - 335,
-        size: 20,
+        size: 22,
         font: helveticaFont,
         color: rgb(1, 0, 0),
         //rotate: degrees(-45),
