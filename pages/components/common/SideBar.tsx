@@ -30,6 +30,7 @@ import {
   AiOutlineRedEnvelope,
   AiOutlineSearch,
   AiOutlineSketch,
+  AiOutlineHistory,
 } from "react-icons/ai";
 import { BsFolder2, BsCalendarCheck } from "react-icons/bs";
 import { FiMenu } from "react-icons/fi";
@@ -111,6 +112,9 @@ const SidebarContent = ({ ...props }: BoxProps) => (
           </NavItem>
           <NavItem icon={AiOutlineSketch} url={"/components/icecream"}>
             Ice Cream
+          </NavItem>
+          <NavItem icon={AiOutlineHistory} url={"/components/leaves"}>
+            Leaves
           </NavItem>
         </Flex>
       </Box>
