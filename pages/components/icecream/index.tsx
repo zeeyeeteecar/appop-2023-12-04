@@ -99,7 +99,7 @@ export default function Index() {
       const { width, height } = firstDonorPage.getSize();
 
       firstDonorPage.drawText(i.toString(), {
-        x: 15,
+        x: 13,
         y: height - 60,
         size: 25,
         font: helveticaFont,
@@ -108,7 +108,7 @@ export default function Index() {
       });
 
       firstDonorPage.drawText((i + 1).toString(), {
-        x: 410,
+        x: 408,
         y: height - 60,
         size: 25,
         font: helveticaFont,
@@ -117,7 +117,7 @@ export default function Index() {
       });
 
       firstDonorPage.drawText((i + 2).toString(), {
-        x: 15,
+        x: 13,
         y: height - 335,
         size: 25,
         font: helveticaFont,
@@ -126,7 +126,7 @@ export default function Index() {
       });
 
       firstDonorPage.drawText((i + 3).toString(), {
-        x: 410,
+        x: 408,
         y: height - 335,
         size: 25,
         font: helveticaFont,
