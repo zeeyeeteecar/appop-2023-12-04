@@ -1,16 +1,7 @@
 import React from "react";
 import { useRouter } from "next/router";
-import {
-  Center,
-  Box,
-  VStack,
-  Button,
-
-} from "@chakra-ui/react";
+import { Center, Box, VStack, Button } from "@chakra-ui/react";
 import { EditIcon } from "@chakra-ui/icons";
-
-
-
 
 export default function Index() {
   return (
@@ -39,13 +30,11 @@ export default function Index() {
         {BtnMain("/components/doctorInfo", "Doctor Info")}
         {BtnMain("/components/walletCard", "Wallet Card")}
         {BtnMain("/components/donationTaxReceipt", "Donation Tax Receipt")}
-        {BtnMain("/components/donationTaxReceipt", "More")}
+        {BtnMain("/components/icecream", "More")}
       </VStack>
     </Box>
   );
 }
-
-
 
 const BtnMain = (url, title) => {
   const router = useRouter();

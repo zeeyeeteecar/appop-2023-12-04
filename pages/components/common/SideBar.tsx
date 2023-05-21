@@ -29,6 +29,7 @@ import {
   AiOutlineWallet,
   AiOutlineRedEnvelope,
   AiOutlineSearch,
+  AiOutlineSketch,
 } from "react-icons/ai";
 import { BsFolder2, BsCalendarCheck } from "react-icons/bs";
 import { FiMenu } from "react-icons/fi";
@@ -108,8 +109,8 @@ const SidebarContent = ({ ...props }: BoxProps) => (
           >
             Donation
           </NavItem>
-          <NavItem icon={AiOutlineSearch} url={"/components/search"}>
-            Search
+          <NavItem icon={AiOutlineSketch} url={"/components/icecream"}>
+            Ice Cream
           </NavItem>
         </Flex>
       </Box>
