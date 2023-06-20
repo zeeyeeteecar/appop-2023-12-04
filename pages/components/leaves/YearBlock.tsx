@@ -17,7 +17,10 @@ export default function YearBlock() {
 
   return (
     <>
-      <DayOvMonth_Row  getDaysInMonth={getDaysInMonth} monthNumbers={monthNumbers}/>
+      <DayOvMonth_Row
+        getDaysInMonth={getDaysInMonth}
+        monthNumbers={monthNumbers}
+      />
     </>
   );
 }
