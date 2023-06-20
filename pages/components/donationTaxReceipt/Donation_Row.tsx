@@ -234,7 +234,7 @@ export default function DonationList({ fetchData, setFetchData, handle_sort }) {
                   fontSize="12px"
                   fontWeight={"semibold"}
                   p="1px"
-                  w={"110px"}
+                  w={"120px"}
                   borderWidth={0}
                   align={"center"}
                   bgColor={
@@ -244,8 +244,8 @@ export default function DonationList({ fetchData, setFetchData, handle_sort }) {
                     bgclr_Status(application.applicationProcessing.status).clr
                   }
                 >
-                  {moment(application.createdAt).format("YYYYMMDD") +
-                    "-" +
+                  {moment(application.createdAt).format("YYYY-MM-DD") +
+                    "_" +
                     application.applicantId}
                   {}
                 </Text>

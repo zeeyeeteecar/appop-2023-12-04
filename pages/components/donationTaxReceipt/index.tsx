@@ -177,9 +177,6 @@ export default function Index_applicationInfo() {
     }
   }
 
-  useEffect(() => {
-    //ataFetch();
-  }, []);
 
   return (
     <HStack borderWidth={"0px"} h="100vh" w="100%" spacing={0}>

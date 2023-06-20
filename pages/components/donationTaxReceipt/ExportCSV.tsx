@@ -1,4 +1,5 @@
 import React from "react";
+import moment from "moment";
 import { Box, Flex, Center, Button } from "@chakra-ui/react";
 
 import { CSVLink, CSVDownload } from "react-csv";
@@ -6,10 +7,11 @@ import { CSVLink, CSVDownload } from "react-csv";
 export default function ExportCSV({ fetchData }) {
   const csvData = [
     [
+      "UserID",
       "Status",
       "Type",
-      "UserID",
       "PP#",
+      "Tax#",
       "FName",
       "LName",
       "phone",
@@ -26,10 +28,17 @@ export default function ExportCSV({ fetchData }) {
   fetchData &&
     fetchData.map((application, index) => {
       const csvDataEachLine = [];
+      csvDataEachLine.push(application.applicantId);
       csvDataEachLine.push(application.applicationProcessing.status);
       csvDataEachLine.push(application.type);
-      csvDataEachLine.push(application.applicantId);
-      csvDataEachLine.push(application.permit?application.permit.rcdPermitId:"");
+      csvDataEachLine.push(
+        application.permit ? application.permit.rcdPermitId : ""
+      );
+      csvDataEachLine.push(
+        moment(application.createdAt).format("YYYY-MM-DD") +
+          "_" +
+          application.applicantId
+      );
       csvDataEachLine.push(application.firstName);
       csvDataEachLine.push(application.lastName);
       csvDataEachLine.push(application.phone);

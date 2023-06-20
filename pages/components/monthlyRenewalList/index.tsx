@@ -72,8 +72,6 @@ export default function Index() {
   };
 
   const handle_Search = async () => {
-    //alert("alert");
-
     dataFetch();
   };
 
