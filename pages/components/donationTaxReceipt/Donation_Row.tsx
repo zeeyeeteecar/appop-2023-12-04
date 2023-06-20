@@ -1,5 +1,6 @@
 import React, { Suspense } from "react";
 import Link from "next/link";
+import moment from "moment";
 import {
   Center,
   Button,
@@ -42,6 +43,13 @@ export default function DonationList({ fetchData, setFetchData, handle_sort }) {
   sum_total = sum_fee + sum_donation;
 
   const rowTitle = [
+    { title: "UserID", fieldName: "application.applicantId", w: "80px" },
+    {
+      title: "PPD Tax #",
+      fieldName: "applicationProcessing.status",
+      w: "100px",
+    },
+
     { title: "Status", fieldName: "applicationProcessing.status", w: "80px" },
     { title: "Type", fieldName: "type", w: "80px" },
     { title: "PP#", fieldName: "permit.rcdPermitId", w: "80px" },
@@ -182,7 +190,9 @@ export default function DonationList({ fetchData, setFetchData, handle_sort }) {
               "-" +
               application.phone.substring(6);
 
-            const addressUnitNo = application.addressLine2?("# " + application.addressLine2 + " - " ) : ""
+            const addressUnitNo = application.addressLine2
+              ? "# " + application.addressLine2 + " - "
+              : "";
 
             return (
               <HStack
@@ -200,6 +210,47 @@ export default function DonationList({ fetchData, setFetchData, handle_sort }) {
                   cursor: "pointer",
                 }}
               >
+                *************************** User ID ********************
+                <Text
+                  rounded={"full"}
+                  fontSize="12px"
+                  fontWeight={"semibold"}
+                  p="1px"
+                  w={"70px"}
+                  borderWidth={0}
+                  align={"center"}
+                  bgColor={
+                    bgclr_Status(application.applicationProcessing.status).bgclr
+                  }
+                  color={
+                    bgclr_Status(application.applicationProcessing.status).clr
+                  }
+                >
+                  {application.applicantId}
+                </Text>
+                *************************** PPD Tax # ********************
+                <Text
+                  rounded={"full"}
+                  fontSize="12px"
+                  fontWeight={"semibold"}
+                  p="1px"
+                  w={"110px"}
+                  borderWidth={0}
+                  align={"center"}
+                  bgColor={
+                    bgclr_Status(application.applicationProcessing.status).bgclr
+                  }
+                  color={
+                    bgclr_Status(application.applicationProcessing.status).clr
+                  }
+                >
+                  {moment(application.createdAt).format("YYYYMMDD") +
+                    "-" +
+                    application.applicantId}
+                  {}
+                </Text>
+                ***************************Status / Comleted / In proc
+                ********************
                 <Text
                   rounded={"full"}
                   fontSize="12px"
@@ -217,7 +268,29 @@ export default function DonationList({ fetchData, setFetchData, handle_sort }) {
                 >
                   {application.applicationProcessing.status.substring(0, 5)}
                 </Text>
-                <OverLay_ApplicationDetail_1 application={application} />
+                ***************************Type -- New /Renew
+                ********************
+                <HStack
+                  w="70px"
+                  borderWidth={0}
+                  rounded={"full"}
+                  fontWeight={"semibold"}
+                  fontSize="12px"
+                  paddingX={"5px"}
+                  bgColor={type_bgclr_clr(application.type).bgclr}
+                  color={type_bgclr_clr(application.type).clr}
+                  //onClick={(e) => onClick_Comp_Temp(e)}
+
+                  _hover={{
+                    background: "white",
+                    borderWidth: "1px",
+                    borderColor: type_bgclr_clr(application.type).clr + ".300",
+                  }}
+                >
+                  <Text p="1px" w={"70px"} borderWidth={0} align={"center"}>
+                    {application.type.substring(0, 3)}
+                  </Text>
+                </HStack>
                 <Text
                   rounded={"full"}
                   fontSize="14px"
@@ -259,11 +332,8 @@ export default function DonationList({ fetchData, setFetchData, handle_sort }) {
                 **************************** Address 1 ********************
                 <HStack>
                   <Box>
-
-                     
-
-                    <Text w={"200px"} borderWidth={0}>
-                    {addressUnitNo} {application.addressLine1}
+                    <Text w={"180px"} borderWidth={0}>
+                      {addressUnitNo} {application.addressLine1}
                     </Text>
                     <Text borderWidth={0}>
                       {application.city} {application.province}
@@ -323,6 +393,8 @@ export default function DonationList({ fetchData, setFetchData, handle_sort }) {
                   {parseFloat(application.processingFee) +
                     parseFloat(application.donationAmount)}
                 </Text>
+
+                **************************** Generate PPTax Receipt ***********
                 <Box w={"100px"} h="40px">
                   <GeneratePPTaxReceipt
                     application={application}
@@ -346,107 +418,6 @@ function loadComponent(name: string) {
   );
   //console.log(`./OverLay_ApplicationDetail_${name}.tsx`);
   return Component;
-}
-
-///===========================================================================/////
-
-function OverLay_ApplicationDetail_1({ application }) {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  //const [newRenewalReplace, setNewRenewalReplace] = React.useState();
-
-  const type_bgclr_clr = (Apptype: string): any => {
-    const bgclr_clr = [
-      { category: "NEW", clr: "green", bgclr: "green.100" },
-      { category: "RENEWAL", clr: "purple", bgclr: "purple.100" },
-      { category: "REPLACEMENT", clr: "blue", bgclr: "blue.100" },
-    ];
-    return bgclr_clr.find((e) => e.category === Apptype);
-  };
-
-  const new_renewal_replacement = (): {
-    componentName: string;
-    applicationContent: any;
-  } => {
-    let result: { componentName: string; applicationContent: any } = {
-      componentName: "",
-      applicationContent: null,
-    };
-
-    if (application.newApplication) {
-      result.componentName = "New";
-      result.applicationContent = application.newApplication;
-    }
-    if (application.renewalApplication) {
-      result.componentName = "Renewal";
-      result.applicationContent = application.renewalApplication;
-    }
-    if (application.replacementApplication) {
-      result.componentName = "Replacement";
-      result.applicationContent = application.replacementApplication;
-    }
-    return result;
-  };
-  const Component = loadComponent(new_renewal_replacement().componentName);
-
-  return (
-    <>
-      <HStack
-        w="70px"
-        borderWidth={0}
-        rounded={"full"}
-        fontWeight={"semibold"}
-        fontSize="12px"
-        paddingX={"5px"}
-        bgColor={type_bgclr_clr(application.type).bgclr}
-        color={type_bgclr_clr(application.type).clr}
-        //onClick={(e) => onClick_Comp_Temp(e)}
-        onClick={onOpen}
-        _hover={{
-          background: "white",
-          borderWidth: "1px",
-          borderColor: type_bgclr_clr(application.type).clr + ".300",
-        }}
-      >
-        <Text p="1px" w={"70px"} borderWidth={0} align={"center"}>
-          {application.type.substring(0, 3)}
-        </Text>
-        <ExternalLinkIcon
-          color={type_bgclr_clr(application.type).clr + ".500"}
-          w="12px"
-        />
-      </HStack>
-
-      <Modal
-        isCentered
-        onClose={onClose}
-        isOpen={isOpen}
-        motionPreset="slideInBottom"
-      >
-        <ModalOverlay />
-        <ModalContent borderWidth={0} maxW="1200px" maxH="750px">
-          <ModalHeader borderWidth={0}>
-            {new_renewal_replacement().componentName}
-          </ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <Box>
-              <React.Suspense fallback={<div>Loading...</div>}>
-                <Component
-                  application={application}
-                  applicant={application.applicant}
-                  MedicalInformation={application.applicant.MedicalInformation}
-                  permit={application.permit}
-                  applicationContent={
-                    new_renewal_replacement().applicationContent
-                  }
-                />
-              </React.Suspense>
-            </Box>
-          </ModalBody>
-        </ModalContent>
-      </Modal>
-    </>
-  );
 }
 
 const randomAvatarLink_1 = () => {

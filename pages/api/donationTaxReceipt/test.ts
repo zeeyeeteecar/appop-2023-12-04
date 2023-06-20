@@ -65,7 +65,7 @@ export default async function handle(req: any, res: any) {
           rcdPermitId: true,
           expiryDate: true,
           active: true,
-          type:true,
+          type: true,
         },
       },
       applicant: {
@@ -89,16 +89,24 @@ export default async function handle(req: any, res: any) {
           },
         },
       },
-      applicationProcessing: { select: { status: true } },
+      applicationProcessing: {
+        select: {
+          status: true,
+          applicationInvoice: {
+            select: {
+              invoiceNumber: true,
+              createdAt: true,
+            },
+          },
+        },
+      },
       newApplication: {},
       renewalApplication: {},
       replacementApplication: {},
     },
-    
+
     //take:100,
   });
-
-
 
   await prisma.$disconnect();
   res.json(result);

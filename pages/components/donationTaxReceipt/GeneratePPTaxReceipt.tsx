@@ -22,25 +22,15 @@ export default function GeneratePPTaxReceipt({ application, donationAmount }) {
 
     //******************************************** */
 
-    const current = new Date();
-    const taxreceipt_No =
-      "PPD_" +
-      current.getFullYear() +
-      current.getUTCMonth() +
-      1 +
-      current.getDate() +
-      "_" +
-      current.getHours() +
-      (current.getMinutes() < 10
-        ? "0" + current.getMinutes()
-        : current.getMinutes()) +
-      current.getUTCSeconds();
-
+    const donationReceived = application.createdAt.substring(0, 10);
+  
+    const taxreceipt_No =      "PPD_" +donationReceived + "_" + application.applicantId
+  
     const pages = pdfDoc.getPages();
     const firstPage = pages[0];
     const { width, height } = firstPage.getSize();
 
-    const donationReceived = application.createdAt.substring(0, 10);
+    
     //console.log("donationReceived", donationReceived);
 
     const donorFnameMnameLname =
