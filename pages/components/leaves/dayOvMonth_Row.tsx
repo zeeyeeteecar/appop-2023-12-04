@@ -5,19 +5,29 @@ import mysql from "mysql2/promise";
 
 import { IconButton } from "@chakra-ui/react";
 
-export default function DayOvMonth_Row({ getDaysInMonth, monthNumbers }) {
+export default function DayOvMonth_Row() {
+  const getDaysInMonth = (month, year) =>
+    new Array(31)
+      .fill("")
+      .map((v, i) => new Date(year, month - 1, i + 1))
+      .filter((v) => v.getMonth() === month - 1);
+
+  const monthNumbers = Array(12)
+    .fill(0)
+    .map((e, i) => i + 1);
+
   function onClick_showDate(monthday) {
     console.log(monthday);
   }
 
-  // create the connection to database
-  const connection = mysql.createConnection({
-    host: "n1nlmysql19plsk.secureserver.net",
-    user: "mysql_leaves_user",
-    database: "mysql_leaves",
-    password: "kokoKat72",
-  });
-
+  //  // create the connection to database
+  // const connection = mysql.createConnection({
+  //   host: "n1nlmysql19plsk.secureserver.net",
+  //   user: "mysql_leaves_user",
+  //   database: "mysql_leaves",
+  //   password: "kokoKat72",
+  // });
+  //
   // simple query
   // connection.query(
   //   'SELECT * FROM `table` WHERE `name` = "Page" AND `age` > 45',
