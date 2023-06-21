@@ -22,15 +22,17 @@ export default function GeneratePPTaxReceipt({ application, donationAmount }) {
 
     //******************************************** */
 
-    const donationReceived = application.createdAt.substring(0, 10);
-  
-    const taxreceipt_No =      "PPD_" +donationReceived + "_" + application.applicantId
-  
+    const donationReceived = application.createdAt
+      .substring(0, 10)
+      .replace(/-/g, "");
+
+    const taxreceipt_No =
+      "PPD_" + donationReceived + "_" + application.applicantId;
+
     const pages = pdfDoc.getPages();
     const firstPage = pages[0];
     const { width, height } = firstPage.getSize();
 
-    
     //console.log("donationReceived", donationReceived);
 
     const donorFnameMnameLname =
@@ -40,8 +42,10 @@ export default function GeneratePPTaxReceipt({ application, donationAmount }) {
       " " +
       application.lastName;
 
-    const addressUnitNo = application.addressLine2?("# " + application.addressLine2 + " - " ) : ""
-    const donorAddress =addressUnitNo + application.addressLine1;
+    const addressUnitNo = application.addressLine2
+      ? "# " + application.addressLine2 + " - "
+      : "";
+    const donorAddress = addressUnitNo + application.addressLine1;
     const donorCityProvPostal =
       application.city +
       " " +
