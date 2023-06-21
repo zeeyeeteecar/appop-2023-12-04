@@ -6,7 +6,7 @@ import { IconButton } from "@chakra-ui/react";
 import { ExternalLinkIcon, DownloadIcon } from "@chakra-ui/icons";
 
 import SideBar from "../common/SideBar";
-import YearBlock from "./YearBlock";
+//import YearBlock from "./YearBlock";
 
 export default function Index() {
   return (
@@ -36,7 +36,7 @@ export default function Index() {
             alignContent="flex-start"
             alignItems={"flex-start"}
           >
-            <YearBlock />
+            {/* <YearBlock /> */}
           </VStack>
         </VStack>
       </VStack>
