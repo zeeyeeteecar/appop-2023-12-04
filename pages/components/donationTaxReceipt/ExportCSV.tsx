@@ -34,10 +34,13 @@ export default function ExportCSV({ fetchData }) {
       csvDataEachLine.push(
         application.permit ? application.permit.rcdPermitId : ""
       );
+
       csvDataEachLine.push(
-        moment(application.createdAt).format("YYYY-MM-DD") +
-          "_" +
-          application.applicantId
+        application.donationAmount
+          ? moment(application.createdAt).format("YYYYMMDD") +
+              "_" +
+              application.applicantId
+          : ""
       );
       csvDataEachLine.push(application.firstName);
       csvDataEachLine.push(application.lastName);
