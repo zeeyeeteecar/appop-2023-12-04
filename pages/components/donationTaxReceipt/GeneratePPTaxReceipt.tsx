@@ -27,7 +27,10 @@ export default function GeneratePPTaxReceipt({ application, donationAmount }) {
       .replace(/-/g, "");
 
     const taxreceipt_No =
-      "PPD_" + donationReceived + "_" + application.applicantId;
+      "PPD_" +
+      donationReceived +
+      "_" +
+      (application.permit ? application.permit.rcdPermitId.toString() : "");
 
     const pages = pdfDoc.getPages();
     const firstPage = pages[0];
