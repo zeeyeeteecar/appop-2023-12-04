@@ -36,11 +36,11 @@ export default function ExportCSV({ fetchData }) {
       );
 
       csvDataEachLine.push(
-        application.donationAmount >=20
-          ? 
-           moment(application.createdAt).format("YYYYMMDD") +
+        application.donationAmount >= 20
+          ? moment(application.createdAt).format("YYYYMMDD") +
               "_" +
-              application.applicantId:""
+              application.permit.rcdPermitId
+          : ""
       );
       csvDataEachLine.push(application.firstName);
       csvDataEachLine.push(application.lastName);
